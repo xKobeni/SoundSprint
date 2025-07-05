@@ -185,7 +185,7 @@ class ResultPage extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      Navigator.popUntil(context, ModalRoute.withName('/home'));
+                      Navigator.of(context).pushNamedAndRemoveUntil('/main', (route) => false);
                     },
                     icon: const Icon(Icons.home),
                     label: const Text('Home'),

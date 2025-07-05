@@ -4,6 +4,7 @@ import 'dart:io';
 import '../models/user.dart';
 import '../utils/user_preferences.dart';
 import '../utils/stats_manager.dart';
+import '../utils/daily_points_manager.dart';
 import '../utils/audio_test.dart';
 import '../widgets/daily_challenges_popup.dart';
 
@@ -238,63 +239,148 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildDailyProgressCard() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Icon(Icons.anchor, color: Color(0xFF7C5CFC), size: 36),
-              const SizedBox(width: 12),
-              const Text(
-                'Daily Progress',
-                style: TextStyle(
-                  color: Color(0xFF7C5CFC),
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Spacer(),
-              Text(
-                '${_stats['totalQuestions'] ?? 0} Questions',
-                style: const TextStyle(color: Colors.black54),
+    return FutureBuilder<int>(
+      future: DailyPointsManager.getTodayPoints(),
+      builder: (context, snapshot) {
+        final todayPoints = snapshot.data ?? 0;
+        
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 8,
+                offset: Offset(0, 4),
               ),
             ],
           ),
-          const SizedBox(height: 12),
-          const Text('Games Played', style: TextStyle(color: Colors.black54)),
-          const SizedBox(height: 4),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: LinearProgressIndicator(
-              value: _stats['gamesPlayed'] != null && _stats['gamesPlayed'] > 0
-                  ? (_stats['gamesPlayed'] / 10).clamp(0.0, 1.0)
-                  : 0.0,
-              minHeight: 8,
-              backgroundColor: const Color(0xFFEEE6FF),
-              valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Icon(Icons.anchor, color: Color(0xFF7C5CFC), size: 36),
+                  const SizedBox(width: 12),
+                  const Text(
+                    'Daily Progress',
+                    style: TextStyle(
+                      color: Color(0xFF7C5CFC),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      const Icon(Icons.stars, color: Color(0xFFFFD700), size: 20),
+                      const SizedBox(width: 4),
+                      Text(
+                        '$todayPoints',
+                        style: const TextStyle(
+                          color: Color(0xFFFFD700),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              
+              // Daily Points Progress
+              Row(
+                children: [
+                  const Icon(Icons.stars, color: Color(0xFFFFD700), size: 20),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Daily Points',
+                    style: TextStyle(
+                      color: Color(0xFF7C5CFC),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const Spacer(),
+                  FutureBuilder<int>(
+                    future: DailyPointsManager.getDailyGoal(),
+                    builder: (context, goalSnapshot) {
+                      final dailyGoal = goalSnapshot.data ?? 500;
+                      return Text(
+                        '$todayPoints / $dailyGoal',
+                        style: const TextStyle(
+                          color: Color(0xFF7C5CFC),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              FutureBuilder<double>(
+                future: DailyPointsManager.getDailyGoalProgress(),
+                builder: (context, progressSnapshot) {
+                  final progress = progressSnapshot.data ?? 0.0;
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: LinearProgressIndicator(
+                      value: progress,
+                      minHeight: 8,
+                      backgroundColor: const Color(0xFFEEE6FF),
+                      valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFFFD700)),
+                    ),
+                  );
+                },
+              ),
+              
+              const SizedBox(height: 16),
+              
+              // Games Played Progress
+              Row(
+                children: [
+                  const Icon(Icons.games, color: Color(0xFF7C5CFC), size: 20),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Games Played',
+                    style: TextStyle(
+                      color: Color(0xFF7C5CFC),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    '${_stats['gamesPlayed'] ?? 0} / 10',
+                    style: const TextStyle(
+                      color: Color(0xFF7C5CFC),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: LinearProgressIndicator(
+                  value: _stats['gamesPlayed'] != null && _stats['gamesPlayed'] > 0
+                      ? (_stats['gamesPlayed'] / 10).clamp(0.0, 1.0)
+                      : 0.0,
+                  minHeight: 8,
+                  backgroundColor: const Color(0xFFEEE6FF),
+                  valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            '${_stats['gamesPlayed'] ?? 0} games completed',
-            style: const TextStyle(color: Colors.black54, fontSize: 12),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 

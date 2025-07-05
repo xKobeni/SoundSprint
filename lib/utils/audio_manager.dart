@@ -29,6 +29,9 @@ class AudioManager {
       await _loadSettings();
       await _validateAssets();
       await _preloadCriticalAssets();
+      
+      // Check for missing audio files
+      await getMissingAudioFiles();
     } catch (e) {
       print('AudioManager initialization error: $e');
     }
@@ -48,33 +51,43 @@ class AudioManager {
       final manifestContent = await rootBundle.loadString('AssetManifest.json');
       final Map<String, dynamic> manifestMap = json.decode(manifestContent);
       
+      print('=== Audio Asset Validation ===');
+      
       // Check sounds directory
       final soundFiles = manifestMap.keys.where((key) => key.startsWith('assets/sounds/')).toList();
+      print('Found ${soundFiles.length} sound files in manifest:');
       for (final file in soundFiles) {
         final fileName = file.split('/').last;
         _assetExists[fileName] = true;
-        print('Found sound asset: $fileName');
+        print('  ✓ $fileName');
       }
       
       // Check music directory
       final musicFiles = manifestMap.keys.where((key) => key.startsWith('assets/music/')).toList();
+      print('Found ${musicFiles.length} music files in manifest:');
       for (final file in musicFiles) {
         final fileName = file.split('/').last;
         _assetExists[fileName] = true;
-        print('Found music asset: $fileName');
+        print('  ✓ $fileName');
       }
       
-      // Manually add known assets if they exist in the filesystem
-      if (!_assetExists.containsKey('dog_bark.wav')) {
-        try {
-          await rootBundle.load('assets/sounds/dog_bark.wav');
-          _assetExists['dog_bark.wav'] = true;
-          print('Manually added dog_bark.wav to available assets');
-        } catch (e) {
-          print('dog_bark.wav not found in assets: $e');
-          _assetExists['dog_bark.wav'] = false;
+      // Manually verify critical assets
+      final criticalAssets = ['dog_bark.wav'];
+      for (final asset in criticalAssets) {
+        if (!_assetExists.containsKey(asset)) {
+          try {
+            await rootBundle.load('assets/sounds/$asset');
+            _assetExists[asset] = true;
+            print('  ✓ Manually verified: $asset');
+          } catch (e) {
+            print('  ✗ Asset not found: $asset - $e');
+            _assetExists[asset] = false;
+          }
         }
       }
+      
+      print('=== Asset Validation Complete ===');
+      print('Available assets: ${_assetExists.keys.where((k) => _assetExists[k] == true).toList()}');
     } catch (e) {
       print('Error validating assets: $e');
     }
@@ -131,7 +144,7 @@ class AudioManager {
     String? playerId,
   }) async {
     try {
-      final assetPath = type == 'sound' ? 'sounds/$fileName' : '$type/$fileName';
+      final assetPath = type == 'sound' ? 'sounds/$fileName' : 'music/$fileName';
       final player = playerId != null ? _players[playerId] : null;
       
       // Check if asset exists
@@ -229,6 +242,61 @@ class AudioManager {
   /// Get missing assets list
   List<String> getMissingAssets() {
     return List.from(_missingAssets);
+  }
+
+  /// Get list of all audio files referenced in questions.json that are missing
+  Future<List<String>> getMissingAudioFiles() async {
+    try {
+      final manifestContent = await rootBundle.loadString('AssetManifest.json');
+      final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+      
+      // Get all available audio files
+      final availableFiles = <String>{};
+      final soundFiles = manifestMap.keys.where((key) => key.startsWith('assets/sounds/')).toList();
+      final musicFiles = manifestMap.keys.where((key) => key.startsWith('assets/music/')).toList();
+      
+      for (final file in soundFiles) {
+        availableFiles.add(file.split('/').last);
+      }
+      for (final file in musicFiles) {
+        availableFiles.add(file.split('/').last);
+      }
+      
+      // Load questions.json to see what files are referenced
+      final questionsContent = await rootBundle.loadString('assets/data/questions.json');
+      final Map<String, dynamic> questionsData = json.decode(questionsContent);
+      
+      final referencedFiles = <String>{};
+      _extractAudioFiles(questionsData, referencedFiles);
+      
+      // Find missing files
+      final missingFiles = referencedFiles.difference(availableFiles).toList();
+      
+      print('=== Missing Audio Files ===');
+      print('Referenced files: ${referencedFiles.toList()}');
+      print('Available files: ${availableFiles.toList()}');
+      print('Missing files: $missingFiles');
+      
+      return missingFiles;
+    } catch (e) {
+      print('Error getting missing audio files: $e');
+      return [];
+    }
+  }
+  
+  /// Recursively extract audio file names from questions data
+  void _extractAudioFiles(dynamic data, Set<String> files) {
+    if (data is Map) {
+      for (final value in data.values) {
+        _extractAudioFiles(value, files);
+      }
+    } else if (data is List) {
+      for (final item in data) {
+        _extractAudioFiles(item, files);
+      }
+    } else if (data is String && data.endsWith('.wav')) {
+      files.add(data);
+    }
   }
 
   /// Check if asset exists

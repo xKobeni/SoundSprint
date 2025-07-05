@@ -7,6 +7,7 @@ import '../utils/audio_manager.dart';
 import '../utils/accessibility_manager.dart';
 import '../utils/achievement_manager.dart';
 import '../utils/daily_challenge_manager.dart';
+import '../utils/daily_points_manager.dart';
 import '../utils/difficulty_progression_manager.dart';
 import '../widgets/tutorial_overlay.dart';
 import '../widgets/top_notification.dart';
@@ -274,6 +275,10 @@ class _GamePageState extends State<GamePage> {
     // Award points based on score and difficulty
     int pointsEarned = _score * _getDifficultyMultiplier(widget.difficulty ?? 'Medium');
     await UserPreferences().addPoints(pointsEarned);
+    
+    // Also add points to daily progress
+    await DailyPointsManager.addTodayPoints(pointsEarned);
+    
     TopNotification.show(
       context,
       message: 'You earned $pointsEarned points!',
@@ -288,9 +293,21 @@ class _GamePageState extends State<GamePage> {
       _showAchievementNotifications(newAchievements);
     }
     
-    // Show challenge completion notifications
+    // Show challenge completion notifications and add daily points
     if (completedChallenges.isNotEmpty) {
       _showChallengeNotifications(completedChallenges);
+      
+      // Add points to daily progress for completed challenges
+      int dailyPointsEarned = 0;
+      for (final challenge in completedChallenges) {
+        if (challenge.rewardAmount != null && challenge.rewardAmount! > 0) {
+          dailyPointsEarned += challenge.rewardAmount!;
+        }
+      }
+      
+      if (dailyPointsEarned > 0) {
+        await DailyPointsManager.addTodayPoints(dailyPointsEarned);
+      }
     }
     
     // Show level up notification
@@ -368,6 +385,32 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
+  void _showExitGameDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Exit Game'),
+        content: const Text('Are you sure you want to exit? Your current progress will be lost.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close dialog
+              Navigator.of(context).pushNamedAndRemoveUntil('/main', (route) => false);
+            },
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red,
+            ),
+            child: const Text('Exit'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_loading || _questions.isEmpty || _currentIndex >= _questions.length) {
@@ -420,6 +463,11 @@ class _GamePageState extends State<GamePage> {
       backgroundColor: primaryColor,
       elevation: 0,
       automaticallyImplyLeading: false,
+      leading: IconButton(
+        onPressed: () => _showExitGameDialog(),
+        icon: const Icon(Icons.home, color: Colors.white, size: 28),
+        tooltip: 'Exit to Home',
+      ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

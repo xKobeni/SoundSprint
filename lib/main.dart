@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'pages/splash_page.dart';
 import 'pages/onboarding_page.dart';
 import 'pages/main_navigation_page.dart';
@@ -13,8 +14,11 @@ import 'utils/accessibility_manager.dart';
 import 'utils/settings_provider.dart';
 import 'utils/achievement_manager.dart';
 import 'utils/daily_challenge_manager.dart';
+import 'utils/daily_points_manager.dart';
+import 'utils/daily_points_test.dart';
 import 'utils/difficulty_progression_manager.dart';
 import 'utils/user_preferences.dart';
+import 'utils/audio_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -29,8 +33,25 @@ void main() async {
     UserPreferences().initialize(),
     AchievementManager.initializeAchievements(),
     DailyChallengeManager.generateDailyChallenges(),
+    DailyPointsManager.initialize(),
     DifficultyProgressionManager.initializeProgression(),
   ]);
+  
+  // Test leveling logic for debugging (remove in production)
+  if (kDebugMode) {
+    DifficultyProgressionManager.testLevelingLogic();
+  }
+  
+  // Test audio functionality for debugging (remove in production)
+  if (kDebugMode) {
+    await AudioTest.testDogBark();
+  }
+  
+  // Test daily points system for debugging (remove in production)
+  if (kDebugMode) {
+    await DailyPointsTest.testDailyPoints();
+    await DailyPointsTest.testDailyReset();
+  }
   
   runApp(const MyApp());
 }

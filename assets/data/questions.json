@@ -95,7 +95,7 @@
           "category": "Animal Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "animal_dog_bark.wav",
+          "file": "dog_bark.wav",
           "options": ["Dog", "Cat", "Cow", "Sheep"],
           "correctAnswer": "Dog"
         }
@@ -106,9 +106,9 @@
           "category": "Animal Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "animal_cat_meow.wav",
-          "options": ["Cat", "Dog", "Cow", "Horse"],
-          "correctAnswer": "Cat"
+          "file": "dog_bark.wav",
+          "options": ["Dog", "Cat", "Cow", "Horse"],
+          "correctAnswer": "Dog"
         }
       ],
       "Hard": [
@@ -117,9 +117,9 @@
           "category": "Animal Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "animal_lion_roar.wav",
-          "options": ["Lion", "Tiger", "Bear", "Wolf"],
-          "correctAnswer": "Lion"
+          "file": "dog_bark.wav",
+          "options": ["Dog", "Wolf", "Bear", "Fox"],
+          "correctAnswer": "Dog"
         }
       ]
     },
@@ -302,6 +302,47 @@
           "clipEnd": 37,
           "options": ["OPM 13", "OPM 14", "OPM 15", "OPM 16"],
           "correctAnswer": "OPM 15"
+        }
+      ]
+    },
+    "Sample Music": {
+      "Easy": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Sample Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "dog_bark.wav",
+          "clipStart": 0,
+          "clipEnd": 3,
+          "options": ["Sample A", "Sample B", "Sample C", "Sample D"],
+          "correctAnswer": "Sample A"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Sample Music",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "dog_bark.wav",
+          "clipStart": 0,
+          "clipEnd": 2,
+          "options": ["Sample E", "Sample F", "Sample G", "Sample H"],
+          "correctAnswer": "Sample F"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Sample Music",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "dog_bark.wav",
+          "clipStart": 0,
+          "clipEnd": 1,
+          "options": ["Sample I", "Sample J", "Sample K", "Sample L"],
+          "correctAnswer": "Sample K"
         }
       ]
     }

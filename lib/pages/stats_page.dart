@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/stats_manager.dart';
+import '../utils/daily_points_manager.dart';
 import '../widgets/bottom_nav_bar.dart';
 
 class StatsPage extends StatefulWidget {
@@ -102,6 +103,8 @@ class _StatsPageState extends State<StatsPage> {
               children: [
                 const SizedBox(height: 16),
                 _buildOverallPerformanceSection(),
+                const SizedBox(height: 24),
+                _buildDailyPointsSection(),
                 const SizedBox(height: 24),
                 _buildDetailedStatsSection(),
                 const SizedBox(height: 32),
@@ -396,5 +399,157 @@ class _StatsPageState extends State<StatsPage> {
       }
     }
     return 'N/A';
+  }
+
+  Widget _buildDailyPointsSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Daily Points',
+          style: TextStyle(
+            color: Color(0xFF7C5CFC),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 16),
+        FutureBuilder<Map<String, dynamic>>(
+          future: DailyPointsManager.getDailyStats(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            
+            if (snapshot.hasError) {
+              return const Center(
+                child: Text(
+                  'Failed to load daily points',
+                  style: TextStyle(color: Colors.red),
+                ),
+              );
+            }
+            
+            final stats = snapshot.data ?? {};
+            final todayPoints = stats['todayPoints'] ?? 0;
+            final dailyGoal = stats['dailyGoal'] ?? 500;
+            final progress = stats['progress'] ?? 0.0;
+            final averagePoints = stats['averagePoints'] ?? 0.0;
+            final bestPoints = stats['bestPoints'] ?? 0;
+            
+            return Column(
+              children: [
+                // Today's Progress Card
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 8,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.stars, color: Color(0xFFFFD700), size: 24),
+                          const SizedBox(width: 8),
+                          const Text(
+                            'Today\'s Progress',
+                            style: TextStyle(
+                              color: Color(0xFF7C5CFC),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            '$todayPoints / $dailyGoal',
+                            style: const TextStyle(
+                              color: Color(0xFF7C5CFC),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: LinearProgressIndicator(
+                          value: progress,
+                          minHeight: 8,
+                          backgroundColor: const Color(0xFFEEE6FF),
+                          valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFFFFD700)),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        '${(progress * 100).toStringAsFixed(1)}% of daily goal',
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                
+                // Daily Points Stats Grid
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    final crossAxisCount = constraints.maxWidth > 600 ? 3 : 2;
+                    final childAspectRatio = constraints.maxWidth > 600 ? 1.3 : 1.1;
+                    
+                    return GridView.count(
+                      crossAxisCount: crossAxisCount,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: childAspectRatio,
+                      children: [
+                        _buildStatCard(
+                          icon: Icons.stars,
+                          label: 'Today\'s Points',
+                          value: '$todayPoints',
+                          color: const Color(0xFFFFD700),
+                        ),
+                        _buildStatCard(
+                          icon: Icons.trending_up,
+                          label: 'Daily Goal',
+                          value: '$dailyGoal',
+                          color: Colors.green,
+                        ),
+                        _buildStatCard(
+                          icon: Icons.analytics,
+                          label: 'Avg. Daily',
+                          value: averagePoints.toStringAsFixed(0),
+                          color: Colors.blue,
+                        ),
+                        _buildStatCard(
+                          icon: Icons.emoji_events,
+                          label: 'Best Day',
+                          value: '$bestPoints',
+                          color: Colors.orange,
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            );
+          },
+        ),
+      ],
+    );
   }
 } 

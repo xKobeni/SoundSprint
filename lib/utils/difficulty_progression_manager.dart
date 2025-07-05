@@ -147,10 +147,13 @@ class DifficultyProgressionManager {
         return i + 1;
       }
     }
-    if (experience < _experienceRequirements.last) {
+    
+    // If experience is less than the first requirement, return level 1
+    if (experience < _experienceRequirements.first) {
       return 1;
     }
-    // Quadratic scaling for infinite levels
+    
+    // Quadratic scaling for infinite levels beyond the defined requirements
     int level = _experienceRequirements.length;
     while (experience >= 100 * (level + 1) * (level + 1)) {
       level++;
@@ -258,7 +261,9 @@ class DifficultyProgressionManager {
       return 0; // Max level reached
     }
     
-    return _experienceRequirements[currentLevel] - currentExperience;
+    final requiredExperience = _experienceRequirements[currentLevel];
+    final neededExperience = requiredExperience - currentExperience;
+    return neededExperience > 0 ? neededExperience : 0;
   }
 
   /// Check if user can play a specific difficulty
@@ -274,20 +279,62 @@ class DifficultyProgressionManager {
     final level = prefs.getInt(_userLevelKey) ?? 1;
     int currentLevelXp = 0;
     int nextLevelXp = 0;
-    if (level - 1 < _experienceRequirements.length) {
+    
+    // Calculate current level XP requirement
+    if (level <= _experienceRequirements.length) {
       currentLevelXp = _experienceRequirements[level - 1];
-      nextLevelXp = (level < _experienceRequirements.length)
-          ? _experienceRequirements[level]
-          : 100 * (level) * (level); // quadratic for next
     } else {
       currentLevelXp = 100 * (level - 1) * (level - 1);
-      nextLevelXp = 100 * (level) * (level);
     }
+    
+    // Calculate next level XP requirement
+    if (level < _experienceRequirements.length) {
+      nextLevelXp = _experienceRequirements[level];
+    } else {
+      nextLevelXp = 100 * level * level;
+    }
+    
     return {
       'experience': experience,
       'currentLevelXp': currentLevelXp,
       'nextLevelXp': nextLevelXp,
       'level': level,
     };
+  }
+
+  /// Test method to verify leveling logic (for debugging)
+  static void testLevelingLogic() {
+    print('Testing leveling logic...');
+    
+    // Test cases
+    final testCases = [0, 50, 100, 200, 300, 500, 600, 800, 1000, 1200];
+    
+    for (final experience in testCases) {
+      final level = _calculateLevel(experience);
+      print('Experience: $experience -> Level: $level');
+      
+      // Verify no negative values in progression calculation
+      int currentLevelXp = 0;
+      int nextLevelXp = 0;
+      
+      if (level <= _experienceRequirements.length) {
+        currentLevelXp = _experienceRequirements[level - 1];
+      } else {
+        currentLevelXp = 100 * (level - 1) * (level - 1);
+      }
+      
+      if (level < _experienceRequirements.length) {
+        nextLevelXp = _experienceRequirements[level];
+      } else {
+        nextLevelXp = 100 * level * level;
+      }
+      
+      final xpProgress = (experience - currentLevelXp).clamp(0, nextLevelXp - currentLevelXp);
+      print('  Current Level XP: $currentLevelXp, Next Level XP: $nextLevelXp, Progress: $xpProgress');
+      
+      if (xpProgress < 0) {
+        print('  ERROR: Negative XP progress detected!');
+      }
+    }
   }
 } 
