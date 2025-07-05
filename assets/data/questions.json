@@ -1,0 +1,543 @@
+{
+  "GuessTheSound": {
+    "Filipino Memes Sound": {
+      "Easy": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "filipino_meme_1.wav",
+          "options": ["Meme 1", "Meme 2", "Meme 3", "Meme 4"],
+          "correctAnswer": "Meme 1"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "filipino_meme_3.wav",
+          "options": ["Meme 9", "Meme 10", "Meme 11", "Meme 12"],
+          "correctAnswer": "Meme 10"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "filipino_meme_4.wav",
+          "options": ["Meme 13", "Meme 14", "Meme 15", "Meme 16"],
+          "correctAnswer": "Meme 15"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "filipino_meme_2.wav",
+          "options": ["Meme 5", "Meme 6", "Meme 7", "Meme 8"],
+          "correctAnswer": "Meme 5"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "filipino_meme_4.wav",
+          "options": ["Meme 13", "Meme 14", "Meme 15", "Meme 16"],
+          "correctAnswer": "Meme 15"
+        }
+      ]
+    },
+    "Popular Memes Sound": {
+      "Easy": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "popular_meme_1.wav",
+          "options": ["Wow", "Bruh", "Vine Boom", "Sad Violin"],
+          "correctAnswer": "Vine Boom"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "popular_meme_2.wav",
+          "options": ["Airhorn", "Sad Violin", "Bruh", "Wow"],
+          "correctAnswer": "Airhorn"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "popular_meme_3.wav",
+          "options": ["Sad Violin", "Vine Boom", "Bruh", "Wow"],
+          "correctAnswer": "Sad Violin"
+        }
+      ]
+    },
+    "Animal Sound": {
+      "Easy": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "animal_dog_bark.wav",
+          "options": ["Dog", "Cat", "Cow", "Sheep"],
+          "correctAnswer": "Dog"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "animal_cat_meow.wav",
+          "options": ["Cat", "Dog", "Cow", "Horse"],
+          "correctAnswer": "Cat"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "animal_lion_roar.wav",
+          "options": ["Lion", "Tiger", "Bear", "Wolf"],
+          "correctAnswer": "Lion"
+        }
+      ]
+    },
+    "Nature Sound": {
+      "Medium": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "nature_rain.wav",
+          "options": ["Rain", "Wind", "Fire", "Thunder"],
+          "correctAnswer": "Rain"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "nature_thunder.wav",
+          "options": ["Thunder", "Rain", "Wind", "Fire"],
+          "correctAnswer": "Thunder"
+        }
+      ]
+    }
+  },
+  "GuessTheMusic": {
+    "Kpop Music": {
+      "Easy": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "kpop_song_1.wav",
+          "clipStart": 10,
+          "clipEnd": 25,
+          "options": ["Song A", "Song B", "Song C", "Song D"],
+          "correctAnswer": "Song A"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "kpop_song_2.wav",
+          "clipStart": 5,
+          "clipEnd": 20,
+          "options": ["Song E", "Song F", "Song G", "Song H"],
+          "correctAnswer": "Song F"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "kpop_song_3.wav",
+          "clipStart": 12,
+          "clipEnd": 27,
+          "options": ["Song I", "Song J", "Song K", "Song L"],
+          "correctAnswer": "Song K"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "kpop_song_4.wav",
+          "clipStart": 20,
+          "clipEnd": 35,
+          "options": ["Song M", "Song N", "Song O", "Song P"],
+          "correctAnswer": "Song N"
+        }
+      ]
+    },
+    "Anime Openings": {
+      "Easy": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "anime_opening_2.wav",
+          "clipStart": 0,
+          "clipEnd": 15,
+          "options": ["Anime E", "Anime F", "Anime G", "Anime H"],
+          "correctAnswer": "Anime G"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "anime_opening_1.wav",
+          "clipStart": 5,
+          "clipEnd": 20,
+          "options": ["Anime A", "Anime B", "Anime C", "Anime D"],
+          "correctAnswer": "Anime B"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "anime_opening_3.wav",
+          "clipStart": 7,
+          "clipEnd": 22,
+          "options": ["Anime I", "Anime J", "Anime K", "Anime L"],
+          "correctAnswer": "Anime J"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "anime_opening_4.wav",
+          "clipStart": 18,
+          "clipEnd": 33,
+          "options": ["Anime M", "Anime N", "Anime O", "Anime P"],
+          "correctAnswer": "Anime O"
+        }
+      ]
+    },
+    "OPM Musics": {
+      "Easy": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "opm_song_2.wav",
+          "clipStart": 8,
+          "clipEnd": 23,
+          "options": ["OPM 5", "OPM 6", "OPM 7", "OPM 8"],
+          "correctAnswer": "OPM 7"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "opm_song_3.wav",
+          "clipStart": 10,
+          "clipEnd": 25,
+          "options": ["OPM 9", "OPM 10", "OPM 11", "OPM 12"],
+          "correctAnswer": "OPM 10"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "opm_song_1.wav",
+          "clipStart": 15,
+          "clipEnd": 30,
+          "options": ["OPM 1", "OPM 2", "OPM 3", "OPM 4"],
+          "correctAnswer": "OPM 3"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "opm_song_4.wav",
+          "clipStart": 22,
+          "clipEnd": 37,
+          "options": ["OPM 13", "OPM 14", "OPM 15", "OPM 16"],
+          "correctAnswer": "OPM 15"
+        }
+      ]
+    }
+  },
+  "TrueOrFalse": {
+    "General Knowledge": {
+      "Easy": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The sun rises in the east.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "There are 7 days in a week.",
+          "answer": true
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "The capital of France is Paris.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "The Great Wall of China is visible from space.",
+          "answer": false
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "Venus is the closest planet to the Sun.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "The human body has four lungs.",
+          "answer": false
+        }
+      ]
+    },
+    "Science Facts": {
+      "Easy": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Humans need oxygen to survive.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The earth is flat.",
+          "answer": false
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Water boils at 90 degrees Celsius.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Lightning never strikes the same place twice.",
+          "answer": false
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "The chemical symbol for gold is Au.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "Sound travels faster in air than in water.",
+          "answer": false
+        }
+      ]
+    }
+  },
+  "Vocabulary": {
+    "English Synonyms": {
+      "Easy": [
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'happy'?",
+          "options": ["Sad", "Joyful", "Angry", "Tired"],
+          "correctAnswer": "Joyful"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'fast'?",
+          "options": ["Quick", "Slow", "Late", "Weak"],
+          "correctAnswer": "Quick"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'big'?",
+          "options": ["Tiny", "Huge", "Short", "Thin"],
+          "correctAnswer": "Huge"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'smart'?",
+          "options": ["Clever", "Dull", "Lazy", "Weak"],
+          "correctAnswer": "Clever"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'obstinate'?",
+          "options": ["Stubborn", "Flexible", "Gentle", "Kind"],
+          "correctAnswer": "Stubborn"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'elated'?",
+          "options": ["Depressed", "Ecstatic", "Angry", "Tired"],
+          "correctAnswer": "Ecstatic"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'diminutive'?",
+          "options": ["Tiny", "Large", "Tall", "Wide"],
+          "correctAnswer": "Tiny"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'lucid'?",
+          "options": ["Clear", "Dark", "Confused", "Dull"],
+          "correctAnswer": "Clear"
+        }
+      ]
+    },
+    "Filipino-English Translation": {
+      "Medium": [
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'bahay'?",
+          "options": ["House", "Car", "Tree", "Water"],
+          "correctAnswer": "House"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'aso'?",
+          "options": ["Cat", "Dog", "Bird", "Fish"],
+          "correctAnswer": "Dog"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'gatas'?",
+          "options": ["Milk", "Juice", "Water", "Bread"],
+          "correctAnswer": "Milk"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'lamesa'?",
+          "options": ["Chair", "Table", "Bed", "Door"],
+          "correctAnswer": "Table"
+        }
+      ]
+    }
+  }
+}
