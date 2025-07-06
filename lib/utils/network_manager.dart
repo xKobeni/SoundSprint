@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class NetworkManager {
@@ -40,7 +41,7 @@ class NetworkManager {
 
       _isInitialized = true;
     } catch (e) {
-      print('NetworkManager initialization error: $e');
+      debugPrint('NetworkManager initialization error: $e');
       // Assume connected if we can't determine status
       _isConnected = true;
       _connectionStatusController.add(_isConnected);
@@ -54,7 +55,7 @@ class NetworkManager {
       _isConnected = connectivityResult != ConnectivityResult.none;
       return _isConnected;
     } catch (e) {
-      print('Error checking connectivity: $e');
+      debugPrint('Error checking connectivity: $e');
       return false;
     }
   }

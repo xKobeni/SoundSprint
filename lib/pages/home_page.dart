@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
-import '../models/user.dart';
 import '../utils/user_preferences.dart';
 import '../utils/stats_manager.dart';
 import '../utils/daily_points_manager.dart';
-import '../utils/audio_test.dart';
 import '../widgets/daily_challenges_popup.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +16,6 @@ class _HomePageState extends State<HomePage> {
   bool _loading = true;
   Map<String, dynamic> _stats = {};
   String _displayName = '';
-  User? _user;
   String? _avatarPath;
   late UserPreferences _userPreferences;
 
@@ -60,12 +56,12 @@ class _HomePageState extends State<HomePage> {
   Future<void> _loadData() async {
     try {
       final stats = await StatsManager.getAllStats();
+      final dailyStats = await DailyPointsManager.getDailyStats();
       final user = await _userPreferences.getUser();
 
       if (mounted) {
         setState(() {
-          _stats = stats;
-          _user = user;
+          _stats = {...stats, ...dailyStats};
           _avatarPath = _userPreferences.avatarPath;
           _displayName = user?.name ?? _userPreferences.displayName;
           _loading = false;
@@ -87,17 +83,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
   
-  Future<void> _testAudio() async {
-    await AudioTest.testDogBark();
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Audio test completed! Check console for results.'),
-          duration: Duration(seconds: 3),
-        ),
-      );
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -356,7 +342,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const Spacer(),
                   Text(
-                    '${_stats['gamesPlayed'] ?? 0} / 10',
+                    '${_stats['todayGames'] ?? 0} / ${_stats['dailyGamesGoal'] ?? 10}',
                     style: const TextStyle(
                       color: Color(0xFF7C5CFC),
                       fontSize: 14,
@@ -369,9 +355,7 @@ class _HomePageState extends State<HomePage> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: LinearProgressIndicator(
-                  value: _stats['gamesPlayed'] != null && _stats['gamesPlayed'] > 0
-                      ? (_stats['gamesPlayed'] / 10).clamp(0.0, 1.0)
-                      : 0.0,
+                  value: _stats['gamesProgress'] ?? 0.0,
                   minHeight: 8,
                   backgroundColor: const Color(0xFFEEE6FF),
                   valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),

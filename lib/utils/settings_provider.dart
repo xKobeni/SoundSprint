@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'accessibility_manager.dart';
 
 class SettingsProvider extends ChangeNotifier {
   static final SettingsProvider _instance = SettingsProvider._internal();
@@ -28,7 +27,7 @@ class SettingsProvider extends ChangeNotifier {
       
       notifyListeners();
     } catch (e) {
-      print('Error initializing settings: $e');
+      debugPrint('Error initializing settings: $e');
     }
   }
 
@@ -57,7 +56,7 @@ class SettingsProvider extends ChangeNotifier {
       // Notify listeners for real-time updates
       notifyListeners();
     } catch (e) {
-      print('Error saving setting: $e');
+      debugPrint('Error saving setting: $e');
     }
   }
 
@@ -88,7 +87,7 @@ class SettingsProvider extends ChangeNotifier {
       
       notifyListeners();
     } catch (e) {
-      print('Error clearing settings: $e');
+      debugPrint('Error clearing settings: $e');
     }
   }
 } 

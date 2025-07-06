@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/daily_challenge.dart';
 import 'user_preferences.dart';
@@ -29,6 +30,15 @@ class DailyChallengeManager {
       'rewardAmount': 100,
     },
     {
+      'id': 'daily_games_5',
+      'title': 'Game Master',
+      'description': 'Play 5 games today',
+      'type': 'games',
+      'target': 5,
+      'reward': 'Experience',
+      'rewardAmount': 150,
+    },
+    {
       'id': 'daily_streak_2',
       'title': 'Consistency',
       'description': 'Maintain a 2-game winning streak',
@@ -45,6 +55,15 @@ class DailyChallengeManager {
       'target': 1,
       'reward': 'Accuracy Bonus',
       'rewardAmount': 60,
+    },
+    {
+      'id': 'daily_accuracy_90',
+      'title': 'Precision Master',
+      'description': 'Achieve 90% accuracy in a game',
+      'type': 'accuracy',
+      'target': 1,
+      'reward': 'Accuracy Bonus',
+      'rewardAmount': 80,
     },
     {
       'id': 'daily_sound_games',
@@ -72,6 +91,15 @@ class DailyChallengeManager {
       'target': 1,
       'reward': 'Difficulty Bonus',
       'rewardAmount': 80,
+    },
+    {
+      'id': 'daily_mixed_games',
+      'title': 'Versatile Player',
+      'description': 'Complete 3 different category games',
+      'type': 'category',
+      'target': 3,
+      'reward': 'Category Bonus',
+      'rewardAmount': 60,
     },
   ];
 
@@ -139,10 +167,18 @@ class DailyChallengeManager {
     required String category,
     required String difficulty,
     required int currentStreak,
+    int? todayGamesPlayed,
   }) async {
     final challenges = await getCurrentDailyChallenges();
     final updatedChallenges = <DailyChallenge>[];
     final completedChallenges = <DailyChallenge>[];
+    
+    // Debug logging
+    debugPrint('=== DAILY CHALLENGES DEBUG ===');
+    debugPrint('Score: $score, Total Questions: $totalQuestions');
+    debugPrint('Category: $category, Difficulty: $difficulty');
+    debugPrint('Current Streak: $currentStreak, Today Games: $todayGamesPlayed');
+    debugPrint('Number of challenges: ${challenges.length}');
     
     for (final challenge in challenges) {
       if (challenge.isCompleted) {
@@ -155,26 +191,45 @@ class DailyChallengeManager {
       
       switch (challenge.type) {
         case 'score':
-          if (score >= (totalQuestions * 0.8)) {
+          // Score challenge: Score 80% or higher in a game
+          final scorePercentage = totalQuestions > 0 ? (score / totalQuestions) : 0.0;
+          if (scorePercentage >= 0.8) {
             newProgress = challenge.currentProgress + 1;
             shouldComplete = newProgress >= challenge.target;
           }
           break;
           
         case 'games':
-          newProgress = challenge.currentProgress + 1;
-          shouldComplete = newProgress >= challenge.target;
+          // Games challenge: Play X games today (use daily games counter)
+          if (todayGamesPlayed != null) {
+            newProgress = todayGamesPlayed;
+            shouldComplete = newProgress >= challenge.target;
+          } else {
+            // Fallback: increment by 1 if todayGamesPlayed is not provided
+            newProgress = challenge.currentProgress + 1;
+            shouldComplete = newProgress >= challenge.target;
+          }
           break;
           
         case 'streak':
-          if (currentStreak >= challenge.target) {
-            newProgress = challenge.target;
-            shouldComplete = true;
+          // Streak challenge: Maintain a winning streak
+          // Check if the current game was a perfect score (winning)
+          final isPerfectGame = score == totalQuestions;
+          if (isPerfectGame) {
+            // If this game was perfect, check if streak meets target
+            if (currentStreak >= challenge.target) {
+              newProgress = challenge.target;
+              shouldComplete = true;
+            }
+          } else {
+            // If not perfect, reset progress (streak broken)
+            newProgress = 0;
           }
           break;
           
         case 'accuracy':
-          final accuracy = score / totalQuestions;
+          // Accuracy challenge: Achieve 85% accuracy in a game
+          final accuracy = totalQuestions > 0 ? (score / totalQuestions) : 0.0;
           if (accuracy >= 0.85) {
             newProgress = challenge.currentProgress + 1;
             shouldComplete = newProgress >= challenge.target;
@@ -182,15 +237,26 @@ class DailyChallengeManager {
           break;
           
         case 'category':
-          if ((challenge.id.contains('sound') && category == 'sound') ||
-              (challenge.id.contains('music') && category == 'music')) {
+          // Category challenge: Complete games in specific categories
+          final categoryLower = category.toLowerCase();
+          if (challenge.id.contains('mixed_games')) {
+            // For mixed games challenge, we need to track different categories
+            // This is a simplified version - in a full implementation, you'd track unique categories
+            newProgress = challenge.currentProgress + 1;
+            shouldComplete = newProgress >= challenge.target;
+          } else if ((challenge.id.contains('sound') && 
+               (categoryLower == 'sound' || categoryLower == 'sounds' || categoryLower.contains('sound'))) ||
+              (challenge.id.contains('music') && 
+               (categoryLower == 'music' || categoryLower == 'musical' || categoryLower.contains('music')))) {
             newProgress = challenge.currentProgress + 1;
             shouldComplete = newProgress >= challenge.target;
           }
           break;
           
         case 'difficulty':
-          if (difficulty == 'hard') {
+          // Difficulty challenge: Complete hard difficulty games
+          final difficultyLower = difficulty.toLowerCase();
+          if (difficultyLower == 'hard' || difficultyLower == 'expert') {
             newProgress = challenge.currentProgress + 1;
             shouldComplete = newProgress >= challenge.target;
           }
@@ -202,13 +268,20 @@ class DailyChallengeManager {
         isCompleted: shouldComplete,
       );
       
+      // Debug logging for each challenge
+      debugPrint('Challenge: ${challenge.title} (${challenge.type})');
+      debugPrint('  Progress: ${challenge.currentProgress} -> $newProgress / ${challenge.target}');
+      debugPrint('  Completed: $shouldComplete');
+      
       updatedChallenges.add(updatedChallenge);
       
       if (shouldComplete) {
         completedChallenges.add(updatedChallenge);
+        debugPrint('  ✅ CHALLENGE COMPLETED: ${challenge.title}');
         // Award points for completed challenge
         if (updatedChallenge.rewardAmount != null && updatedChallenge.rewardAmount! > 0) {
           await UserPreferences().addPoints(updatedChallenge.rewardAmount!);
+          debugPrint('  💰 Awarded ${updatedChallenge.rewardAmount} points');
         }
       }
     }
@@ -258,5 +331,19 @@ class DailyChallengeManager {
       }
     }
     return totalRewards;
+  }
+
+  /// Reset daily challenges (for testing purposes)
+  static Future<void> resetDailyChallenges() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_dailyChallengesKey);
+    await prefs.remove(_lastChallengeDateKey);
+  }
+
+  /// Force generate new challenges (for testing purposes)
+  static Future<List<DailyChallenge>> forceGenerateChallenges() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_lastChallengeDateKey);
+    return await generateDailyChallenges();
   }
 } 

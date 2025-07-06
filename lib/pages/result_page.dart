@@ -4,16 +4,25 @@ class ResultPage extends StatelessWidget {
   final int score;
   final int total;
   final List<Map<String, dynamic>> answers; // Each: {question, userAnswer, correctAnswer}
+  final Map<String, dynamic>? progression; // Experience and level up data
 
   const ResultPage({
     Key? key,
     required this.score,
     required this.total,
     required this.answers,
+    this.progression,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Debug logging
+    print('=== RESULT PAGE DEBUG ===');
+    print('Score: $score, Total: $total');
+    print('Progression data: $progression');
+    print('Experience gained: ${progression?['experienceGained']}');
+    print('Leveled up: ${progression?['leveledUp']}');
+    
     final percentage = total > 0 ? (score / total * 100).round() : 0;
     final isPerfect = score == total;
     final isGood = percentage >= 70;
@@ -90,6 +99,73 @@ class ResultPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
+            
+            // Experience and Level Up Section
+            if (progression != null) ...[
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF7C5CFC).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: const Color(0xFF7C5CFC).withOpacity(0.3)),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.stars, color: Color(0xFF7C5CFC), size: 24),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Experience Gained: ${progression?['experienceGained'] ?? 0} XP',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF7C5CFC),
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (progression?['leveledUp'] == true) ...[
+                      const SizedBox(height: 12),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.orange.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.orange),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.trending_up, color: Colors.orange, size: 20),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Level Up! ${progression?['oldLevel']} → ${progression?['newLevel']}',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                    const SizedBox(height: 8),
+                    Text(
+                      'Total Experience: ${progression?['newExperience'] ?? 0} XP',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF7C5CFC),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+            ],
             
             // Score Breakdown
             Row(

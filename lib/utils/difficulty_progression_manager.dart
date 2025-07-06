@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/user_preferences.dart';
 
@@ -70,20 +71,36 @@ class DifficultyProgressionManager {
     final bonusExperience = _calculateBonusExperience(accuracy, playtimeSeconds);
     final totalExperience = baseExperience + bonusExperience;
     
+    // Debug logging
+    debugPrint('=== EXPERIENCE CALCULATION DEBUG ===');
+    debugPrint('Score: $score, Total: $totalQuestions, Accuracy: ${(accuracy * 100).toStringAsFixed(1)}%');
+    debugPrint('Difficulty: $difficulty, Playtime: ${playtimeSeconds}s');
+    debugPrint('Base Experience: $baseExperience');
+    debugPrint('Bonus Experience: $bonusExperience');
+    debugPrint('Total Experience Gained: $totalExperience');
+    
     // Update experience
     final currentExperience = prefs.getInt(_userExperienceKey) ?? 0;
     final newExperience = currentExperience + totalExperience;
     await prefs.setInt(_userExperienceKey, newExperience);
+    
+    debugPrint('Previous Experience: $currentExperience');
+    debugPrint('New Total Experience: $newExperience');
     
     // Check for level up
     final currentLevel = prefs.getInt(_userLevelKey) ?? 1;
     final newLevel = _calculateLevel(newExperience);
     final leveledUp = newLevel > currentLevel;
     
+    debugPrint('Previous Level: $currentLevel');
+    debugPrint('New Level: $newLevel');
+    debugPrint('Leveled Up: $leveledUp');
+    
     if (leveledUp) {
       await prefs.setInt(_userLevelKey, newLevel);
       // Sync with UserPreferences
       await UserPreferences().setLevel(newLevel);
+      debugPrint('Level updated in SharedPreferences and UserPreferences');
     }
     
     // Update unlocked difficulties
@@ -92,7 +109,7 @@ class DifficultyProgressionManager {
     // Save performance history
     await _savePerformanceHistory(score, totalQuestions, difficulty, accuracy, prefs);
     
-    return {
+    final result = {
       'experienceGained': totalExperience,
       'newExperience': newExperience,
       'leveledUp': leveledUp,
@@ -101,6 +118,11 @@ class DifficultyProgressionManager {
       'unlockedDifficulties': unlockedDifficulties,
       'accuracy': accuracy,
     };
+    
+    debugPrint('=== END EXPERIENCE DEBUG ===');
+    debugPrint('Returning result: $result');
+    
+    return result;
   }
 
   /// Calculate base experience based on score and difficulty
@@ -125,6 +147,16 @@ class DifficultyProgressionManager {
     else if (playtimeSeconds <= 120) bonus += 10;
     
     return bonus;
+  }
+
+  /// Public method for testing experience calculation
+  static int calculateBaseExperience(int score, int totalQuestions, String difficulty) {
+    return _calculateBaseExperience(score, totalQuestions, difficulty);
+  }
+
+  /// Public method for testing bonus experience calculation
+  static int calculateBonusExperience(double accuracy, int playtimeSeconds) {
+    return _calculateBonusExperience(accuracy, playtimeSeconds);
   }
 
   /// Get difficulty multiplier for experience calculation
@@ -304,14 +336,14 @@ class DifficultyProgressionManager {
 
   /// Test method to verify leveling logic (for debugging)
   static void testLevelingLogic() {
-    print('Testing leveling logic...');
+    debugPrint('Testing leveling logic...');
     
     // Test cases
     final testCases = [0, 50, 100, 200, 300, 500, 600, 800, 1000, 1200];
     
     for (final experience in testCases) {
       final level = _calculateLevel(experience);
-      print('Experience: $experience -> Level: $level');
+      debugPrint('Experience: $experience -> Level: $level');
       
       // Verify no negative values in progression calculation
       int currentLevelXp = 0;
@@ -330,10 +362,10 @@ class DifficultyProgressionManager {
       }
       
       final xpProgress = (experience - currentLevelXp).clamp(0, nextLevelXp - currentLevelXp);
-      print('  Current Level XP: $currentLevelXp, Next Level XP: $nextLevelXp, Progress: $xpProgress');
+      debugPrint('  Current Level XP: $currentLevelXp, Next Level XP: $nextLevelXp, Progress: $xpProgress');
       
       if (xpProgress < 0) {
-        print('  ERROR: Negative XP progress detected!');
+        debugPrint('  ERROR: Negative XP progress detected!');
       }
     }
   }

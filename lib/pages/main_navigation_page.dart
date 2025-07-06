@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_nav_bar.dart';
 import 'home_page.dart';
-import 'stats_page.dart';
 import 'game_selection_page.dart';
-import 'profile_page.dart';
 import 'settings_page.dart';
-import 'achievements_page.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});

@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import '../models/sound_question.dart';
-import '../models/sound_question.dart' as question_model;
 
 class QuestionLoader {
-  static Future<List<question_model.Question>> loadQuestions({String? mode, String? category, String? difficulty}) async {
+  static Future<List<Question>> loadQuestions({String? mode, String? category, String? difficulty}) async {
     final String jsonString = await rootBundle.loadString('assets/data/questions.json');
     final Map<String, dynamic> jsonData = json.decode(jsonString);
-    List<question_model.Question> allQuestions = [];
+    List<Question> allQuestions = [];
 
     // Traverse the nested structure
     for (final modeKey in jsonData.keys) {
@@ -20,7 +19,7 @@ class QuestionLoader {
           if (difficulty != null && difficulty.isNotEmpty && difficultyKey != difficulty) continue;
           final questionsList = difficulties[difficultyKey] as List<dynamic>;
           for (final questionData in questionsList) {
-            final q = question_model.Question.fromJson(questionData);
+            final q = Question.fromJson(questionData);
             allQuestions.add(q);
           }
         }

@@ -175,7 +175,7 @@ class _GamePageState extends State<GamePage> {
         });
       }
     } catch (e) {
-      print('Error playing audio: $e');
+      debugPrint('Error playing audio: $e');
       setState(() {
         _audioError = true;
         _isPlaying = false;
@@ -243,6 +243,9 @@ class _GamePageState extends State<GamePage> {
       answers: _answerDetails,
     );
     
+    // Increment daily games played
+    await DailyPointsManager.incrementTodayGamesPlayed();
+    
     // Update achievements
     final newAchievements = await AchievementManager.updateProgress(
       score: _score,
@@ -255,6 +258,9 @@ class _GamePageState extends State<GamePage> {
       gameStartTime: _gameStartTime,
     );
     
+    // Get today's games played for challenges
+    final todayGamesPlayed = await DailyPointsManager.getTodayGamesPlayed();
+    
     // Update daily challenges
     final completedChallenges = await DailyChallengeManager.updateProgress(
       score: _score,
@@ -262,6 +268,7 @@ class _GamePageState extends State<GamePage> {
       category: widget.category ?? 'Mixed',
       difficulty: widget.difficulty ?? 'Medium',
       currentStreak: currentStreak,
+      todayGamesPlayed: todayGamesPlayed,
     );
     
     // Update difficulty progression
@@ -314,6 +321,12 @@ class _GamePageState extends State<GamePage> {
     if (progression['leveledUp'] == true) {
       _showLevelUpNotification(progression);
     }
+
+    // Debug logging for navigation
+    debugPrint('=== NAVIGATION DEBUG ===');
+    debugPrint('Progression data: $progression');
+    debugPrint('Experience gained: ${progression['experienceGained']}');
+    debugPrint('Leveled up: ${progression['leveledUp']}');
 
     if (mounted) {
       Navigator.pushReplacementNamed(

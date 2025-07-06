@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/achievement.dart';
 import '../utils/achievement_manager.dart';
-import '../widgets/bottom_nav_bar.dart';
 
 class AchievementsPage extends StatefulWidget {
   final bool showBottomNav;

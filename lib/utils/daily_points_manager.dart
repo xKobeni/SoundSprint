@@ -5,6 +5,8 @@ class DailyPointsManager {
   static const String _dailyPointsKey = 'dailyPoints';
   static const String _lastPointsDateKey = 'lastPointsDate';
   static const String _dailyPointsHistoryKey = 'dailyPointsHistory';
+  static const String _dailyGamesPlayedKey = 'dailyGamesPlayed';
+  static const String _lastGamesDateKey = 'lastGamesDate';
 
   /// Initialize daily points
   static Future<void> initialize() async {
@@ -13,11 +15,18 @@ class DailyPointsManager {
     final todayString = '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
     
     final lastPointsDate = prefs.getString(_lastPointsDateKey);
+    final lastGamesDate = prefs.getString(_lastGamesDateKey);
     
     // Reset daily points if it's a new day
     if (lastPointsDate != todayString) {
       await prefs.setInt(_dailyPointsKey, 0);
       await prefs.setString(_lastPointsDateKey, todayString);
+    }
+    
+    // Reset daily games played if it's a new day
+    if (lastGamesDate != todayString) {
+      await prefs.setInt(_dailyGamesPlayedKey, 0);
+      await prefs.setString(_lastGamesDateKey, todayString);
     }
   }
 
@@ -37,6 +46,24 @@ class DailyPointsManager {
     }
     
     return prefs.getInt(_dailyPointsKey) ?? 0;
+  }
+
+  /// Get today's games played
+  static Future<int> getTodayGamesPlayed() async {
+    final prefs = await SharedPreferences.getInstance();
+    final today = DateTime.now();
+    final todayString = '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+    
+    final lastGamesDate = prefs.getString(_lastGamesDateKey);
+    
+    // Reset if it's a new day
+    if (lastGamesDate != todayString) {
+      await prefs.setInt(_dailyGamesPlayedKey, 0);
+      await prefs.setString(_lastGamesDateKey, todayString);
+      return 0;
+    }
+    
+    return prefs.getInt(_dailyGamesPlayedKey) ?? 0;
   }
 
   /// Add points for today
@@ -61,6 +88,28 @@ class DailyPointsManager {
     await _saveDailyPointsHistory(todayString, newPoints);
     
     return newPoints;
+  }
+
+  /// Increment today's games played
+  static Future<int> incrementTodayGamesPlayed() async {
+    final prefs = await SharedPreferences.getInstance();
+    final today = DateTime.now();
+    final todayString = '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+    
+    final lastGamesDate = prefs.getString(_lastGamesDateKey);
+    
+    // Reset if it's a new day
+    if (lastGamesDate != todayString) {
+      await prefs.setInt(_dailyGamesPlayedKey, 1);
+      await prefs.setString(_lastGamesDateKey, todayString);
+      return 1;
+    }
+    
+    final currentGames = prefs.getInt(_dailyGamesPlayedKey) ?? 0;
+    final newGames = currentGames + 1;
+    await prefs.setInt(_dailyGamesPlayedKey, newGames);
+    
+    return newGames;
   }
 
   /// Save daily points to history
@@ -200,6 +249,9 @@ class DailyPointsManager {
     final averagePoints = await getAverageDailyPoints();
     final bestPoints = await getBestDailyPoints();
     final weeklyHistory = await getWeeklyHistory();
+    final todayGames = await getTodayGamesPlayed();
+    final dailyGamesGoal = await getDailyGamesGoal();
+    final gamesProgress = await getDailyGamesProgress();
     
     return {
       'todayPoints': todayPoints,
@@ -208,6 +260,25 @@ class DailyPointsManager {
       'averagePoints': averagePoints,
       'bestPoints': bestPoints,
       'weeklyHistory': weeklyHistory,
+      'todayGames': todayGames,
+      'dailyGamesGoal': dailyGamesGoal,
+      'gamesProgress': gamesProgress,
     };
+  }
+
+  /// Get daily games played goal (can be customized)
+  static Future<int> getDailyGamesGoal() async {
+    // For now, return a fixed goal of 10 games
+    // This could be made dynamic based on user level or preferences
+    return 10;
+  }
+
+  /// Get progress towards daily games goal
+  static Future<double> getDailyGamesProgress() async {
+    final todayGames = await getTodayGamesPlayed();
+    final dailyGamesGoal = await getDailyGamesGoal();
+    
+    if (dailyGamesGoal <= 0) return 0.0;
+    return (todayGames / dailyGamesGoal).clamp(0.0, 1.0);
   }
 } 

@@ -15,12 +15,10 @@ import 'utils/settings_provider.dart';
 import 'utils/achievement_manager.dart';
 import 'utils/daily_challenge_manager.dart';
 import 'utils/daily_points_manager.dart';
-import 'utils/daily_points_test.dart';
+import 'utils/daily_challenge_test.dart';
 import 'utils/difficulty_progression_manager.dart';
 import 'utils/user_preferences.dart';
 import 'utils/audio_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
@@ -48,10 +46,17 @@ void main() async {
   }
   
   // Test daily points system for debugging (remove in production)
+  // Removed: if (kDebugMode) {
+  //   await DailyPointsTest.testDailyPoints();
+  //   await DailyPointsTest.testDailyReset();
+  // }
+  
+  // Test daily challenges system for debugging (remove in production)
   if (kDebugMode) {
-    await DailyPointsTest.testDailyPoints();
-    await DailyPointsTest.testDailyReset();
+    await DailyChallengeTest.testDailyChallenges();
   }
+  
+
   
   runApp(const MyApp());
 }
@@ -87,6 +92,7 @@ class MyApp extends StatelessWidget {
                 score: args?['score'] as int? ?? 0,
                 total: args?['total'] as int? ?? 0,
                 answers: args?['answers'] as List<Map<String, dynamic>>? ?? [],
+                progression: args?['progression'] as Map<String, dynamic>?,
               );
             },
             '/stats': (context) => const StatsPage(),

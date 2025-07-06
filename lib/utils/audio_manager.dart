@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class AudioManager {
   static final AudioManager _instance = AudioManager._internal();
@@ -20,11 +21,13 @@ class AudioManager {
   bool _isPreloading = false;
   
   // Error tracking
-  final List<String> _missingAssets = [];
+  final Set<String> _missingAssets = {};
   final Map<String, int> _errorCounts = {};
 
   /// Initialize the audio manager
   Future<void> initialize() async {
+    if (_isPreloading) return;
+    
     try {
       await _loadSettings();
       await _validateAssets();
@@ -33,7 +36,7 @@ class AudioManager {
       // Check for missing audio files
       await getMissingAudioFiles();
     } catch (e) {
-      print('AudioManager initialization error: $e');
+      debugPrint('AudioManager initialization error: $e');
     }
   }
 
@@ -51,24 +54,24 @@ class AudioManager {
       final manifestContent = await rootBundle.loadString('AssetManifest.json');
       final Map<String, dynamic> manifestMap = json.decode(manifestContent);
       
-      print('=== Audio Asset Validation ===');
+      debugPrint('=== Audio Asset Validation ===');
       
       // Check sounds directory
       final soundFiles = manifestMap.keys.where((key) => key.startsWith('assets/sounds/')).toList();
-      print('Found ${soundFiles.length} sound files in manifest:');
+      debugPrint('Found ${soundFiles.length} sound files in manifest:');
       for (final file in soundFiles) {
         final fileName = file.split('/').last;
         _assetExists[fileName] = true;
-        print('  ✓ $fileName');
+        debugPrint('  ✓ $fileName');
       }
       
       // Check music directory
       final musicFiles = manifestMap.keys.where((key) => key.startsWith('assets/music/')).toList();
-      print('Found ${musicFiles.length} music files in manifest:');
+      debugPrint('Found ${musicFiles.length} music files in manifest:');
       for (final file in musicFiles) {
         final fileName = file.split('/').last;
         _assetExists[fileName] = true;
-        print('  ✓ $fileName');
+        debugPrint('  ✓ $fileName');
       }
       
       // Manually verify critical assets
@@ -78,18 +81,18 @@ class AudioManager {
           try {
             await rootBundle.load('assets/sounds/$asset');
             _assetExists[asset] = true;
-            print('  ✓ Manually verified: $asset');
+            debugPrint('  ✓ Manually verified: $asset');
           } catch (e) {
-            print('  ✗ Asset not found: $asset - $e');
+            debugPrint('  ✗ Asset not found: $asset - $e');
             _assetExists[asset] = false;
           }
         }
       }
       
-      print('=== Asset Validation Complete ===');
-      print('Available assets: ${_assetExists.keys.where((k) => _assetExists[k] == true).toList()}');
+      debugPrint('=== Asset Validation Complete ===');
+      debugPrint('Available assets: ${_assetExists.keys.where((k) => _assetExists[k] == true).toList()}');
     } catch (e) {
-      print('Error validating assets: $e');
+      debugPrint('Error validating assets: $e');
     }
   }
 
@@ -108,7 +111,7 @@ class AudioManager {
         }
       }
     } catch (e) {
-      print('Error preloading critical assets: $e');
+      debugPrint('Error preloading critical assets: $e');
     } finally {
       _isPreloading = false;
     }
@@ -130,7 +133,7 @@ class AudioManager {
       _cachedFiles[assetPath] = assetPath;
       completer.complete();
     } catch (e) {
-      print('Error preloading $assetPath: $e');
+      debugPrint('Error preloading $assetPath: $e');
       completer.completeError(e);
     }
   }
@@ -153,14 +156,14 @@ class AudioManager {
         _errorCounts[fileName] = (_errorCounts[fileName] ?? 0) + 1;
         
         // For missing files, just return false instead of generating placeholder
-        print('Audio file not found: $fileName');
+        debugPrint('Audio file not found: $fileName');
         return false;
       }
 
       // Try to play from asset
       return await _playAsset(assetPath, clipStart, clipEnd, player);
     } catch (e) {
-      print('Error playing audio $fileName: $e');
+      debugPrint('Error playing audio $fileName: $e');
       _errorCounts[fileName] = (_errorCounts[fileName] ?? 0) + 1;
       return false;
     }
@@ -191,7 +194,7 @@ class AudioManager {
       
       return true;
     } catch (e) {
-      print('Error playing asset $assetPath: $e');
+      debugPrint('Error playing asset $assetPath: $e');
       return false;
     }
   }
@@ -202,7 +205,7 @@ class AudioManager {
       try {
         await player.stop();
       } catch (e) {
-        print('Error stopping player: $e');
+        debugPrint('Error stopping player: $e');
       }
     }
   }
@@ -215,7 +218,7 @@ class AudioManager {
       try {
         await player.setVolume(_isMuted ? 0.0 : _volume);
       } catch (e) {
-        print('Error setting volume: $e');
+        debugPrint('Error setting volume: $e');
       }
     }
   }
@@ -272,14 +275,14 @@ class AudioManager {
       // Find missing files
       final missingFiles = referencedFiles.difference(availableFiles).toList();
       
-      print('=== Missing Audio Files ===');
-      print('Referenced files: ${referencedFiles.toList()}');
-      print('Available files: ${availableFiles.toList()}');
-      print('Missing files: $missingFiles');
+      debugPrint('=== Missing Audio Files ===');
+      debugPrint('Referenced files: ${referencedFiles.toList()}');
+      debugPrint('Available files: ${availableFiles.toList()}');
+      debugPrint('Missing files: $missingFiles');
       
       return missingFiles;
     } catch (e) {
-      print('Error getting missing audio files: $e');
+      debugPrint('Error getting missing audio files: $e');
       return [];
     }
   }
@@ -312,7 +315,7 @@ class AudioManager {
       try {
         await player.dispose();
       } catch (e) {
-        print('Error disposing player: $e');
+        debugPrint('Error disposing player: $e');
       }
     }
     
