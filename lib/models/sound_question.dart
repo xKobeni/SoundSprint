@@ -40,4 +40,20 @@ class Question {
       answer: json['answer'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'mode': mode,
+      'category': category,
+      'difficulty': difficulty,
+      'type': type,
+      'file': file,
+      'clipStart': clipStart,
+      'clipEnd': clipEnd,
+      'options': options,
+      'correctAnswer': correctAnswer,
+      'question': question,
+      'answer': answer,
+    };
+  }
 } 

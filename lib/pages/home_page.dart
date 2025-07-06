@@ -4,6 +4,7 @@ import '../utils/user_preferences.dart';
 import '../utils/stats_manager.dart';
 import '../utils/daily_points_manager.dart';
 import '../widgets/daily_challenges_popup.dart';
+import 'game_selection_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -450,84 +451,128 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             TextButton(
-              onPressed: () {}, // TODO: Implement View All
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GameSelectionPage()),
+                );
+              },
               child: const Text('View All', style: TextStyle(color: Color(0xFF7C5CFC))),
             ),
           ],
         ),
         const SizedBox(height: 12),
         _buildQuizVaultCard(
-          icon: Icons.person,
-          title: 'Famous People',
-          subcategories: '12 Subcategories',
-          color: Colors.orange,
+          icon: Icons.volume_up,
+          title: 'Animal Sound',
+          subcategories: 'Sound Quiz',
+          color: Colors.green,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GamePage(
+                  gameMode: 'GuessTheSound',
+                  category: 'Animal Sound',
+                  difficulty: 'Easy',
+                ),
+              ),
+            );
+          },
         ),
         const SizedBox(height: 12),
         _buildQuizVaultCard(
-          icon: Icons.attach_money,
-          title: 'Money',
-          subcategories: '12 Subcategories',
-          color: Colors.amber,
+          icon: Icons.music_note,
+          title: 'Anime Openings',
+          subcategories: 'Music Quiz',
+          color: Colors.purple,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GamePage(
+                  gameMode: 'GuessTheMusic',
+                  category: 'Anime Openings',
+                  difficulty: 'Easy',
+                ),
+              ),
+            );
+          },
         ),
         const SizedBox(height: 12),
         _buildQuizVaultCard(
-          icon: Icons.emoji_events,
-          title: 'Sports',
-          subcategories: '12 Subcategories',
-          color: Colors.yellow[700]!,
+          icon: Icons.music_note,
+          title: 'Kpop Music',
+          subcategories: 'Music Quiz',
+          color: Colors.pink,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GamePage(
+                  gameMode: 'GuessTheMusic',
+                  category: 'Kpop Music',
+                  difficulty: 'Easy',
+                ),
+              ),
+            );
+          },
         ),
       ],
     );
   }
 
-  Widget _buildQuizVaultCard({required IconData icon, required String title, required String subcategories, required Color color}) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.15),
-              borderRadius: BorderRadius.circular(24),
+  Widget _buildQuizVaultCard({required IconData icon, required String title, required String subcategories, required Color color, required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 8,
+              offset: Offset(0, 4),
             ),
-            child: Icon(icon, color: color, size: 32),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Color(0xFF7C5CFC),
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Icon(icon, color: color, size: 32),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Color(0xFF7C5CFC),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  subcategories,
-                  style: const TextStyle(color: Colors.black54, fontSize: 14),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    subcategories,
+                    style: const TextStyle(color: Colors.black54, fontSize: 14),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -553,49 +598,220 @@ class _HomePageState extends State<HomePage> {
           mainAxisSpacing: 16,
           childAspectRatio: 1.0,
           children: [
-            _buildGameCard(icon: Icons.lock, label: 'Quiz Vault'),
-            _buildGameCard(icon: Icons.edit, label: 'Guess The Word'),
-            _buildGameCard(icon: Icons.check_circle, label: 'True or False'),
-            _buildGameCard(icon: Icons.calendar_today, label: 'Daily Quiz'),
+            _buildGameCard(
+              icon: Icons.translate,
+              label: 'Vocabulary',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategorySelectionPage(
+                      gameMode: 'Vocabulary',
+                      gameModeName: 'Vocabulary',
+                    ),
+                  ),
+                );
+              },
+            ),
+            _buildGameCard(
+              icon: Icons.check_circle,
+              label: 'True or False',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategorySelectionPage(
+                      gameMode: 'TrueOrFalse',
+                      gameModeName: 'True or False',
+                    ),
+                  ),
+                );
+              },
+            ),
+            _buildGameCard(
+              icon: Icons.music_note,
+              label: 'Music Quiz',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategorySelectionPage(
+                      gameMode: 'GuessTheMusic',
+                      gameModeName: 'Music Quiz',
+                    ),
+                  ),
+                );
+              },
+            ),
+            _buildGameCard(
+              icon: Icons.volume_up,
+              label: 'Sound Quiz',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategorySelectionPage(
+                      gameMode: 'GuessTheSound',
+                      gameModeName: 'Sound Quiz',
+                    ),
+                  ),
+                );
+              },
+            ),
+            _buildGameCard(
+              icon: Icons.image,
+              label: 'Guess the Image',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const GuessTheImagePage(),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildGameCard({required IconData icon, required String label}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: Color(0xFF7C5CFC), size: 36),
-          const SizedBox(height: 8),
-          Flexible(
-            child: Text(
-              label,
-              style: const TextStyle(
-                color: Color(0xFF7C5CFC),
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+  Widget _buildGameCard({required IconData icon, required String label, required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 8,
+              offset: Offset(0, 4),
             ),
-          ),
-        ],
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: Color(0xFF7C5CFC), size: 36),
+            const SizedBox(height: 8),
+            Flexible(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  color: Color(0xFF7C5CFC),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class QuizVaultPage extends StatelessWidget {
+  const QuizVaultPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Quiz Vault'),
+        backgroundColor: const Color(0xFF7C5CFC),
+        foregroundColor: Colors.white,
+      ),
+      body: const Center(
+        child: Text(
+          'Quiz Vault Coming Soon!',
+          style: TextStyle(fontSize: 24, color: Color(0xFF7C5CFC)),
+        ),
+      ),
+    );
+  }
+}
+
+class CategorySelectionPage extends StatelessWidget {
+  final String gameMode;
+  final String gameModeName;
+
+  const CategorySelectionPage({
+    Key? key,
+    required this.gameMode,
+    required this.gameModeName,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(gameModeName),
+        backgroundColor: const Color(0xFF7C5CFC),
+        foregroundColor: Colors.white,
+      ),
+      body: const Center(
+        child: Text(
+          'Category Selection Coming Soon!',
+          style: TextStyle(fontSize: 24, color: Color(0xFF7C5CFC)),
+        ),
+      ),
+    );
+  }
+}
+
+class GamePage extends StatelessWidget {
+  final String gameMode;
+  final String category;
+  final String difficulty;
+
+  const GamePage({
+    Key? key,
+    required this.gameMode,
+    required this.category,
+    required this.difficulty,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(category),
+        backgroundColor: const Color(0xFF7C5CFC),
+        foregroundColor: Colors.white,
+      ),
+      body: const Center(
+        child: Text(
+          'Game Page Coming Soon!',
+          style: TextStyle(fontSize: 24, color: Color(0xFF7C5CFC)),
+        ),
+      ),
+    );
+  }
+}
+
+class GuessTheImagePage extends StatelessWidget {
+  const GuessTheImagePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Guess the Image'),
+        backgroundColor: const Color(0xFF7C5CFC),
+        foregroundColor: Colors.white,
+      ),
+      body: const Center(
+        child: Text(
+          'Guess the Image Coming Soon!',
+          style: TextStyle(fontSize: 24, color: Color(0xFF7C5CFC)),
+        ),
       ),
     );
   }

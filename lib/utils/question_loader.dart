@@ -31,13 +31,29 @@ class QuestionLoader {
   }
 
   /// Get available categories for a given mode
-  static Future<List<String>> getAvailableCategories({String? mode}) async {
+  static Future<List<String>> getAvailableCategories({String? mode, String? difficulty}) async {
     final String jsonString = await rootBundle.loadString('assets/data/questions.json');
     final Map<String, dynamic> jsonData = json.decode(jsonString);
     Set<String> categories = {};
+    
     if (mode != null && mode.isNotEmpty) {
       if (jsonData.containsKey(mode)) {
-        categories.addAll((jsonData[mode] as Map<String, dynamic>).keys);
+        final categoriesData = jsonData[mode] as Map<String, dynamic>;
+        for (final categoryKey in categoriesData.keys) {
+          final difficulties = categoriesData[categoryKey] as Map<String, dynamic>;
+          if (difficulty != null && difficulty.isNotEmpty) {
+            // Only include categories that have questions for the specified difficulty
+            if (difficulties.containsKey(difficulty)) {
+              final questionsList = difficulties[difficulty] as List<dynamic>;
+              if (questionsList.isNotEmpty) {
+                categories.add(categoryKey);
+              }
+            }
+          } else {
+            // Include all categories for the mode
+            categories.add(categoryKey);
+          }
+        }
       }
     } else {
       for (final modeKey in jsonData.keys) {
@@ -70,5 +86,27 @@ class QuestionLoader {
       }
     }
     return difficulties.toList()..sort();
+  }
+
+  /// Get the number of questions for a specific mode, category, and difficulty
+  static Future<int> getQuestionCount({String? mode, String? category, String? difficulty}) async {
+    final String jsonString = await rootBundle.loadString('assets/data/questions.json');
+    final Map<String, dynamic> jsonData = json.decode(jsonString);
+    
+    if (mode != null && mode.isNotEmpty && 
+        category != null && category.isNotEmpty && 
+        difficulty != null && difficulty.isNotEmpty) {
+      if (jsonData.containsKey(mode)) {
+        final categories = jsonData[mode] as Map<String, dynamic>;
+        if (categories.containsKey(category)) {
+          final difficulties = categories[category] as Map<String, dynamic>;
+          if (difficulties.containsKey(difficulty)) {
+            final questionsList = difficulties[difficulty] as List<dynamic>;
+            return questionsList.length;
+          }
+        }
+      }
+    }
+    return 0;
   }
 } 

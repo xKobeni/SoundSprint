@@ -4,6 +4,7 @@ import 'pages/splash_page.dart';
 import 'pages/onboarding_page.dart';
 import 'pages/main_navigation_page.dart';
 import 'pages/game_page.dart';
+import 'pages/category_selection_page.dart';
 import 'pages/result_page.dart';
 import 'pages/stats_page.dart';
 import 'pages/profile_page.dart';
@@ -84,6 +85,13 @@ class MyApp extends StatelessWidget {
                 difficulty: args?['difficulty'] as String?,
                 category: args?['category'] as String?,
                 timeLimit: args?['timeLimit'] as int?,
+              );
+            },
+            '/category-selection': (context) {
+              final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+              return CategorySelectionPage(
+                gameMode: args?['gameMode'] as String? ?? '',
+                gameModeName: args?['gameModeName'] as String? ?? '',
               );
             },
             '/result': (context) {
