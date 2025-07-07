@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import '../../models/sound_question.dart';
 import '../accessibility_manager.dart';
 import 'base_game_logic.dart';
+import '../../widgets/question_card.dart';
+import '../../widgets/answer_option_button.dart';
 
 /// Game logic for vocabulary questions
 class VocabularyGameLogic extends BaseGameLogic {
@@ -73,179 +75,30 @@ class VocabularyGameLogic extends BaseGameLogic {
 
   @override
   Widget buildQuestionWidget(Question question, Function(String?) onAnswer) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          // Question display
-          _buildQuestionDisplay(question),
-          const SizedBox(height: 30),
-          // Answer options
-          _buildAnswerOptions(question, onAnswer),
-          // Answer feedback removed
-        ],
-      ),
-    );
-  }
-
-  Widget _buildQuestionDisplay(Question question) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(
-            Icons.book,
-            size: 48,
-            color: const Color(0xFF7C5CFC),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            'Vocabulary Question',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF7C5CFC),
-            ),
-          ),
-          const SizedBox(height: 20),
-          if (question.question != null)
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF5F3FF),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFF7C5CFC), width: 1),
-              ),
-              child: Text(
-                question.question!,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.black87,
-                  height: 1.4,
-                  fontWeight: FontWeight.w500,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAnswerOptions(Question question, Function(String?) onAnswer) {
     final options = question.options ?? [];
-    
     return Column(
-      children: options.asMap().entries.map((entry) {
-        final index = entry.key;
-        final option = entry.value;
-        
-        // Determine button styling based on answer feedback
-        Color backgroundColor = Colors.white;
-        Color foregroundColor = const Color(0xFF7C5CFC);
-        Color borderColor = const Color(0xFF7C5CFC);
-        Color letterBackgroundColor = const Color(0xFF7C5CFC);
-        Color letterTextColor = Colors.white;
-        IconData? icon;
-        
-        if (_showAnswerFeedback) {
-          if (option == _correctAnswer) {
-            // Correct answer - always show in green
-            backgroundColor = Colors.green;
-            foregroundColor = Colors.white;
-            borderColor = Colors.green;
-            letterBackgroundColor = Colors.white;
-            letterTextColor = Colors.green;
-            icon = Icons.check_circle;
-          } else if (option == _selectedAnswer && option != _correctAnswer) {
-            // Wrong selected answer - show in red
-            backgroundColor = Colors.red;
-            foregroundColor = Colors.white;
-            borderColor = Colors.red;
-            letterBackgroundColor = Colors.white;
-            letterTextColor = Colors.red;
-            icon = Icons.cancel;
-          } else {
-            // Other options - show in gray
-            backgroundColor = Colors.grey.shade200;
-            foregroundColor = Colors.grey.shade600;
-            borderColor = Colors.grey.shade400;
-            letterBackgroundColor = Colors.grey.shade400;
-            letterTextColor = Colors.white;
-          }
-        }
-        
-        return Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(bottom: 12),
-          child: ElevatedButton(
-            onPressed: _showAnswerFeedback ? null : () => onAnswer(option),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: backgroundColor,
-              foregroundColor: foregroundColor,
-              padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: borderColor, width: 2),
-              ),
-              elevation: 4,
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 32,
-                  height: 32,
-                  decoration: BoxDecoration(
-                    color: letterBackgroundColor,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Center(
-                    child: Text(
-                      String.fromCharCode(65 + index), // A, B, C, D...
-                      style: TextStyle(
-                        color: letterTextColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          option,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      if (icon != null) ...[
-                        Icon(icon, size: 20),
-                      ],
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      }).toList(),
+      children: [
+        QuestionCard(
+          questionText: question.question ?? 'Vocabulary Question',
+        ),
+        const SizedBox(height: 24),
+        ...options.asMap().entries.map((entry) {
+          final index = entry.key;
+          final option = entry.value;
+          final isSelected = _selectedAnswer == option;
+          final isCorrect = _showAnswerFeedback && option == _correctAnswer;
+          final isIncorrect = _showAnswerFeedback && isSelected && option != _correctAnswer;
+          return AnswerOptionButton(
+            optionLetter: String.fromCharCode(65 + index),
+            optionText: option,
+            isSelected: isSelected,
+            isCorrect: isCorrect,
+            isIncorrect: isIncorrect,
+            showFeedback: _showAnswerFeedback,
+            onTap: _showAnswerFeedback ? null : () => onAnswer(option),
+          );
+        }).toList(),
+      ],
     );
   }
 

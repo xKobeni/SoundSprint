@@ -46,6 +46,8 @@ class GameManager extends ChangeNotifier {
   String? get errorMessage => _errorMessage;
   BaseGameLogic? get currentGameLogic => _currentGameLogic;
   String? get currentGameMode => _currentGameMode;
+  int get correctCount => _answerDetails.where((a) => a['isCorrect'] == true).length;
+  int get incorrectCount => _answerDetails.where((a) => a['isCorrect'] == false).length;
 
   /// Initialize the game manager
   Future<void> initialize() async {

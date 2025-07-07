@@ -214,6 +214,8 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
         return 'True/False';
       case 'vocabulary':
         return 'Vocabulary';
+      case 'image':
+        return 'Image';
       default:
         return type;
     }

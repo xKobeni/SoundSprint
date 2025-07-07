@@ -5,6 +5,8 @@ import '../../models/sound_question.dart';
 import '../audio_manager.dart';
 import '../accessibility_manager.dart';
 import 'base_game_logic.dart';
+import '../../widgets/question_card.dart';
+import '../../widgets/answer_option_button.dart';
 
 /// Game logic for audio-based questions (music and sound guessing)
 class AudioGameLogic extends BaseGameLogic {
@@ -115,22 +117,32 @@ class AudioGameLogic extends BaseGameLogic {
 
   @override
   Widget buildQuestionWidget(Question question, Function(String?) onAnswer) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          // Audio player section
-          _buildAudioPlayerSection(question),
-          const SizedBox(height: 30),
-          
-          // Question display
-          _buildQuestionDisplay(question),
-          const SizedBox(height: 30),
-          
-          // Answer options
-          _buildAnswerOptions(question, onAnswer),
-        ],
-      ),
+    final options = question.options ?? [];
+    return Column(
+      children: [
+        _buildAudioPlayerSection(question),
+        const SizedBox(height: 24),
+        QuestionCard(
+          questionText: question.question ?? (type == 'music' ? 'Which music is this?' : 'Which sound is this?'),
+        ),
+        const SizedBox(height: 24),
+        ...options.asMap().entries.map((entry) {
+          final index = entry.key;
+          final option = entry.value;
+          final isSelected = _selectedAnswer == option;
+          final isCorrect = _showAnswerFeedback && option == _correctAnswer;
+          final isIncorrect = _showAnswerFeedback && isSelected && option != _correctAnswer;
+          return AnswerOptionButton(
+            optionLetter: String.fromCharCode(65 + index),
+            optionText: option,
+            isSelected: isSelected,
+            isCorrect: isCorrect,
+            isIncorrect: isIncorrect,
+            showFeedback: _showAnswerFeedback,
+            onTap: _showAnswerFeedback ? null : () => onAnswer(option),
+          );
+        }).toList(),
+      ],
     );
   }
 
@@ -191,119 +203,6 @@ class AudioGameLogic extends BaseGameLogic {
             ),
         ],
       ),
-    );
-  }
-
-  Widget _buildQuestionDisplay(Question question) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Text(
-            'What did you hear?',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF7C5CFC),
-            ),
-          ),
-          if (question.question != null) ...[
-            const SizedBox(height: 12),
-            Text(
-              question.question!,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black87,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAnswerOptions(Question question, Function(String?) onAnswer) {
-    final options = question.options ?? [];
-    
-    return Column(
-      children: options.asMap().entries.map((entry) {
-        final index = entry.key;
-        final option = entry.value;
-        
-        // Determine button styling based on answer feedback
-        Color backgroundColor = Colors.white;
-        Color foregroundColor = const Color(0xFF7C5CFC);
-        Color borderColor = const Color(0xFF7C5CFC);
-        IconData? icon;
-        
-        if (_showAnswerFeedback) {
-          if (option == _correctAnswer) {
-            // Correct answer - always show in green
-            backgroundColor = Colors.green;
-            foregroundColor = Colors.white;
-            borderColor = Colors.green;
-            icon = Icons.check_circle;
-          } else if (option == _selectedAnswer && option != _correctAnswer) {
-            // Wrong selected answer - show in red
-            backgroundColor = Colors.red;
-            foregroundColor = Colors.white;
-            borderColor = Colors.red;
-            icon = Icons.cancel;
-          } else {
-            // Other options - show in gray
-            backgroundColor = Colors.grey.shade200;
-            foregroundColor = Colors.grey.shade600;
-            borderColor = Colors.grey.shade400;
-          }
-        }
-        
-        return Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(bottom: 12),
-          child: ElevatedButton(
-            onPressed: _showAnswerFeedback ? null : () => onAnswer(option),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: backgroundColor,
-              foregroundColor: foregroundColor,
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: borderColor, width: 2),
-              ),
-              elevation: 4,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (icon != null) ...[
-                  Icon(icon, size: 20),
-                  const SizedBox(width: 8),
-                ],
-                Text(
-                  option,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      }).toList(),
     );
   }
 

@@ -5,6 +5,7 @@ import '../utils/stats_manager.dart';
 import '../utils/daily_points_manager.dart';
 import '../widgets/daily_challenges_popup.dart';
 import 'game_selection_page.dart';
+import 'category_selection_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -471,10 +472,11 @@ class _HomePageState extends State<HomePage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => GamePage(
+                builder: (context) => CategorySelectionPage(
                   gameMode: 'GuessTheSound',
-                  category: 'Animal Sound',
-                  difficulty: 'Easy',
+                  gameModeName: 'Sound Quiz',
+                  initialCategory: 'Animal Sound',
+                  initialDifficulty: 'Easy',
                 ),
               ),
             );
@@ -490,10 +492,11 @@ class _HomePageState extends State<HomePage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => GamePage(
+                builder: (context) => CategorySelectionPage(
                   gameMode: 'GuessTheMusic',
-                  category: 'Anime Openings',
-                  difficulty: 'Easy',
+                  gameModeName: 'Music Quiz',
+                  initialCategory: 'Anime Openings',
+                  initialDifficulty: 'Easy',
                 ),
               ),
             );
@@ -509,10 +512,11 @@ class _HomePageState extends State<HomePage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => GamePage(
+                builder: (context) => CategorySelectionPage(
                   gameMode: 'GuessTheMusic',
-                  category: 'Kpop Music',
-                  difficulty: 'Easy',
+                  gameModeName: 'Music Quiz',
+                  initialCategory: 'Kpop Music',
+                  initialDifficulty: 'Easy',
                 ),
               ),
             );
@@ -711,55 +715,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class QuizVaultPage extends StatelessWidget {
-  const QuizVaultPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quiz Vault'),
-        backgroundColor: const Color(0xFF7C5CFC),
-        foregroundColor: Colors.white,
-      ),
-      body: const Center(
-        child: Text(
-          'Quiz Vault Coming Soon!',
-          style: TextStyle(fontSize: 24, color: Color(0xFF7C5CFC)),
-        ),
-      ),
-    );
-  }
-}
-
-class CategorySelectionPage extends StatelessWidget {
-  final String gameMode;
-  final String gameModeName;
-
-  const CategorySelectionPage({
-    Key? key,
-    required this.gameMode,
-    required this.gameModeName,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(gameModeName),
-        backgroundColor: const Color(0xFF7C5CFC),
-        foregroundColor: Colors.white,
-      ),
-      body: const Center(
-        child: Text(
-          'Category Selection Coming Soon!',
-          style: TextStyle(fontSize: 24, color: Color(0xFF7C5CFC)),
         ),
       ),
     );

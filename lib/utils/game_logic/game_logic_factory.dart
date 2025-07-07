@@ -3,6 +3,7 @@ import 'base_game_logic.dart';
 import 'audio_game_logic.dart';
 import 'true_false_game_logic.dart';
 import 'vocabulary_game_logic.dart';
+import 'image_game_logic.dart';
 
 /// Factory class to create and manage game logic instances
 class GameLogicFactory {
@@ -12,6 +13,7 @@ class GameLogicFactory {
     'GuessTheMusic': AudioGameLogic(type: 'music'),
     'TrueOrFalse': TrueFalseGameLogic(),
     'Vocabulary': VocabularyGameLogic(),
+    'GuessTheImage': ImageGameLogic(),
   };
 
   /// Get the appropriate game logic for a question type
@@ -60,6 +62,7 @@ class GameLogicFactory {
     if (logic.supportsQuestionType('music')) supportedTypes.add('music');
     if (logic.supportsQuestionType('truefalse')) supportedTypes.add('truefalse');
     if (logic.supportsQuestionType('vocabulary')) supportedTypes.add('vocabulary');
+    if (logic.supportsQuestionType('image')) supportedTypes.add('image');
     return supportedTypes;
   }
 
@@ -171,6 +174,7 @@ class GameModeSelector {
     // Return the appropriate game mode based on type
     if (mostCommonType == 'truefalse') return 'TrueOrFalse';
     if (mostCommonType == 'vocabulary') return 'Vocabulary';
+    if (mostCommonType == 'image') return 'GuessTheImage';
     return 'GuessTheSound'; // Default for sound/music
   }
 

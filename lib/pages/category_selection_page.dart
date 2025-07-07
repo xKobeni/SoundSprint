@@ -6,11 +6,15 @@ import 'game_page.dart';
 class CategorySelectionPage extends StatefulWidget {
   final String gameMode;
   final String gameModeName;
+  final String? initialCategory;
+  final String? initialDifficulty;
 
   const CategorySelectionPage({
     Key? key,
     required this.gameMode,
     required this.gameModeName,
+    this.initialCategory,
+    this.initialDifficulty,
   }) : super(key: key);
 
   @override
@@ -29,9 +33,23 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
   @override
   void initState() {
     super.initState();
-    // Initialize with a default length, will be updated in _loadCategories
     _tabController = TabController(length: 3, vsync: this);
     _loadCategories();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _maybeJumpToInitialTab();
+    });
+  }
+
+  void _maybeJumpToInitialTab() {
+    if (widget.initialDifficulty != null && _difficulties.isNotEmpty) {
+      final idx = _difficulties.indexOf(widget.initialDifficulty!);
+      if (idx != -1 && _tabController.index != idx) {
+        _tabController.animateTo(idx);
+        setState(() {
+          _selectedDifficulty = _difficulties[idx];
+        });
+      }
+    }
   }
 
   Future<void> _loadCategories() async {
@@ -176,16 +194,31 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
           Expanded(
             child: _categoriesByDifficulty[difficulty]?.isEmpty ?? true
                 ? _buildEmptyState(difficulty)
-                : ListView.builder(
-                    itemCount: _categoriesByDifficulty[difficulty]?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final category = _categoriesByDifficulty[difficulty]![index];
-                      return _buildCategoryCard(category, difficulty);
-                    },
-                  ),
+                : _buildCategoryListView(difficulty),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildCategoryListView(String difficulty) {
+    final categories = _categoriesByDifficulty[difficulty] ?? [];
+    final initialIndex = (widget.initialCategory != null && difficulty == (widget.initialDifficulty ?? _selectedDifficulty))
+        ? categories.indexOf(widget.initialCategory!)
+        : -1;
+    final controller = ScrollController();
+    if (initialIndex != -1) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller.jumpTo((initialIndex * 140.0).clamp(0, controller.position.maxScrollExtent));
+      });
+    }
+    return ListView.builder(
+      controller: controller,
+      itemCount: categories.length,
+      itemBuilder: (context, index) {
+        final category = categories[index];
+        return _buildCategoryCard(category, difficulty);
+      },
     );
   }
 

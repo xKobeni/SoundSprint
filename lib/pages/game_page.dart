@@ -6,6 +6,8 @@ import '../utils/game_logic/base_game_logic.dart';
 import '../widgets/tutorial_overlay.dart';
 import '../widgets/top_notification.dart';
 import 'result_page.dart';
+import '../widgets/question_card.dart';
+import '../widgets/answer_option_button.dart';
 
 class GamePage extends StatefulWidget {
   final String? difficulty;
@@ -29,9 +31,15 @@ class _GamePageState extends State<GamePage> {
   final GameManager _gameManager = GameManager();
   bool _showTutorial = false;
 
+  // Add timer controller for circular countdown
+  late int _timerMax;
+  late int _timerRemaining;
+
   @override
   void initState() {
     super.initState();
+    _timerMax = widget.timeLimit ?? 20;
+    _timerRemaining = _timerMax;
     _initializeGame();
   }
 
@@ -104,134 +112,134 @@ class _GamePageState extends State<GamePage> {
       body: ListenableBuilder(
         listenable: _gameManager,
         builder: (context, child) {
-          return Stack(
-            children: [
-              Column(
-                children: [
-                  _buildTopBar(),
-                  Expanded(child: _buildGameContent()),
-                ],
-              ),
-              // Tutorial overlay - disabled for now
-              // if (_showTutorial)
-              //   TutorialOverlay(
-              //     child: Container(),
-              //     tutorialKey: 'game',
-              //     steps: [],
-              //     onComplete: () {
-              //       setState(() {
-              //         _showTutorial = false;
-              //       });
-              //     },
-              //   ),
-            ],
+          return SafeArea(
+            child: Column(
+              children: [
+                _buildCustomHeader(context),
+                _buildProgressRow(),
+                Expanded(child: _buildGameContent()),
+              ],
+            ),
           );
         },
       ),
     );
   }
 
-  Widget _buildTopBar() {
+  Widget _buildCustomHeader(BuildContext context) {
+    final category = _gameManager.questions.isNotEmpty
+        ? _gameManager.questions[_gameManager.currentIndex.clamp(0, _gameManager.questions.length - 1)].category
+        : '';
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      decoration: const BoxDecoration(
-        color: Color(0xFF7C5CFC),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 2),
+      color: const Color(0xFFF5F3FF),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      child: Row(
+        children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: Color(0xFF7C5CFC)),
+            onPressed: () async {
+              final shouldExit = await _showExitQuizDialog(context);
+              if (shouldExit == true) {
+                Navigator.pop(context);
+              }
+            },
+          ),
+          const SizedBox(width: 4),
+          const Text(
+            'Back',
+            style: TextStyle(
+              color: Color(0xFF7C5CFC),
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+            ),
+          ),
+          if (category.isNotEmpty) ...[
+            const SizedBox(width: 12),
+            Text(
+              category,
+              style: const TextStyle(
+                color: Color(0xFF7C5CFC),
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Future<bool?> _showExitQuizDialog(BuildContext context) async {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Exit Quiz?'),
+        content: const Text('Are you sure you want to exit the quiz? Your progress will be lost.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Exit'),
           ),
         ],
       ),
-      child: SafeArea(
-        child: Row(
-          children: [
-            // Back button
-            IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-            ),
-            
-            const SizedBox(width: 16),
-            
-            // Game mode info
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _gameManager.currentGameMode?.toUpperCase() ?? 'GAME',
-                    style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Question ${_gameManager.currentIndex + 1} of ${_gameManager.questions.length}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+    );
+  }
+
+  Widget _buildProgressRow() {
+    final correct = _gameManager.correctCount;
+    final incorrect = _gameManager.incorrectCount;
+    final total = _gameManager.questions.length;
+    final current = _gameManager.currentIndex + 1;
+    final time = _gameManager.timeRemaining;
+    final maxTime = _timerMax;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: Row(
+        children: [
+          // Correct count
+          Row(
+            children: [
+              const Icon(Icons.check_circle, color: Colors.green, size: 20),
+              const SizedBox(width: 2),
+              Text('$correct', style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+            ],
+          ),
+          const SizedBox(width: 12),
+          // Incorrect count
+          Row(
+            children: [
+              const Icon(Icons.cancel, color: Colors.red, size: 20),
+              const SizedBox(width: 2),
+              Text('$incorrect', style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+            ],
+          ),
+          const Spacer(),
+          // Circular timer
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              SizedBox(
+                width: 54,
+                height: 54,
+                child: CircularProgressIndicator(
+                  value: time / maxTime,
+                  strokeWidth: 6,
+                  valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
+                  backgroundColor: const Color(0xFFE0D7FF),
+                ),
               ),
-            ),
-            
-            // Timer
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.timer, color: Colors.white, size: 16),
-                  const SizedBox(width: 4),
-                  Text(
-                    '${_gameManager.timeRemaining}s',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            
-            const SizedBox(width: 16),
-            
-            // Score
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.star, color: Colors.white, size: 16),
-                  const SizedBox(width: 4),
-                  Text(
-                    '${_gameManager.score}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+              Text('$time', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF7C5CFC))),
+            ],
+          ),
+          const Spacer(),
+          // Question number
+          Text('$current/$total', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF7C5CFC))),
+        ],
       ),
     );
   }
@@ -289,10 +297,16 @@ class _GamePageState extends State<GamePage> {
       return _buildGameCompletedState();
     }
 
-    // Build the question widget using the current game logic
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: _gameManager.buildQuestionWidget(),
+    // Use the new shared widgets for question and answers, with scroll and padding
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _gameManager.buildQuestionWidget(),
+          const SizedBox(height: 32),
+        ],
+      ),
     );
   }
 

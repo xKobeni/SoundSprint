@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../../models/sound_question.dart';
 import '../accessibility_manager.dart';
 import 'base_game_logic.dart';
+import '../../widgets/question_card.dart';
 
 /// Game logic for true/false questions
 class TrueFalseGameLogic extends BaseGameLogic {
@@ -75,139 +76,83 @@ class TrueFalseGameLogic extends BaseGameLogic {
 
   @override
   Widget buildQuestionWidget(Question question, Function(String?) onAnswer) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          // Question display
-          _buildQuestionDisplay(question),
-          const SizedBox(height: 40),
-          
-          // True/False buttons
-          _buildTrueFalseButtons(onAnswer),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildQuestionDisplay(Question question) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(
-            Icons.quiz,
-            size: 48,
-            color: const Color(0xFF7C5CFC),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            'True or False?',
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF7C5CFC),
-            ),
-          ),
-          const SizedBox(height: 20),
-          if (question.question != null)
-            Text(
-              question.question!,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black87,
-                height: 1.4,
-              ),
-              textAlign: TextAlign.center,
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTrueFalseButtons(Function(String?) onAnswer) {
-    return Row(
+    return Column(
       children: [
-        // True Button
-        Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(right: 8),
-            child: ElevatedButton(
-              onPressed: _showAnswerFeedback ? null : () => onAnswer('true'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _getTrueButtonColor(),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 6,
-              ),
-              child: Column(
-                children: [
-                  Icon(
-                    _getTrueButtonIcon(),
-                    size: 32,
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'TRUE',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+        QuestionCard(
+          questionText: question.question ?? 'True or False?',
         ),
-        
-        // False Button
-        Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(left: 8),
-            child: ElevatedButton(
-              onPressed: _showAnswerFeedback ? null : () => onAnswer('false'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _getFalseButtonColor(),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 6,
-              ),
-              child: Column(
-                children: [
-                  Icon(
-                    _getFalseButtonIcon(),
-                    size: 32,
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'FALSE',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+        const SizedBox(height: 32),
+        Row(
+          children: [
+            // True Button
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(right: 8),
+                child: ElevatedButton(
+                  onPressed: _showAnswerFeedback ? null : () => onAnswer('true'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _getTrueButtonColor(),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
+                    elevation: 6,
                   ),
-                ],
+                  child: Column(
+                    children: [
+                      Icon(
+                        _getTrueButtonIcon(),
+                        size: 32,
+                      ),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'TRUE',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
+            // False Button
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(left: 8),
+                child: ElevatedButton(
+                  onPressed: _showAnswerFeedback ? null : () => onAnswer('false'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _getFalseButtonColor(),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 6,
+                  ),
+                  child: Column(
+                    children: [
+                      Icon(
+                        _getFalseButtonIcon(),
+                        size: 32,
+                      ),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'FALSE',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
