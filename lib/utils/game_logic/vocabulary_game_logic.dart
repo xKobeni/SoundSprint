@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import '../../models/sound_question.dart';
-import '../accessibility_manager.dart';
+import '../managers/accessibility_manager.dart';
 import 'base_game_logic.dart';
 import '../../widgets/question_card.dart';
 import '../../widgets/answer_option_button.dart';
@@ -12,6 +12,9 @@ class VocabularyGameLogic extends BaseGameLogic {
   bool _showAnswerFeedback = false;
   String? _selectedAnswer;
   String? _correctAnswer;
+
+  // Store shuffled options per question hashCode
+  final Map<int, List<String>> _shuffledOptions = {};
 
   @override
   String get gameModeName => 'Vocabulary Quiz';
@@ -49,6 +52,11 @@ class VocabularyGameLogic extends BaseGameLogic {
     _selectedAnswer = null;
     _correctAnswer = question.correctAnswer;
 
+    // Shuffle options only once per question
+    final options = List<String>.from(question.options ?? []);
+    options.shuffle();
+    _shuffledOptions[question.hashCode] = options;
+
     // No special setup needed for vocabulary questions
     await Future.delayed(const Duration(milliseconds: 100));
   }
@@ -75,7 +83,7 @@ class VocabularyGameLogic extends BaseGameLogic {
 
   @override
   Widget buildQuestionWidget(Question question, Function(String?) onAnswer) {
-    final options = question.options ?? [];
+    final options = _shuffledOptions[question.hashCode] ?? [];
     return Column(
       children: [
         QuestionCard(

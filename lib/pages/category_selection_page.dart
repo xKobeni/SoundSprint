@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../utils/question_loader.dart';
-import '../utils/game_logic/game_logic_factory.dart';
+import '../../utils/question_loader.dart';
+import '../../utils/game_logic/game_logic_factory.dart';
 import 'game_page.dart';
 
 class CategorySelectionPage extends StatefulWidget {
@@ -28,26 +28,51 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
   List<String> _difficulties = [];
   String _selectedDifficulty = 'Easy';
   bool _loading = true;
-  late TabController _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
     _loadCategories();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _maybeJumpToInitialTab();
-    });
   }
 
   void _maybeJumpToInitialTab() {
-    if (widget.initialDifficulty != null && _difficulties.isNotEmpty) {
+    if (widget.initialDifficulty != null && 
+        _difficulties.isNotEmpty && 
+        _tabController != null && 
+        mounted) {
       final idx = _difficulties.indexOf(widget.initialDifficulty!);
-      if (idx != -1 && _tabController.index != idx) {
-        _tabController.animateTo(idx);
-        setState(() {
-          _selectedDifficulty = _difficulties[idx];
+      if (idx != -1 && _tabController!.index != idx) {
+        try {
+          _tabController!.animateTo(idx);
+          setState(() {
+            _selectedDifficulty = _difficulties[idx];
+          });
+        } catch (e) {
+          // Handle any animation errors
+          debugPrint('Error animating to tab: $e');
+        }
+      }
+    }
+  }
+
+  void _initializeTabController() {
+    if (!mounted) return;
+    
+    if (_tabController != null) {
+      _tabController!.dispose();
+    }
+    
+    if (_difficulties.isNotEmpty) {
+      try {
+        _tabController = TabController(length: _difficulties.length, vsync: this);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            _maybeJumpToInitialTab();
+          }
         });
+      } catch (e) {
+        debugPrint('Error initializing TabController: $e');
       }
     }
   }
@@ -71,19 +96,8 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
         }
       }
       
-      setState(() {
-        _difficulties = validDifficulties;
-        _selectedDifficulty = validDifficulties.isNotEmpty ? validDifficulties.first : 'Easy';
-      });
-      
-      // Initialize tab controller with the correct number of tabs
-      if (_tabController.length != _difficulties.length) {
-        _tabController.dispose();
-        _tabController = TabController(length: _difficulties.length, vsync: this);
-      }
-      
       // Load categories for each valid difficulty
-      for (final difficulty in _difficulties) {
+      for (final difficulty in validDifficulties) {
         final categories = await QuestionLoader.getAvailableCategories(
           mode: widget.gameMode,
           difficulty: difficulty,
@@ -102,14 +116,21 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
         }
       }
       
-      setState(() {
-        _loading = false;
-      });
-    } catch (e) {
-      setState(() {
-        _loading = false;
-      });
       if (mounted) {
+        setState(() {
+          _difficulties = validDifficulties;
+          _selectedDifficulty = validDifficulties.isNotEmpty ? validDifficulties.first : 'Easy';
+          _loading = false;
+        });
+        
+        // Initialize tab controller after setState
+        _initializeTabController();
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _loading = false;
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error loading categories: $e')),
         );
@@ -121,15 +142,24 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.gameModeName),
-        backgroundColor: const Color(0xFF7C5CFC),
-        foregroundColor: Colors.white,
+        title: Text(
+          widget.gameModeName,
+          style: const TextStyle(
+            color: Color(0xFF7C5CFC),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: const Color(0xFFE9E0FF),
         elevation: 0,
-        bottom: _difficulties.isNotEmpty ? TabBar(
-          controller: _tabController,
-          indicatorColor: Colors.white,
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.white70,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Color(0xFF7C5CFC)),
+        bottom: _difficulties.isNotEmpty && _tabController != null ? TabBar(
+          controller: _tabController!,
+          indicatorColor: const Color(0xFF7C5CFC),
+          labelColor: const Color(0xFF7C5CFC),
+          unselectedLabelColor: Colors.black54,
+          indicatorSize: TabBarIndicatorSize.tab,
           tabs: _difficulties.map((difficulty) {
             return Tab(
               child: Text(
@@ -145,56 +175,90 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF7C5CFC), Color(0xFF9B6DFF)],
+            colors: [Color(0xFFE9E0FF), Color(0xFF7C5CFC)],
           ),
         ),
         child: _loading
             ? const Center(
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
                 ),
               )
             : _difficulties.isEmpty
                 ? _buildNoContentState()
-                : SafeArea(
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: _difficulties.map((difficulty) {
-                        return _buildDifficultyView(difficulty);
-                      }).toList(),
-                    ),
-                  ),
+                : _tabController == null
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
+                        ),
+                      )
+                    : SafeArea(
+                        child: TabBarView(
+                          controller: _tabController!,
+                          children: _difficulties.map((difficulty) {
+                            return _buildDifficultyView(difficulty);
+                          }).toList(),
+                        ),
+                      ),
       ),
     );
   }
 
   Widget _buildDifficultyView(String difficulty) {
-    return Padding(
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: [
+          const SizedBox(height: 24),
+          _buildHeaderSection(difficulty),
+          const SizedBox(height: 24),
+          _categoriesByDifficulty[difficulty]?.isEmpty ?? true
+              ? _buildEmptyState(difficulty)
+              : _buildCategoryListView(difficulty),
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHeaderSection(String difficulty) {
+    return Container(
       padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '$difficulty Categories',
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+          Row(
+            children: [
+              const Icon(Icons.category, color: Color(0xFF7C5CFC), size: 36),
+              const SizedBox(width: 12),
+              Text(
+                '$difficulty Categories',
+                style: const TextStyle(
+                  color: Color(0xFF7C5CFC),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Choose a category to start playing',
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
-              color: Colors.white70,
+              color: Colors.black54,
             ),
-          ),
-          const SizedBox(height: 30),
-          Expanded(
-            child: _categoriesByDifficulty[difficulty]?.isEmpty ?? true
-                ? _buildEmptyState(difficulty)
-                : _buildCategoryListView(difficulty),
           ),
         ],
       ),
@@ -209,11 +273,15 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
     final controller = ScrollController();
     if (initialIndex != -1) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        controller.jumpTo((initialIndex * 140.0).clamp(0, controller.position.maxScrollExtent));
+        if (mounted && controller.hasClients) {
+          controller.jumpTo((initialIndex * 140.0).clamp(0, controller.position.maxScrollExtent));
+        }
       });
     }
     return ListView.builder(
       controller: controller,
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
       itemCount: categories.length,
       itemBuilder: (context, index) {
         final category = categories[index];
@@ -225,112 +293,110 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
   Widget _buildCategoryCard(String category, String difficulty) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
-      child: Card(
-        elevation: 8,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: InkWell(
-          onTap: () => _startGame(category, difficulty),
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.white,
-                  Colors.grey.shade50,
-                ],
+      child: GestureDetector(
+        onTap: () => _startGame(category, difficulty),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 8,
+                offset: Offset(0, 4),
               ),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: _getDifficultyColor(difficulty),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(
-                    _getCategoryIcon(category),
-                    size: 32,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        category,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF7C5CFC),
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: _getDifficultyColor(difficulty).withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          difficulty,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: _getDifficultyColor(difficulty),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        _getCategoryDescription(category),
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey.shade600,
-                          height: 1.3,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.quiz,
-                            size: 16,
-                            color: Colors.grey.shade500,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${_questionCounts[difficulty]?[category] ?? 0} questions',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey.shade500,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      _getDifficultyColor(difficulty),
+                      _getDifficultyColor(difficulty).withOpacity(0.7),
                     ],
                   ),
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Color(0xFF7C5CFC),
-                  size: 20,
+                child: Icon(
+                  _getCategoryIcon(category),
+                  size: 32,
+                  color: Colors.white,
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      category,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF7C5CFC),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: _getDifficultyColor(difficulty).withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        difficulty,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: _getDifficultyColor(difficulty),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      _getCategoryDescription(category),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
+                        height: 1.3,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.quiz,
+                          size: 16,
+                          color: Color(0xFF7C5CFC),
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${_questionCounts[difficulty]?[category] ?? 0} questions',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF7C5CFC),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: Color(0xFF7C5CFC),
+                size: 20,
+              ),
+            ],
           ),
         ),
       ),
@@ -391,30 +457,49 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
   }
 
   Widget _buildEmptyState(String difficulty) {
-    return Center(
+    return Container(
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.category_outlined,
-            size: 64,
-            color: Colors.white.withOpacity(0.5),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFF7C5CFC).withOpacity(0.1),
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: const Icon(
+              Icons.category_outlined,
+              size: 64,
+              color: Color(0xFF7C5CFC),
+            ),
           ),
           const SizedBox(height: 16),
           Text(
             'No categories available',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.white.withOpacity(0.8),
+              color: Color(0xFF7C5CFC),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             'for $difficulty difficulty',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
-              color: Colors.white.withOpacity(0.6),
+              color: Colors.black54,
             ),
           ),
         ],
@@ -423,35 +508,53 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
   }
 
   Widget _buildNoContentState() {
-    return SafeArea(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
+    return Container(
+      margin: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(32),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFF7C5CFC).withOpacity(0.1),
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: const Icon(
               Icons.category_outlined,
               size: 64,
-              color: Colors.white.withOpacity(0.5),
+              color: Color(0xFF7C5CFC),
             ),
-            const SizedBox(height: 16),
-            Text(
-              'No content available',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white.withOpacity(0.8),
-              ),
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'No content available',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF7C5CFC),
             ),
-            const SizedBox(height: 8),
-            Text(
-              'for ${widget.gameModeName}',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white.withOpacity(0.6),
-              ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'for ${widget.gameModeName}',
+            style: const TextStyle(
+              fontSize: 14,
+              color: Colors.black54,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -471,7 +574,7 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController?.dispose();
     super.dispose();
   }
 } 

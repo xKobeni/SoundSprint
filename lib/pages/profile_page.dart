@@ -3,10 +3,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:path/path.dart' as path;
-import '../utils/stats_manager.dart';
-import '../utils/user_preferences.dart';
-import '../utils/settings_provider.dart';
-import '../utils/difficulty_progression_manager.dart';
+import '../utils/managers/stats_manager.dart';
+import '../utils/managers/user_preferences.dart';
+import '../utils/managers/settings_provider.dart';
+import '../utils/managers/difficulty_progression_manager.dart';
 import 'package:flutter/services.dart';
 
 class ProfilePage extends StatefulWidget {

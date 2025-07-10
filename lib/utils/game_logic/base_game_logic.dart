@@ -94,6 +94,7 @@ class GameResult {
   final List<Map<String, dynamic>> answerDetails;
   final Duration playTime;
   final String gameMode;
+  final int modeSpecificPoints;
 
   const GameResult({
     required this.score,
@@ -101,6 +102,7 @@ class GameResult {
     required this.answerDetails,
     required this.playTime,
     required this.gameMode,
+    required this.modeSpecificPoints,
   });
 
   double get accuracy => totalQuestions > 0 ? score / totalQuestions : 0.0;

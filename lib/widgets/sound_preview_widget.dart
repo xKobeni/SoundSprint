@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../utils/audio_manager.dart';
-import '../utils/accessibility_manager.dart';
+import '../utils/managers/audio_manager.dart';
+import '../utils/managers/accessibility_manager.dart';
 
 class SoundPreviewWidget extends StatefulWidget {
   final String fileName;
@@ -67,6 +67,7 @@ class _SoundPreviewWidgetState extends State<SoundPreviewWidget>
         type: widget.type,
         clipStart: widget.clipStart,
         clipEnd: widget.clipEnd,
+        category: null, // No category info in this widget
       );
 
       if (success) {
@@ -76,7 +77,7 @@ class _SoundPreviewWidgetState extends State<SoundPreviewWidget>
             : 3));
       }
     } catch (e) {
-      print('Error playing preview: $e');
+      debugPrint('Error playing preview: $e');
     } finally {
       if (mounted) {
         setState(() {

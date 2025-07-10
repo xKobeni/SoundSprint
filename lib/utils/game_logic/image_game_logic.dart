@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import '../../models/sound_question.dart';
-import '../accessibility_manager.dart';
+import '../managers/accessibility_manager.dart';
 import 'base_game_logic.dart';
 import '../../widgets/question_card.dart';
 import '../../widgets/answer_option_button.dart';
@@ -14,6 +14,9 @@ class ImageGameLogic extends BaseGameLogic {
   String? _correctAnswer;
   bool _imageLoaded = false;
   bool _imageError = false;
+
+  // Store shuffled options per question hashCode
+  final Map<int, List<String>> _shuffledOptions = {};
 
   @override
   String get gameModeName => 'Image Quiz';
@@ -52,6 +55,11 @@ class ImageGameLogic extends BaseGameLogic {
     _selectedAnswer = null;
     _correctAnswer = question.correctAnswer;
 
+    // Shuffle options only once per question
+    final options = List<String>.from(question.options ?? []);
+    options.shuffle();
+    _shuffledOptions[question.hashCode] = options;
+
     // Simulate image loading time
     await Future.delayed(const Duration(milliseconds: 500));
     _imageLoaded = true;
@@ -81,13 +89,14 @@ class ImageGameLogic extends BaseGameLogic {
 
   @override
   Widget buildQuestionWidget(Question question, Function(String?) onAnswer) {
-    final options = question.options ?? [];
+    final options = _shuffledOptions[question.hashCode] ?? [];
     return Column(
       children: [
+        // Show the question text above the image
         Padding(
           padding: const EdgeInsets.only(bottom: 12),
           child: Text(
-            'Who is this person?',
+            (question.question ?? '').isNotEmpty ? question.question! : 'Who is this person?',
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -98,22 +107,33 @@ class ImageGameLogic extends BaseGameLogic {
         ),
         _buildImageSection(question),
         const SizedBox(height: 24),
-        ...options.asMap().entries.map((entry) {
-          final index = entry.key;
-          final option = entry.value;
-          final isSelected = _selectedAnswer == option;
-          final isCorrect = _showAnswerFeedback && option == _correctAnswer;
-          final isIncorrect = _showAnswerFeedback && isSelected && option != _correctAnswer;
-          return AnswerOptionButton(
-            optionLetter: String.fromCharCode(65 + index),
-            optionText: option,
-            isSelected: isSelected,
-            isCorrect: isCorrect,
-            isIncorrect: isIncorrect,
-            showFeedback: _showAnswerFeedback,
-            onTap: _showAnswerFeedback ? null : () => onAnswer(option),
-          );
-        }).toList(),
+        // Make options scrollable
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 12),
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                ...options.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final option = entry.value;
+                  final isSelected = _selectedAnswer == option;
+                  final isCorrect = _showAnswerFeedback && option == _correctAnswer;
+                  final isIncorrect = _showAnswerFeedback && isSelected && option != _correctAnswer;
+                  return AnswerOptionButton(
+                    optionLetter: String.fromCharCode(65 + index),
+                    optionText: option,
+                    isSelected: isSelected,
+                    isCorrect: isCorrect,
+                    isIncorrect: isIncorrect,
+                    showFeedback: _showAnswerFeedback,
+                    onTap: _showAnswerFeedback ? null : () => onAnswer(option),
+                  );
+                }).toList(),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -136,12 +156,6 @@ class ImageGameLogic extends BaseGameLogic {
       ),
       child: Column(
         children: [
-          Icon(
-            Icons.image,
-            size: 48,
-            color: const Color(0xFF7C5CFC),
-          ),
-          const SizedBox(height: 16),
           Expanded(
             child: _buildImageWidget(question),
           ),

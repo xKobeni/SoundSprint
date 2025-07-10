@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/user.dart';
-import '../utils/user_preferences.dart';
+import '../utils/managers/user_preferences.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({Key? key}) : super(key: key);

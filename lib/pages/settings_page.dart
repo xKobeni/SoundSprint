@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../utils/stats_manager.dart';
-import '../utils/audio_manager.dart';
-import '../utils/tutorial_manager.dart';
-import '../utils/settings_provider.dart';
+import '../utils/managers/stats_manager.dart';
+import '../utils/managers/audio_manager.dart';
+import '../utils/managers/tutorial_manager.dart';
+import '../utils/managers/settings_provider.dart';
 import '../widgets/sound_preview_widget.dart';
 import '../widgets/tutorial_overlay.dart';
 import 'profile_page.dart';
 import 'stats_page.dart';
 import 'achievements_page.dart';
 import '../widgets/bottom_nav_bar.dart';
-import '../utils/user_preferences.dart';
+import '../utils/managers/user_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -175,6 +175,39 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+  Future<void> _resetTutorials() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Reset Tutorials?'),
+        content: const Text('This will show tutorials again for all game modes. This action cannot be undone.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Reset Tutorials'),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+          ),
+        ],
+      ),
+    );
+    if (confirmed ?? false) {
+      try {
+        await TutorialManager.resetTutorials();
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Tutorials reset successfully')),
+          );
+        }
+      } catch (e) {
+        _showErrorDialog('Failed to reset tutorials: $e');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_loading) {
@@ -251,6 +284,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: 'Help & Support',
                   subtitle: 'Get help and find answers',
                   onTap: _showHelp,
+                ),
+                const SizedBox(height: 16),
+                // Reset Tutorials
+                _buildSettingsCard(
+                  icon: Icons.refresh,
+                  title: 'Reset Tutorials',
+                  subtitle: 'Show tutorials again for all game modes',
+                  onTap: _resetTutorials,
                 ),
                 const SizedBox(height: 32),
               ],

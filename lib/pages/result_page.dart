@@ -5,6 +5,7 @@ class ResultPage extends StatelessWidget {
   final int total;
   final List<Map<String, dynamic>> answers; // Each: {question, userAnswer, correctAnswer}
   final Map<String, dynamic>? progression; // Experience and level up data
+  final int modeSpecificPoints; // Points gained for this game mode
 
   const ResultPage({
     Key? key,
@@ -12,6 +13,7 @@ class ResultPage extends StatelessWidget {
     required this.total,
     required this.answers,
     this.progression,
+    required this.modeSpecificPoints,
   }) : super(key: key);
 
   @override
@@ -19,6 +21,7 @@ class ResultPage extends StatelessWidget {
     // Debug logging
     debugPrint('=== RESULT PAGE DEBUG ===');
     debugPrint('Score: $score, Total: $total');
+    debugPrint('Mode Specific Points: $modeSpecificPoints');
     debugPrint('Progression data: $progression');
     debugPrint('Experience gained: ${progression?['experienceGained']}');
     debugPrint('Leveled up: ${progression?['leveledUp']}');
@@ -130,7 +133,8 @@ class ResultPage extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
-            Expanded(
+            // Wrap only the answer details in Expanded with a Flexible ListView
+            Flexible(
               child: ListView.builder(
                 itemCount: answers.length,
                 itemBuilder: (context, index) {

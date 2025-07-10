@@ -194,7 +194,7 @@
           "category": "Animal Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "cat_meow.wav",
+          "file": "cat.wav",
           "options": ["Cat", "Parrot", "Dolphin", "Squirrel"],
           "correctAnswer": "Cat"
         },
@@ -203,7 +203,7 @@
           "category": "Animal Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "cow_moo.wav",
+          "file": "cow.wav",
           "options": ["Cow", "Camel", "Seal", "Bat"],
           "correctAnswer": "Cow"
         },
@@ -212,7 +212,7 @@
           "category": "Animal Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "sheep_bleat.wav",
+          "file": "sheep.wav",
           "options": ["Sheep", "Penguin", "Otter", "Giraffe"],
           "correctAnswer": "Sheep"
         }
@@ -223,7 +223,7 @@
           "category": "Animal Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "horse_neigh.wav",
+          "file": "horse.wav",
           "options": ["Horse", "Seal", "Crow", "Buffalo"],
           "correctAnswer": "Horse"
         },
@@ -232,7 +232,7 @@
           "category": "Animal Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "pig_oink.wav",
+          "file": "pig.mp3",
           "options": ["Pig", "Peacock", "Crab", "Lizard"],
           "correctAnswer": "Pig"
         },
@@ -241,7 +241,7 @@
           "category": "Animal Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "rooster_crow.wav",
+          "file": "rooster.mp3",
           "options": ["Rooster", "Goat", "Whale", "Bee"],
           "correctAnswer": "Rooster"
         },
@@ -250,7 +250,7 @@
           "category": "Animal Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "duck_quack.wav",
+          "file": "duck.mp3",
           "options": ["Duck", "Chimpanzee", "Moose", "Turkey"],
           "correctAnswer": "Duck"
         }
@@ -261,7 +261,7 @@
           "category": "Animal Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "wolf_howl.wav",
+          "file": "wolf.mp3",
           "options": ["Wolf", "Armadillo", "Walrus", "Ostrich"],
           "correctAnswer": "Wolf"
         },
@@ -270,7 +270,7 @@
           "category": "Animal Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "bear_growl.wav",
+          "file": "bear.mp3",
           "options": ["Bear", "Porcupine", "Lynx", "Mole"],
           "correctAnswer": "Bear"
         },
@@ -279,7 +279,7 @@
           "category": "Animal Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "fox_bark.wav",
+          "file": "fox.mp3",
           "options": ["Fox", "Tapir", "Wombat", "Sloth"],
           "correctAnswer": "Fox"
         },
@@ -288,7 +288,7 @@
           "category": "Animal Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "owl_hoot.wav",
+          "file": "owl.mp3",
           "options": ["Owl", "Platypus", "Gazelle", "Badger"],
           "correctAnswer": "Owl"
         }
@@ -363,44 +363,77 @@
           "category": "Kpop Music",
           "difficulty": "Easy",
           "type": "music",
-          "file": "kpop_song_1.wav",
-          "clipStart": 10,
-          "clipEnd": 25,
-          "options": ["Song A", "Song B", "Song C", "Song D"],
-          "correctAnswer": "Song A"
+          "file": "blackpink_ddu_du_ddu_du.mp3",
+          "clipStart": 50,
+          "clipEnd": 65,
+          "options": ["DDU-DU DDU-DU – BLACKPINK", "Kill This Love – BLACKPINK", "Butter – BTS", "Likey – TWICE"],
+          "correctAnswer": "DDU-DU DDU-DU – BLACKPINK"
         },
         {
           "mode": "GuessTheMusic",
           "category": "Kpop Music",
           "difficulty": "Easy",
           "type": "music",
-          "file": "kpop_song_2.wav",
-          "clipStart": 5,
-          "clipEnd": 20,
-          "options": ["Song E", "Song F", "Song G", "Song H"],
-          "correctAnswer": "Song F"
+          "file": "bts_dynamite.mp3",
+          "clipStart": 44,
+          "clipEnd": 59,
+          "options": ["Dynamite – BTS", "Permission to Dance – BTS", "Boy With Luv – BTS", "Mic Drop – BTS"],
+          "correctAnswer": "Dynamite – BTS"
         },
         {
           "mode": "GuessTheMusic",
           "category": "Kpop Music",
           "difficulty": "Easy",
           "type": "music",
-          "file": "kpop_song_5.wav",
-          "clipStart": 7,
-          "clipEnd": 22,
-          "options": ["Song I", "Song J", "Song K", "Song L"],
-          "correctAnswer": "Song J"
+          "file": "twice_fancy.mp3",
+          "clipStart": 48,
+          "clipEnd": 63,
+          "options": ["Fancy – TWICE", "Feel Special – TWICE", "TT – TWICE", "YES or YES – TWICE"],
+          "correctAnswer": "Fancy – TWICE"
         },
         {
           "mode": "GuessTheMusic",
           "category": "Kpop Music",
           "difficulty": "Easy",
           "type": "music",
-          "file": "kpop_song_6.wav",
-          "clipStart": 3,
-          "clipEnd": 18,
-          "options": ["Song M", "Song N", "Song O", "Song P"],
-          "correctAnswer": "Song O"
+          "file": "newjeans_hypeboy.mp3",
+          "clipStart": 38,
+          "clipEnd": 53,
+          "options": ["Hype Boy – NewJeans", "ETA – NewJeans", "OMG – NewJeans", "Attention – NewJeans"],
+          "correctAnswer": "Hype Boy – NewJeans"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "bts_boy_with_luv.mp3",
+          "clipStart": 38,
+          "clipEnd": 53,
+          "options": ["Boy With Luv – BTS", "Fake Love – BTS", "DNA – BTS", "Life Goes On – BTS"],
+          "correctAnswer": "Boy With Luv – BTS"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",  
+          "file": "newjeans_omg.mp3",
+          "clipStart": 40,
+          "clipEnd": 55,
+          "options": ["OMG – NewJeans", "Attention – NewJeans", "Hype Boy – NewJeans", "ETA – NewJeans"],
+          "correctAnswer": "OMG – NewJeans"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "momoland_bboom_bboom.mp3",
+          "clipStart": 45,
+          "clipEnd": 60,
+          "options": ["BBoom BBoom – MOMOLAND", "BAAM – MOMOLAND", "BOOM – NCT Dream", "DUMDi DUMDi – (G)I-DLE"],
+          "correctAnswer": "BBoom BBoom – MOMOLAND"
         }
       ],
       "Medium": [
@@ -409,33 +442,66 @@
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "kpop_song_3.wav",
-          "clipStart": 12,
-          "clipEnd": 27,
-          "options": ["Song I", "Song J", "Song K", "Song L"],
-          "correctAnswer": "Song K"
+          "file": "redvelvet_psychp.mp3",
+          "clipStart": 14,
+          "clipEnd": 29,
+          "options": ["Psycho – Red Velvet", "Bad Boy – Red Velvet", "Peek-A-Boo – Red Velvet", "Russian Roulette – Red Velvet"],
+          "correctAnswer": "Psycho – Red Velvet"
         },
         {
           "mode": "GuessTheMusic",
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "kpop_song_7.wav",
-          "clipStart": 15,
-          "clipEnd": 30,
-          "options": ["Song Q", "Song R", "Song S", "Song T"],
-          "correctAnswer": "Song S"
+          "file": "ive_love_dive.mp3",
+          "clipStart": 9,
+          "clipEnd": 24,
+          "options": ["Love Dive – IVE", "After LIKE – IVE", "Kitsch – IVE", "I AM – IVE"],
+          "correctAnswer": "Love Dive – IVE"
         },
         {
           "mode": "GuessTheMusic",
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "kpop_song_8.wav",
-          "clipStart": 8,
-          "clipEnd": 23,
-          "options": ["Song U", "Song V", "Song W", "Song X"],
-          "correctAnswer": "Song V"
+          "file": "itzy_wannabe.mp3",
+          "clipStart": 10,
+          "clipEnd": 25,
+          "options": ["WANNABE – ITZY", "DALLA DALLA – ITZY", "ICY – ITZY", "LOCO – ITZY"],
+          "correctAnswer": "WANNABE – ITZY"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "exo_love_shot.mp3",
+          "clipStart": 13,
+          "clipEnd": 28,
+          "options": ["Love Shot – EXO", "Ko Ko Bop – EXO", "Tempo – EXO", "Call Me Baby – EXO"],
+          "correctAnswer": "Love Shot – EXO"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "bibi_vengeance.mp3",
+          "clipStart": 10,
+          "clipEnd": 25,
+          "options": ["BIBI Vengeance – BIBI", "Nxde – BIBI", "Bam Yang Gang – BIBI", "Sugar Rush – BIBI"],
+          "correctAnswer": "BIBI Vengeance – BIBI"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "itzy_loco.mp3",
+          "clipStart": 11,
+          "clipEnd": 26,
+          "options": ["LOCO – ITZY", "SNEAKERS – ITZY", "WANNABE – ITZY", "Voltage – ITZY"],
+          "correctAnswer": "LOCO – ITZY"
         }
       ],
       "Hard": [
@@ -444,283 +510,506 @@
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "kpop_song_4.wav",
+          "file": "seventeen_super.wav",
+          "clipStart": 18,
+          "clipEnd": 33,
+          "options": ["Super – SEVENTEEN", "HOT – SEVENTEEN", "Clap – SEVENTEEN", "Left & Right – SEVENTEEN"],
+          "correctAnswer": "Super – SEVENTEEN"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "aespa_savage.wav",
+          "clipStart": 17,
+          "clipEnd": 32,
+          "options": ["Savage – aespa", "Girls – aespa", "Next Level – aespa", "Black Mamba – aespa"],
+          "correctAnswer": "Savage – aespa"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "straykids_gods_menu.wav",
           "clipStart": 20,
           "clipEnd": 35,
-          "options": ["Song M", "Song N", "Song O", "Song P"],
-          "correctAnswer": "Song N"
+          "options": ["God’s Menu – Stray Kids", "Back Door – Stray Kids", "S-Class – Stray Kids", "Case 143 – Stray Kids"],
+          "correctAnswer": "God’s Menu – Stray Kids"
         },
         {
           "mode": "GuessTheMusic",
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "kpop_song_9.wav",
-          "clipStart": 18,
-          "clipEnd": 33,
-          "options": ["Song Y", "Song Z", "Song AA", "Song BB"],
-          "correctAnswer": "Song AA"
+          "file": "nct127_cherry_bomb.wav",
+          "clipStart": 20,
+          "clipEnd": 35,
+          "options": ["Cherry Bomb – NCT 127", "Kick It – NCT 127", "Sticker – NCT 127", "2 Baddies – NCT 127"],
+          "correctAnswer": "Cherry Bomb – NCT 127"
         },
         {
           "mode": "GuessTheMusic",
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "kpop_song_10.wav",
-          "clipStart": 22,
-          "clipEnd": 37,
-          "options": ["Song CC", "Song DD", "Song EE", "Song FF"],
-          "correctAnswer": "Song DD"
+          "file": "taemin_move.wav",
+          "clipStart": 19,
+          "clipEnd": 34,
+          "options": ["MOVE – Taemin", "Criminal – Taemin", "Advice – Taemin", "Want – Taemin"],
+          "correctAnswer": "MOVE – Taemin"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "boa_onlyone.wav",
+          "clipStart": 21,
+          "clipEnd": 36,
+          "options": ["Only One – BoA", "Woman – BoA", "No.1 – BoA", "Hurricane Venus – BoA"],
+          "correctAnswer": "Only One – BoA"
         }
       ]
     },
-    "Anime Openings": {
-      "Easy": [
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Easy",
-          "type": "music",
-          "file": "anime_opening_2.wav",
-          "clipStart": 0,
-          "clipEnd": 15,
-          "options": ["Anime E", "Anime F", "Anime G", "Anime H"],
-          "correctAnswer": "Anime G"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Easy",
-          "type": "music",
-          "file": "anime_opening_5.wav",
-          "clipStart": 3,
-          "clipEnd": 18,
-          "options": ["Anime Q", "Anime R", "Anime S", "Anime T"],
-          "correctAnswer": "Anime R"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Easy",
-          "type": "music",
-          "file": "anime_opening_6.wav",
-          "clipStart": 8,
-          "clipEnd": 23,
-          "options": ["Anime U", "Anime V", "Anime W", "Anime X"],
-          "correctAnswer": "Anime W"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Easy",
-          "type": "music",
-          "file": "anime_opening_7.wav",
-          "clipStart": 12,
-          "clipEnd": 27,
-          "options": ["Anime Y", "Anime Z", "Anime AA", "Anime BB"],
-          "correctAnswer": "Anime Z"
-        }
-      ],
-      "Medium": [
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Medium",
-          "type": "music",
-          "file": "anime_opening_1.wav",
-          "clipStart": 5,
-          "clipEnd": 20,
-          "options": ["Anime A", "Anime B", "Anime C", "Anime D"],
-          "correctAnswer": "Anime B"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Medium",
-          "type": "music",
-          "file": "anime_opening_3.wav",
-          "clipStart": 7,
-          "clipEnd": 22,
-          "options": ["Anime I", "Anime J", "Anime K", "Anime L"],
-          "correctAnswer": "Anime J"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Medium",
-          "type": "music",
-          "file": "anime_opening_8.wav",
-          "clipStart": 10,
-          "clipEnd": 25,
-          "options": ["Anime CC", "Anime DD", "Anime EE", "Anime FF"],
-          "correctAnswer": "Anime DD"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Medium",
-          "type": "music",
-          "file": "anime_opening_9.wav",
-          "clipStart": 15,
-          "clipEnd": 30,
-          "options": ["Anime GG", "Anime HH", "Anime II", "Anime JJ"],
-          "correctAnswer": "Anime HH"
-        }
-      ],
-      "Hard": [
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Hard",
-          "type": "music",
-          "file": "anime_opening_4.wav",
-          "clipStart": 18,
-          "clipEnd": 33,
-          "options": ["Anime M", "Anime N", "Anime O", "Anime P"],
-          "correctAnswer": "Anime O"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Hard",
-          "type": "music",
-          "file": "anime_opening_10.wav",
-          "clipStart": 25,
-          "clipEnd": 40,
-          "options": ["Anime KK", "Anime LL", "Anime MM", "Anime NN"],
-          "correctAnswer": "Anime LL"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "Anime Openings",
-          "difficulty": "Hard",
-          "type": "music",
-          "file": "anime_opening_11.wav",
-          "clipStart": 30,
-          "clipEnd": 45,
-          "options": ["Anime OO", "Anime PP", "Anime QQ", "Anime RR"],
-          "correctAnswer": "Anime PP"
-        }
-      ]
-    },
-    "OPM Musics": {
-      "Easy": [
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Easy",
-          "type": "music",
-          "file": "opm_song_1.wav",
-          "clipStart": 5,
-          "clipEnd": 20,
-          "options": ["OPM 1", "OPM 2", "OPM 3", "OPM 4"],
-          "correctAnswer": "OPM 2"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Easy",
-          "type": "music",
-          "file": "opm_song_2.wav",
-          "clipStart": 8,
-          "clipEnd": 23,
-          "options": ["OPM 5", "OPM 6", "OPM 7", "OPM 8"],
-          "correctAnswer": "OPM 7"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Easy",
-          "type": "music",
-          "file": "opm_song_3.wav",
-          "clipStart": 12,
-          "clipEnd": 27,
-          "options": ["OPM 9", "OPM 10", "OPM 11", "OPM 12"],
-          "correctAnswer": "OPM 11"
-        }
-      ],
-      "Medium": [
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Medium",
-          "type": "music",
-          "file": "opm_song_4.wav",
-          "clipStart": 10,
-          "clipEnd": 25,
-          "options": ["OPM 13", "OPM 14", "OPM 15", "OPM 16"],
-          "correctAnswer": "OPM 14"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Medium",
-          "type": "music",
-          "file": "opm_song_5.wav",
-          "clipStart": 15,
-          "clipEnd": 30,
-          "options": ["OPM 17", "OPM 18", "OPM 19", "OPM 20"],
-          "correctAnswer": "OPM 18"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Medium",
-          "type": "music",
-          "file": "opm_song_6.wav",
-          "clipStart": 18,
-          "clipEnd": 33,
-          "options": ["OPM 21", "OPM 22", "OPM 23", "OPM 24"],
-          "correctAnswer": "OPM 23"
-        }
-      ],
-      "Hard": [
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Hard",
-          "type": "music",
-          "file": "opm_song_7.wav",
-          "clipStart": 15,
-          "clipEnd": 30,
-          "options": ["OPM 25", "OPM 26", "OPM 27", "OPM 28"],
-          "correctAnswer": "OPM 26"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Hard",
-          "type": "music",
-          "file": "opm_song_8.wav",
-          "clipStart": 22,
-          "clipEnd": 37,
-          "options": ["OPM 29", "OPM 30", "OPM 31", "OPM 32"],
-          "correctAnswer": "OPM 31"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Hard",
-          "type": "music",
-          "file": "opm_song_9.wav",
-          "clipStart": 25,
-          "clipEnd": 40,
-          "options": ["OPM 33", "OPM 34", "OPM 35", "OPM 36"],
-          "correctAnswer": "OPM 34"
-        },
-        {
-          "mode": "GuessTheMusic",
-          "category": "OPM Musics",
-          "difficulty": "Hard",
-          "type": "music",
-          "file": "opm_song_10.wav",
-          "clipStart": 30,
-          "clipEnd": 45,
-          "options": ["OPM 37", "OPM 38", "OPM 39", "OPM 40"],
-          "correctAnswer": "OPM 38"
-        }
-      ]
-    }
+  "Anime Openings": {
+    "Easy": [
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Zombie_Land_Saga.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Zombie Land Saga", "Love Live! School Idol Project", "Wake Up, Girls!", "School-Live!"],
+        "correctAnswer": "Zombie Land Saga"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Rock_Is_A_Lady_Modesty.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Rock Is A Lady Modesty", "Beck: Mongolian Chop Squad", "Nana", "Given"],
+        "correctAnswer": "Rock Is A Lady Modesty"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Mashle_Op1.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Mashle", "Black Clover", "Mob Psycho 100", "One Punch Man"],
+        "correctAnswer": "Mashle"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Lycoris_Recoil.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Lycoris Recoil", "Spy x Family", "Princess Principal", "Release the Spyce"],
+        "correctAnswer": "Lycoris Recoil"
+      }
+    ],
+    "Medium": [
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Medium",
+        "type": "music",
+        "file": "Kusuriya_No_Hitorigoto_S2.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Kusuriya no Hitorigoto", "Spice and Wolf", "Violet Evergarden", "Snow White with the Red Hair"],
+        "correctAnswer": "Kusuriya no Hitorigoto"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Medium",
+        "type": "music",
+        "file": "Jujutsu_Kaisen.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Jujutsu Kaisen", "Demon Slayer", "Bleach", "Mob Psycho 100"],
+        "correctAnswer": "Jujutsu Kaisen"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Medium",
+        "type": "music",
+        "file": "Girls_Band_Cry_Void.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Girls Band Cry Void", "BanG Dream!", "K-On!", "Given"],
+        "correctAnswer": "Girls Band Cry Void"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Medium",
+        "type": "music",
+        "file": "Girls_Band_Cry.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Girls Band Cry", "Nana", "Love Live! Superstar!!", "Zombieland Saga"],
+        "correctAnswer": "Girls Band Cry"
+      }
+    ],
+    "Hard": [
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Frieren_Op2.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Frieren: Beyond Journey's End", "Made in Abyss", "To Your Eternity", "Mushoku Tensei"],
+        "correctAnswer": "Frieren: Beyond Journey's End"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Frieren_Op1.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Frieren: Beyond Journey's End", "The Ancient Magus' Bride", "Spice and Wolf", "Violet Evergarden"],
+        "correctAnswer": "Frieren: Beyond Journey's End"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Fate_Stay_Night.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Fate/Stay Night", "Fate/Zero", "Fate/Apocrypha", "The Garden of Sinners"],
+        "correctAnswer": "Fate/Stay Night"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Dandandan_Op1.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Dandadan", "Chainsaw Man", "Fire Force", "Mob Psycho 100"],
+        "correctAnswer": "Dandadan"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Cyberpunk_Op1.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Cyberpunk: Edgerunners", "Akira", "Ghost in the Shell", "Psycho-Pass"],
+        "correctAnswer": "Cyberpunk: Edgerunners"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Chainsaw_Man_Op1.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Chainsaw Man", "Jujutsu Kaisen", "Dorohedoro", "Devilman Crybaby"],
+        "correctAnswer": "Chainsaw Man"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "Anime Openings",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Bocchi_The_Rock.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": ["Bocchi the Rock!", "BanG Dream!", "Given", "Beck: Mongolian Chop Squad"],
+        "correctAnswer": "Bocchi the Rock!"
+      }
+    ]
+  },
+  "OPM Musics": {
+    "Easy": [
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Ikaw_Lang_Nobita.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Ikaw Lang - Nobita",
+          "Sa Ngalan ng Pag-ibig - December Avenue",
+          "Hawak Kamay - Yeng Constantino",
+          "214 - Rivermaya"
+        ],
+        "correctAnswer": "Ikaw Lang - Nobita"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Tala_Sarah_Geronimo.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Tala - Sarah Geronimo",
+          "Narda - Kamikazee",
+          "Buwan ng Mayo - Itchyworms",
+          "Jeepney - Sponge Cola"
+        ],
+        "correctAnswer": "Tala - Sarah Geronimo"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Pano_Zack_Tabudlo.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Pano - Zack Tabudlo",
+          "Tagpuan - Moira Dela Torre",
+          "Hiling - Silent Sanctuary",
+          "Torete - Moonstar88"
+        ],
+        "correctAnswer": "Pano - Zack Tabudlo"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Mahika_Adie_Janine.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Mahika - Adie & Janine Berdin",
+          "Kung Di Rin Lang Ikaw - December Avenue",
+          "Sundo - Imago",
+          "Harana - Parokya ni Edgar"
+        ],
+        "correctAnswer": "Mahika - Adie & Janine Berdin"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Buwan_Juan_Karlos.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Buwan - Juan Karlos",
+          "Ligaya - Eraserheads",
+          "Huwag Ka Nang Umiyak - Sugarfree",
+          "Beer - Itchyworms"
+        ],
+        "correctAnswer": "Buwan - Juan Karlos"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Easy",
+        "type": "music",
+        "file": "Mundo_IV_Of_Spades.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Mundo - IV of Spades",
+          "Bilog na Naman ang Buwan - Tropical Depression",
+          "Huwag Mo Nang Itanong - Eraserheads",
+          "Sana - I Belong to the Zoo"
+        ],
+        "correctAnswer": "Mundo - IV of Spades"
+      }
+    ],
+    "Medium": [
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Medium",
+        "type": "music",
+        "file": "Tibok_Earl_Agustin.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Tibok - Earl Agustin",
+          "Huwag Ka Nang Magbabalik - Roselle Nava",
+          "Buwan ng Wika - Gloc-9",
+          "Kisapmata - Rivermaya"
+        ],
+        "correctAnswer": "Tibok - Earl Agustin"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Medium",
+        "type": "music",
+        "file": "Uhaw_Dilaw.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Uhaw - Dilaw",
+          "Huwag Na Huwag Mong Sasabihin - Kitchie Nadal",
+          "Bilog - Sponge Cola",
+          "Sandalan - 6cyclemind"
+        ],
+        "correctAnswer": "Uhaw - Dilaw"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Medium",
+        "type": "music",
+        "file": "Kahit_Maputi_Na_Ang_Buhok_Rey_Valera.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Kahit Maputi Na Ang Buhok Ko - Rey Valera",
+          "Hanggang Kailan - Orange and Lemons",
+          "Sana - I Belong to the Zoo",
+          "Huwag Kang Matakot - Eraserheads"
+        ],
+        "correctAnswer": "Kahit Maputi Na Ang Buhok Ko - Rey Valera"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Medium",
+        "type": "music",
+        "file": "Anak_Freddie_Aguilar.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Anak - Freddie Aguilar",
+          "Buwan ng Mayo - Itchyworms",
+          "Jeepney - Sponge Cola",
+          "Hawak Kamay - Yeng Constantino"
+        ],
+        "correctAnswer": "Anak - Freddie Aguilar"
+      }
+    ],
+    "Hard": [
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Pare_Ko_Eraserheads.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Pare Ko - Eraserheads",
+          "Sundo - Imago",
+          "Kung Di Rin Lang Ikaw - December Avenue",
+          "Tagpuan - Moira Dela Torre"
+        ],
+        "correctAnswer": "Pare Ko - Eraserheads"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Hinahanap_Hanap_Kita_Rivermaya.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Hinahanap-Hanap Kita - Rivermaya",
+          "Bilog na Naman ang Buwan - Tropical Depression",
+          "Huwag Mo Nang Itanong - Eraserheads",
+          "Beer - Itchyworms"
+        ],
+        "correctAnswer": "Hinahanap-Hanap Kita - Rivermaya"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Magasin_Eraserheads.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Magasin - Eraserheads",
+          "Ligaya - Eraserheads",
+          "Huwag Ka Nang Magbabalik - Roselle Nava",
+          "Bilog - Sponge Cola"
+        ],
+        "correctAnswer": "Magasin - Eraserheads"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Himala_Rivermaya.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Himala - Rivermaya",
+          "Narda - Kamikazee",
+          "Huwag Na Huwag Mong Sasabihin - Kitchie Nadal",
+          "Kisapmata - Rivermaya"
+        ],
+        "correctAnswer": "Himala - Rivermaya"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Huling_El_Bimbo_Eraserheads.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Huling El Bimbo - Eraserheads",
+          "Sa Ngalan ng Pag-ibig - December Avenue",
+          "Hiling - Silent Sanctuary",
+          "Sana - I Belong to the Zoo"
+        ],
+        "correctAnswer": "Huling El Bimbo - Eraserheads"
+      },
+      {
+        "mode": "GuessTheMusic",
+        "category": "OPM Musics",
+        "difficulty": "Hard",
+        "type": "music",
+        "file": "Tadhana_Up_Dharma_Down.mp3",
+        "clipStart": 20,
+        "clipEnd": 50,
+        "options": [
+          "Tadhana - Up Dharma Down",
+          "Harana - Parokya ni Edgar",
+          "Huwag Kang Matakot - Eraserheads",
+          "Sandalan - 6cyclemind"
+        ],
+        "correctAnswer": "Tadhana - Up Dharma Down"
+      }
+    ]
+  }
   },
   "TrueOrFalse": {
     "General Knowledge": {

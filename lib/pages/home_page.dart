@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-import '../utils/user_preferences.dart';
-import '../utils/stats_manager.dart';
-import '../utils/daily_points_manager.dart';
-import '../widgets/daily_challenges_popup.dart';
+import '../utils/managers/user_preferences.dart';
+import '../utils/managers/stats_manager.dart';
+import '../utils/managers/daily_points_manager.dart';
 import 'game_selection_page.dart';
 import 'category_selection_page.dart';
+import 'profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -77,13 +77,6 @@ class _HomePageState extends State<HomePage> {
       }
     }
   }
-
-  void _showDailyChallenges() {
-    showDialog(
-      context: context,
-      builder: (context) => const DailyChallengesPopup(),
-    );
-  }
   
 
 
@@ -112,8 +105,6 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 24),
             _buildDailyProgressCard(),
             const SizedBox(height: 24),
-            _buildDailyChallengesCard(),
-            const SizedBox(height: 24),
             _buildQuizVaultSection(),
             const SizedBox(height: 32),
             _buildMoreGamesSection(),
@@ -132,72 +123,85 @@ class _HomePageState extends State<HomePage> {
       surfaceTintColor: Colors.transparent,
       toolbarHeight: 80,
       automaticallyImplyLeading: false,
-      title: Row(
-        children: [
-          Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-              CircleAvatar(
-                radius: 24,
-                backgroundColor: const Color(0xFFFFB6B6),
-                backgroundImage: _avatarPath != null ? FileImage(File(_avatarPath!)) : null,
-                child: _avatarPath == null ? const Icon(Icons.person, size: 28, color: Colors.white) : null,
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: AnimatedBuilder(
-                  animation: _userPreferences,
-                  builder: (context, _) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF7C5CFC),
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 4,
-                            offset: Offset(0, 2),
+      title: SafeArea(
+        child: Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const ProfilePage()),
+                );
+              },
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundColor: const Color(0xFFFFB6B6),
+                    backgroundImage: _avatarPath != null ? FileImage(File(_avatarPath!)) : null,
+                    child: _avatarPath == null ? const Icon(Icons.person, size: 28, color: Colors.white) : null,
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: AnimatedBuilder(
+                      animation: _userPreferences,
+                      builder: (context, _) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Color(0xFF7C5CFC),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      child: Text(
-                        'Lv. ${_userPreferences.level}',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                          child: Text(
+                            'Lv. ${_userPreferences.level}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Welcome Back',
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 14,
-                ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Welcome Back',
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(
+                    _displayName,
+                    style: const TextStyle(
+                      color: Color(0xFF7C5CFC),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ],
               ),
-              Text(
-                _displayName,
-                style: const TextStyle(
-                  color: Color(0xFF7C5CFC),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
       actions: [
         Padding(
@@ -367,72 +371,6 @@ class _HomePageState extends State<HomePage> {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildDailyChallengesCard() {
-    return GestureDetector(
-      onTap: _showDailyChallenges,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 8,
-              offset: Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFFFFB6B6), Color(0xFF7C5CFC)],
-                ),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: const Icon(
-                Icons.local_fire_department,
-                color: Colors.white,
-                size: 28,
-              ),
-            ),
-            const SizedBox(width: 16),
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Daily Challenges',
-                    style: TextStyle(
-                      color: Color(0xFF7C5CFC),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Complete challenges to earn rewards',
-                    style: TextStyle(color: Colors.black54, fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
-            const Icon(
-              Icons.arrow_forward_ios,
-              color: Color(0xFF7C5CFC),
-              size: 20,
-            ),
-          ],
-        ),
-      ),
     );
   }
 

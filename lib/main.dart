@@ -9,17 +9,15 @@ import 'pages/result_page.dart';
 import 'pages/stats_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/settings_page.dart';
-import 'utils/audio_manager.dart';
-import 'utils/network_manager.dart';
-import 'utils/accessibility_manager.dart';
-import 'utils/settings_provider.dart';
-import 'utils/achievement_manager.dart';
-import 'utils/daily_challenge_manager.dart';
-import 'utils/daily_points_manager.dart';
-import 'utils/daily_challenge_test.dart';
-import 'utils/difficulty_progression_manager.dart';
-import 'utils/user_preferences.dart';
-import 'utils/audio_test.dart';
+import 'utils/managers/audio_manager.dart';
+import 'utils/managers/network_manager.dart';
+import 'utils/managers/accessibility_manager.dart';
+import 'utils/managers/settings_provider.dart';
+import 'utils/managers/achievement_manager.dart';
+import 'utils/managers/daily_points_manager.dart';
+import 'utils/managers/difficulty_progression_manager.dart';
+import 'utils/managers/user_preferences.dart';
+import 'utils/tests/audio_test.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
@@ -31,7 +29,6 @@ void main() async {
     SettingsProvider().initialize(),
     UserPreferences().initialize(),
     AchievementManager.initializeAchievements(),
-    DailyChallengeManager.generateDailyChallenges(),
     DailyPointsManager.initialize(),
     DifficultyProgressionManager.initializeProgression(),
   ]);
@@ -53,9 +50,6 @@ void main() async {
   // }
   
   // Test daily challenges system for debugging (remove in production)
-  if (kDebugMode) {
-    await DailyChallengeTest.testDailyChallenges();
-  }
   
 
   
@@ -101,6 +95,7 @@ class MyApp extends StatelessWidget {
                 total: args?['total'] as int? ?? 0,
                 answers: args?['answers'] as List<Map<String, dynamic>>? ?? [],
                 progression: args?['progression'] as Map<String, dynamic>?,
+                modeSpecificPoints: args?['modeSpecificPoints'] as int? ?? 0,
               );
             },
             '/stats': (context) => const StatsPage(),

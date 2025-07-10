@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../utils/accessibility_manager.dart';
-import '../utils/tutorial_manager.dart';
+import '../utils/managers/accessibility_manager.dart';
+import '../utils/managers/tutorial_manager.dart';
 
 class TutorialOverlay extends StatefulWidget {
   final Widget child;
@@ -74,6 +74,13 @@ class _TutorialOverlayState extends State<TutorialOverlay>
           break;
         case 'settings':
           shouldShow = !(await TutorialManager.isSettingsTutorialShown());
+          break;
+        case 'GuessTheSound':
+        case 'GuessTheMusic':
+        case 'TrueOrFalse':
+        case 'Vocabulary':
+        case 'GuessTheImage':
+          shouldShow = !(await TutorialManager.isGameModeTutorialShown(widget.tutorialKey));
           break;
         default:
           shouldShow = !(await TutorialManager.isTutorialCompleted());
@@ -151,6 +158,13 @@ class _TutorialOverlayState extends State<TutorialOverlay>
         case 'settings':
           await TutorialManager.markSettingsTutorialShown();
           break;
+        case 'GuessTheSound':
+        case 'GuessTheMusic':
+        case 'TrueOrFalse':
+        case 'Vocabulary':
+        case 'GuessTheImage':
+          await TutorialManager.markGameModeTutorialShown(widget.tutorialKey);
+          break;
         default:
           await TutorialManager.markTutorialCompleted();
       }
@@ -206,12 +220,12 @@ class _TutorialOverlayState extends State<TutorialOverlay>
     return Material(
       color: Colors.transparent,
       child: Container(
-        width: screenWidth * 0.9,
+        width: screenWidth * 0.85,
         constraints: BoxConstraints(
-          maxWidth: 400,
+          maxWidth: 350,
           minWidth: 280,
-          minHeight: 300,
-          maxHeight: screenHeight * 0.8,
+          minHeight: 200,
+          maxHeight: screenHeight * 0.5, // Changed from 0.8 to 0.5 for half-screen
         ),
         margin: const EdgeInsets.symmetric(horizontal: 16),
         padding: EdgeInsets.all(screenWidth < 350 ? 16 : 20),
@@ -262,7 +276,7 @@ class _TutorialOverlayState extends State<TutorialOverlay>
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8), // Reduced from 12 to 8
             // Page view for tutorial steps
             Expanded(
               child: PageView.builder(
@@ -280,7 +294,7 @@ class _TutorialOverlayState extends State<TutorialOverlay>
             ),
             // Navigation buttons
             Padding(
-              padding: const EdgeInsets.only(top: 16),
+              padding: const EdgeInsets.only(top: 12), // Reduced from 16 to 12
               child: Row(
                 children: [
                   if (_currentStep > 0)
@@ -327,7 +341,7 @@ class _TutorialOverlayState extends State<TutorialOverlay>
     
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: isSmallScreen ? 12 : 20),
+        padding: EdgeInsets.symmetric(horizontal: isSmallScreen ? 8 : 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -335,26 +349,26 @@ class _TutorialOverlayState extends State<TutorialOverlay>
             AnimatedContainer(
               duration: const Duration(milliseconds: 500),
               child: Container(
-                width: isSmallScreen ? 60 : 80,
-                height: isSmallScreen ? 60 : 80,
+                width: isSmallScreen ? 50 : 60,
+                height: isSmallScreen ? 50 : 60,
                 decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   step.icon ?? Icons.help_outline,
-                  size: isSmallScreen ? 30 : 40,
+                  size: isSmallScreen ? 25 : 30,
                   color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
-            SizedBox(height: isSmallScreen ? 16 : 24),
+            SizedBox(height: isSmallScreen ? 12 : 16),
             
             // Step title
             Text(
               step.title,
               style: TextStyle(
-                fontSize: isSmallScreen ? 18 : 22,
+                fontSize: isSmallScreen ? 16 : 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
               ),
@@ -362,18 +376,18 @@ class _TutorialOverlayState extends State<TutorialOverlay>
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(height: isSmallScreen ? 12 : 16),
+            SizedBox(height: isSmallScreen ? 8 : 12),
             
             // Step description
             Text(
               step.description,
               style: TextStyle(
-                fontSize: isSmallScreen ? 14 : 16,
+                fontSize: isSmallScreen ? 12 : 14,
                 color: Colors.black54,
-                height: 1.4,
+                height: 1.3,
               ),
               textAlign: TextAlign.center,
-              maxLines: 4,
+              maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
           ],
@@ -442,6 +456,131 @@ class TutorialHelper {
         title: 'Help & Support',
         description: 'Access help, FAQ, and troubleshooting guides anytime.',
         icon: Icons.help_outline,
+      ),
+    ];
+  }
+
+  static List<TutorialStep> getGuessTheSoundTutorialSteps() {
+    return [
+      const TutorialStep(
+        title: 'Guess The Sound',
+        description: 'Listen to short sound effects and identify what made the sound.',
+        icon: Icons.hearing,
+      ),
+      const TutorialStep(
+        title: 'Quick Recognition',
+        description: 'You have 10 seconds to identify each sound. Focus on the unique characteristics.',
+        icon: Icons.timer,
+      ),
+      const TutorialStep(
+        title: 'Multiple Categories',
+        description: 'Practice with animal sounds, nature sounds, vehicles, and more.',
+        icon: Icons.category,
+      ),
+      const TutorialStep(
+        title: 'Improve Your Skills',
+        description: 'Start with Easy difficulty and work your way up to Hard challenges.',
+        icon: Icons.trending_up,
+      ),
+    ];
+  }
+
+  static List<TutorialStep> getGuessTheMusicTutorialSteps() {
+    return [
+      const TutorialStep(
+        title: 'Guess The Music',
+        description: 'Listen to music excerpts and identify the song, artist, or genre.',
+        icon: Icons.music_note,
+      ),
+      const TutorialStep(
+        title: 'Extended Listening',
+        description: 'You have up to 30 seconds to identify each piece of music.',
+        icon: Icons.timer,
+      ),
+      const TutorialStep(
+        title: 'Music Categories',
+        description: 'Test your knowledge of anime, K-pop, OPM, and other music genres.',
+        icon: Icons.music_note,
+      ),
+      const TutorialStep(
+        title: 'Musical Memory',
+        description: 'Pay attention to melodies, rhythms, and distinctive musical elements.',
+        icon: Icons.psychology,
+      ),
+    ];
+  }
+
+  static List<TutorialStep> getTrueOrFalseTutorialSteps() {
+    return [
+      const TutorialStep(
+        title: 'True or False',
+        description: 'Answer questions about audio facts and concepts with True or False.',
+        icon: Icons.check_circle_outline,
+      ),
+      const TutorialStep(
+        title: 'Knowledge Based',
+        description: 'Test your understanding of music theory, sound science, and audio concepts.',
+        icon: Icons.school,
+      ),
+      const TutorialStep(
+        title: 'Quick Decisions',
+        description: 'You have 15 seconds to decide if each statement is True or False.',
+        icon: Icons.timer,
+      ),
+      const TutorialStep(
+        title: 'Learn as You Play',
+        description: 'Expand your audio knowledge while having fun with this educational mode.',
+        icon: Icons.lightbulb,
+      ),
+    ];
+  }
+
+  static List<TutorialStep> getVocabularyTutorialSteps() {
+    return [
+      const TutorialStep(
+        title: 'Vocabulary Challenge',
+        description: 'Test your understanding of important terms and concepts through interactive questions.',
+        icon: Icons.book,
+      ),
+      const TutorialStep(
+        title: 'Educational Content',
+        description: 'Explore Filipino words, technical concepts, and essential vocabulary.',
+        icon: Icons.school,
+      ),
+      const TutorialStep(
+        title: 'Multiple Choice',
+        description: 'Select the correct definition or term from the possible options.',
+        icon: Icons.format_list_bulleted,
+      ),
+      const TutorialStep(
+        title: 'Build Your Knowledge',
+        description: 'Grow your vocabulary and deepen your understanding of key concepts.',
+        icon: Icons.trending_up,
+      ),
+    ];
+  }
+
+  static List<TutorialStep> getGuessTheImageTutorialSteps() {
+    return [
+      const TutorialStep(
+        title: 'Guess The Image',
+        description: 'Look at images and identify what they represent or relate to audio.',
+        icon: Icons.image,
+      ),
+      const TutorialStep(
+        title: 'Visual Recognition',
+        description: 'Connect visual elements with their corresponding sounds or music.',
+        icon: Icons.visibility,
+      ),
+      const TutorialStep(
+        title: 'Audio-Visual Link',
+        description: 'Match images to sounds, instruments, or musical concepts.',
+        icon: Icons.link,
+      ),
+      const TutorialStep(
+        title: 'Multi-Sensory Learning',
+        description: 'Combine visual and audio learning for a comprehensive experience.',
+        icon: Icons.psychology,
       ),
     ];
   }

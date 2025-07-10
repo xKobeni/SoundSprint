@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
 class Achievement {
   final String id;
   final String title;
   final String description;
-  final String icon;
+  final IconData icon;
   final int requirement;
   final String type; // 'score', 'streak', 'games', 'accuracy', 'category', 'difficulty'
   final bool isUnlocked;
@@ -28,7 +30,7 @@ class Achievement {
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
-      icon: json['icon'] as String,
+      icon: IconData(json['iconCodePoint'] as int, fontFamily: json['iconFontFamily'] as String),
       requirement: json['requirement'] as int,
       type: json['type'] as String,
       isUnlocked: json['isUnlocked'] as bool? ?? false,
@@ -45,7 +47,8 @@ class Achievement {
       'id': id,
       'title': title,
       'description': description,
-      'icon': icon,
+      'iconCodePoint': icon.codePoint,
+      'iconFontFamily': icon.fontFamily,
       'requirement': requirement,
       'type': type,
       'isUnlocked': isUnlocked,
@@ -59,7 +62,7 @@ class Achievement {
     String? id,
     String? title,
     String? description,
-    String? icon,
+    IconData? icon,
     int? requirement,
     String? type,
     bool? isUnlocked,

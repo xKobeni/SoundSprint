@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../utils/stats_manager.dart';
-import '../utils/daily_points_manager.dart';
+import '../utils/managers/stats_manager.dart';
+import '../utils/managers/daily_points_manager.dart';
 import '../widgets/bottom_nav_bar.dart';
 
 class StatsPage extends StatefulWidget {

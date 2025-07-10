@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/achievement.dart';
-import '../utils/achievement_manager.dart';
+import '../utils/managers/achievement_manager.dart';
 
 class AchievementsPage extends StatefulWidget {
   final bool showBottomNav;
@@ -253,9 +253,10 @@ class _AchievementsPageState extends State<AchievementsPage> {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Center(
-                child: Text(
+                child: Icon(
                   achievement.icon,
-                  style: const TextStyle(fontSize: 24),
+                  size: 32,
+                  color: isUnlocked ? Colors.deepOrange : Colors.grey[600],
                 ),
               ),
             ),

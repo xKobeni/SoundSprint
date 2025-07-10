@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import '../../models/sound_question.dart';
-import '../accessibility_manager.dart';
+import '../managers/accessibility_manager.dart';
 import 'base_game_logic.dart';
 import '../../widgets/question_card.dart';
 
@@ -76,78 +76,118 @@ class TrueFalseGameLogic extends BaseGameLogic {
 
   @override
   Widget buildQuestionWidget(Question question, Function(String?) onAnswer) {
+    final isTrueSelected = _selectedAnswer == 'true';
+    final isFalseSelected = _selectedAnswer == 'false';
+    final showFeedback = _showAnswerFeedback;
+    final isCorrectTrue = showFeedback && (_correctAnswer == true);
+    final isCorrectFalse = showFeedback && (_correctAnswer == false);
+    final isIncorrectTrue = showFeedback && isTrueSelected && (_correctAnswer != true);
+    final isIncorrectFalse = showFeedback && isFalseSelected && (_correctAnswer != false);
+
+    Color getTrueBorder() {
+      if (showFeedback) {
+        if (isCorrectTrue) return Colors.green;
+        if (isIncorrectTrue) return Colors.red;
+        return Colors.grey.shade300;
+      }
+      if (isTrueSelected) return Colors.green;
+      return Colors.green;
+    }
+    Color getFalseBorder() {
+      if (showFeedback) {
+        if (isCorrectFalse) return Colors.green;
+        if (isIncorrectFalse) return Colors.red;
+        return Colors.grey.shade300;
+      }
+      if (isFalseSelected) return Colors.red;
+      return Colors.red;
+    }
+    Color getTrueFill() {
+      if (showFeedback) {
+        if (isCorrectTrue) return Colors.green;
+        if (isIncorrectTrue) return Colors.red;
+        return Colors.white;
+      }
+      if (isTrueSelected) return Colors.green;
+      return Colors.white;
+    }
+    Color getFalseFill() {
+      if (showFeedback) {
+        if (isCorrectFalse) return Colors.green;
+        if (isIncorrectFalse) return Colors.red;
+        return Colors.white;
+      }
+      if (isFalseSelected) return Colors.red;
+      return Colors.white;
+    }
+    Color getTrueText() {
+      if (showFeedback) {
+        if (isCorrectTrue || isIncorrectTrue) return Colors.white;
+        return Colors.green;
+      }
+      if (isTrueSelected) return Colors.white;
+      return Colors.green;
+    }
+    Color getFalseText() {
+      if (showFeedback) {
+        if (isCorrectFalse || isIncorrectFalse) return Colors.white;
+        return Colors.red;
+      }
+      if (isFalseSelected) return Colors.white;
+      return Colors.red;
+    }
+
     return Column(
       children: [
         QuestionCard(
           questionText: question.question ?? 'True or False?',
         ),
         const SizedBox(height: 32),
-        Row(
+        Column(
           children: [
-            // True Button
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(right: 8),
-                child: ElevatedButton(
-                  onPressed: _showAnswerFeedback ? null : () => onAnswer('true'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _getTrueButtonColor(),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 6,
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: showFeedback ? null : () => onAnswer('true'),
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: getTrueFill(),
+                  side: BorderSide(color: getTrueBorder(), width: 2),
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Column(
-                    children: [
-                      Icon(
-                        _getTrueButtonIcon(),
-                        size: 32,
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'TRUE',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                ),
+                child: Text(
+                  'TRUE',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: getTrueText(),
+                    letterSpacing: 1.2,
                   ),
                 ),
               ),
             ),
-            // False Button
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(left: 8),
-                child: ElevatedButton(
-                  onPressed: _showAnswerFeedback ? null : () => onAnswer('false'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _getFalseButtonColor(),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 6,
+            const SizedBox(height: 18),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: showFeedback ? null : () => onAnswer('false'),
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: getFalseFill(),
+                  side: BorderSide(color: getFalseBorder(), width: 2),
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Column(
-                    children: [
-                      Icon(
-                        _getFalseButtonIcon(),
-                        size: 32,
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'FALSE',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                ),
+                child: Text(
+                  'FALSE',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: getFalseText(),
+                    letterSpacing: 1.2,
                   ),
                 ),
               ),

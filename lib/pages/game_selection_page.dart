@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../utils/game_logic/game_logic_factory.dart';
-import '../utils/game_manager.dart';
+import '../utils/managers/game_manager.dart';
+import '../../utils/game_logic/game_logic_factory.dart';
+import '../widgets/tutorial_overlay.dart';
+import '../utils/managers/tutorial_manager.dart';
 import 'category_selection_page.dart';
 
 class GameSelectionPage extends StatefulWidget {
@@ -42,60 +44,51 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return TutorialOverlay(
+      tutorialKey: 'game_selection',
+      steps: TutorialHelper.getGameTutorialSteps(),
+      onComplete: () {
+        // Tutorial completed, no action needed
+      },
+      child: Scaffold(
       appBar: AppBar(
-        title: const Text('Choose Game Mode'),
-        backgroundColor: const Color(0xFF7C5CFC),
-        foregroundColor: Colors.white,
+        title: const Text(
+          'Choose Game Mode',
+          style: TextStyle(
+            color: Color(0xFF7C5CFC),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: const Color(0xFFE9E0FF),
         elevation: 0,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Color(0xFF7C5CFC)),
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF7C5CFC), Color(0xFF9B6DFF)],
+            colors: [Color(0xFFE9E0FF), Color(0xFF7C5CFC)],
           ),
         ),
         child: _loading
             ? const Center(
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
                 ),
               )
             : SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Select Your Game Mode',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Choose from different types of challenges',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white70,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: _gameModes.length,
-                          itemBuilder: (context, index) {
-                            final gameMode = _gameModes[index];
-                            return _buildGameModeCard(gameMode);
-                          },
-                        ),
-                      ),
-                    ],
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  children: [
+                    const SizedBox(height: 24),
+                    _buildHeaderSection(),
+                    const SizedBox(height: 24),
+                    _buildGameModesList(),
+                    const SizedBox(height: 32),
+                  ],
                   ),
                 ),
               ),
@@ -103,101 +96,155 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
     );
   }
 
+  Widget _buildHeaderSection() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.games, color: Color(0xFF7C5CFC), size: 36),
+              const SizedBox(width: 12),
+              const Text(
+                'Game Modes',
+                style: TextStyle(
+                  color: Color(0xFF7C5CFC),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Select Your Game Mode',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF7C5CFC),
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'Choose from different types of challenges',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black54,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGameModesList() {
+    return Column(
+      children: _gameModes.map((gameMode) => _buildGameModeCard(gameMode)).toList(),
+    );
+  }
+
   Widget _buildGameModeCard(GameModeInfo gameMode) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
-      child: Card(
-        elevation: 8,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: InkWell(
-          onTap: () => _startGame(gameMode),
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.white,
-                  Colors.grey.shade50,
-                ],
+      child: GestureDetector(
+        onTap: () => _startGame(gameMode),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 8,
+                offset: Offset(0, 4),
               ),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF7C5CFC),
-                    borderRadius: BorderRadius.circular(12),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF7C5CFC), Color(0xFF9B6DFF)],
                   ),
-                  child: Icon(
-                    gameMode.icon,
-                    size: 32,
-                    color: Colors.white,
-                  ),
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        gameMode.name,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF7C5CFC),
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        gameMode.description,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey.shade600,
-                          height: 1.3,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 4,
-                        children: gameMode.supportedTypes.map((type) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF7C5CFC).withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              _getTypeDisplayName(type),
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Color(0xFF7C5CFC),
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  ),
+                child: Icon(
+                  gameMode.icon,
+                  size: 32,
+                  color: Colors.white,
                 ),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Color(0xFF7C5CFC),
-                  size: 20,
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      gameMode.name,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF7C5CFC),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      gameMode.description,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
+                        height: 1.3,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 4,
+                      children: gameMode.supportedTypes.map((type) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF7C5CFC).withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            _getTypeDisplayName(type),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Color(0xFF7C5CFC),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: Color(0xFF7C5CFC),
+                size: 20,
+              ),
+            ],
           ),
         ),
       ),
@@ -221,7 +268,34 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
     }
   }
 
-  void _startGame(GameModeInfo gameMode) {
+  void _startGame(GameModeInfo gameMode) async {
+    // Show game mode specific tutorial if not shown before
+    bool tutorialShown = await TutorialManager.isGameModeTutorialShown(gameMode.id);
+    
+    if (!tutorialShown) {
+      // Show tutorial overlay for this specific game mode
+      if (mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => TutorialOverlay(
+            tutorialKey: gameMode.id,
+            steps: _getTutorialStepsForGameMode(gameMode.id),
+            onComplete: () {
+              Navigator.of(context).pop();
+              _navigateToCategorySelection(gameMode);
+            },
+            child: Container(), // Empty container since we're using dialog
+          ),
+        );
+      }
+    } else {
+      // Tutorial already shown, navigate directly
+      _navigateToCategorySelection(gameMode);
+    }
+  }
+
+  void _navigateToCategorySelection(GameModeInfo gameMode) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -231,6 +305,23 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
         ),
       ),
     );
+  }
+
+  List<TutorialStep> _getTutorialStepsForGameMode(String gameModeId) {
+    switch (gameModeId) {
+      case 'GuessTheSound':
+        return TutorialHelper.getGuessTheSoundTutorialSteps();
+      case 'GuessTheMusic':
+        return TutorialHelper.getGuessTheMusicTutorialSteps();
+      case 'TrueOrFalse':
+        return TutorialHelper.getTrueOrFalseTutorialSteps();
+      case 'Vocabulary':
+        return TutorialHelper.getVocabularyTutorialSteps();
+      case 'GuessTheImage':
+        return TutorialHelper.getGuessTheImageTutorialSteps();
+      default:
+        return TutorialHelper.getGameTutorialSteps();
+    }
   }
 
   @override

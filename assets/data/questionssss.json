@@ -1,0 +1,2221 @@
+{
+  "GuessTheSound": {
+    "Filipino Memes Sound": {
+      "Easy": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "filipino_meme_1.wav",
+          "options": ["Meme 1", "Meme 2", "Meme 3", "Meme 4"],
+          "correctAnswer": "Meme 1"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "filipino_meme_3.wav",
+          "options": ["Meme 9", "Meme 10", "Meme 11", "Meme 12"],
+          "correctAnswer": "Meme 10"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "filipino_meme_4.wav",
+          "options": ["Meme 13", "Meme 14", "Meme 15", "Meme 16"],
+          "correctAnswer": "Meme 15"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "filipino_meme_5.wav",
+          "options": ["Meme 17", "Meme 18", "Meme 19", "Meme 20"],
+          "correctAnswer": "Meme 18"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "filipino_meme_6.wav",
+          "options": ["Meme 21", "Meme 22", "Meme 23", "Meme 24"],
+          "correctAnswer": "Meme 21"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "filipino_meme_2.wav",
+          "options": ["Meme 5", "Meme 6", "Meme 7", "Meme 8"],
+          "correctAnswer": "Meme 5"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "filipino_meme_7.wav",
+          "options": ["Meme 25", "Meme 26", "Meme 27", "Meme 28"],
+          "correctAnswer": "Meme 27"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "filipino_meme_8.wav",
+          "options": ["Meme 29", "Meme 30", "Meme 31", "Meme 32"],
+          "correctAnswer": "Meme 30"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "filipino_meme_4.wav",
+          "options": ["Meme 13", "Meme 14", "Meme 15", "Meme 16"],
+          "correctAnswer": "Meme 15"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "filipino_meme_9.wav",
+          "options": ["Meme 33", "Meme 34", "Meme 35", "Meme 36"],
+          "correctAnswer": "Meme 34"
+        }
+      ]
+    },
+    "Popular Memes Sound": {
+      "Easy": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "popular_meme_1.wav",
+          "options": ["Vine Boom", "Trololo", "Sad Violin", "John Cena"],
+          "correctAnswer": "Vine Boom"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "popular_meme_4.wav",
+          "options": ["Bruh", "Deez Nuts", "Kazoo Kid", "Yee"],
+          "correctAnswer": "Bruh"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "popular_meme_5.wav",
+          "options": ["Wow", "Megalovania", "Nyan Cat", "Shooting Stars"],
+          "correctAnswer": "Wow"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "popular_meme_9.wav",
+          "options": ["John Cena", "Trololo", "Yee", "Bruh"],
+          "correctAnswer": "John Cena"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "popular_meme_2.wav",
+          "options": ["Airhorn", "Illuminati Confirmed", "MLG Horn", "Thug Life"],
+          "correctAnswer": "Airhorn"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "popular_meme_6.wav",
+          "options": ["Bruh Moment", "Gnome", "He-Man", "Sax Guy"],
+          "correctAnswer": "Bruh Moment"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "popular_meme_10.wav",
+          "options": ["MLG Horn", "Thug Life", "Illuminati Confirmed", "Wow"],
+          "correctAnswer": "MLG Horn"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "popular_meme_11.wav",
+          "options": ["He-Man", "Gnome", "Sax Guy", "Bruh Moment"],
+          "correctAnswer": "He-Man"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "popular_meme_12.wav",
+          "options": ["Kazoo Kid", "Yee", "Trololo", "Sad Violin"],
+          "correctAnswer": "Kazoo Kid"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "popular_meme_3.wav",
+          "options": ["Sad Violin", "Soviet Anthem", "Tunak Tunak Tun", "Darude Sandstorm"],
+          "correctAnswer": "Sad Violin"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "popular_meme_7.wav",
+          "options": ["Airhorn Remix", "Epic Sax Guy", "PPAP", "Coffin Dance"],
+          "correctAnswer": "Airhorn Remix"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "popular_meme_8.wav",
+          "options": ["Vine Boom 2", "Astronomia", "Big Chungus", "Shooting Stars Remix"],
+          "correctAnswer": "Vine Boom 2"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "popular_meme_13.wav",
+          "options": ["Coffin Dance", "PPAP", "Epic Sax Guy", "Airhorn Remix"],
+          "correctAnswer": "Coffin Dance"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "popular_meme_14.wav",
+          "options": ["Astronomia", "Big Chungus", "Shooting Stars Remix", "Vine Boom 2"],
+          "correctAnswer": "Astronomia"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "popular_meme_15.wav",
+          "options": ["Tunak Tunak Tun", "Darude Sandstorm", "Soviet Anthem", "Sad Violin"],
+          "correctAnswer": "Tunak Tunak Tun"
+        }
+      ]
+    },
+    "Animal Sound": {
+      "Easy": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "dog_bark.wav",
+          "options": ["Dog", "Elephant", "Frog", "Rabbit"],
+          "correctAnswer": "Dog"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "cat.wav",
+          "options": ["Cat", "Parrot", "Dolphin", "Squirrel"],
+          "correctAnswer": "Cat"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "cow.wav",
+          "options": ["Cow", "Camel", "Seal", "Bat"],
+          "correctAnswer": "Cow"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "sheep.wav",
+          "options": ["Sheep", "Penguin", "Otter", "Giraffe"],
+          "correctAnswer": "Sheep"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "horse.wav",
+          "options": ["Horse", "Seal", "Crow", "Buffalo"],
+          "correctAnswer": "Horse"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "pig.mp3",
+          "options": ["Pig", "Peacock", "Crab", "Lizard"],
+          "correctAnswer": "Pig"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "rooster.mp3",
+          "options": ["Rooster", "Goat", "Whale", "Bee"],
+          "correctAnswer": "Rooster"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "duck.mp3",
+          "options": ["Duck", "Chimpanzee", "Moose", "Turkey"],
+          "correctAnswer": "Duck"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "wolf.mp3",
+          "options": ["Wolf", "Armadillo", "Walrus", "Ostrich"],
+          "correctAnswer": "Wolf"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "bear.mp3",
+          "options": ["Bear", "Porcupine", "Lynx", "Mole"],
+          "correctAnswer": "Bear"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "fox.mp3",
+          "options": ["Fox", "Tapir", "Wombat", "Sloth"],
+          "correctAnswer": "Fox"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Animal Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "owl.mp3",
+          "options": ["Owl", "Platypus", "Gazelle", "Badger"],
+          "correctAnswer": "Owl"
+        }
+      ]
+    },
+    "Nature Sound": {
+      "Medium": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "nature_waterfall.wav",
+          "options": ["Waterfall", "Rain", "Wind", "Thunder"],
+          "correctAnswer": "Waterfall"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "nature_birds.wav",
+          "options": ["Birds Chirping", "Crickets", "Frogs", "Wolves"],
+          "correctAnswer": "Birds Chirping"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "nature_river.wav",
+          "options": ["River Flowing", "Ocean Waves", "Rain", "Wind"],
+          "correctAnswer": "River Flowing"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "nature_crickets.wav",
+          "options": ["Crickets", "Birds Chirping", "Frogs", "Cicadas"],
+          "correctAnswer": "Crickets"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "nature_volcano.wav",
+          "options": ["Volcano Eruption", "Thunder", "Earthquake", "Fire"],
+          "correctAnswer": "Volcano Eruption"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "nature_glacier.wav",
+          "options": ["Glacier Cracking", "Avalanche", "Wind", "Rain"],
+          "correctAnswer": "Glacier Cracking"
+        }
+      ]
+    }
+  },
+  "GuessTheMusic": {
+    "Kpop Music": {
+      "Easy": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "kpop_song_1.wav",
+          "clipStart": 10,
+          "clipEnd": 25,
+          "options": ["Song A", "Song B", "Song C", "Song D"],
+          "correctAnswer": "Song A"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "kpop_song_2.wav",
+          "clipStart": 5,
+          "clipEnd": 20,
+          "options": ["Song E", "Song F", "Song G", "Song H"],
+          "correctAnswer": "Song F"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "kpop_song_5.wav",
+          "clipStart": 7,
+          "clipEnd": 22,
+          "options": ["Song I", "Song J", "Song K", "Song L"],
+          "correctAnswer": "Song J"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "kpop_song_6.wav",
+          "clipStart": 3,
+          "clipEnd": 18,
+          "options": ["Song M", "Song N", "Song O", "Song P"],
+          "correctAnswer": "Song O"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "kpop_song_3.wav",
+          "clipStart": 12,
+          "clipEnd": 27,
+          "options": ["Song I", "Song J", "Song K", "Song L"],
+          "correctAnswer": "Song K"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "kpop_song_7.wav",
+          "clipStart": 15,
+          "clipEnd": 30,
+          "options": ["Song Q", "Song R", "Song S", "Song T"],
+          "correctAnswer": "Song S"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "kpop_song_8.wav",
+          "clipStart": 8,
+          "clipEnd": 23,
+          "options": ["Song U", "Song V", "Song W", "Song X"],
+          "correctAnswer": "Song V"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "kpop_song_4.wav",
+          "clipStart": 20,
+          "clipEnd": 35,
+          "options": ["Song M", "Song N", "Song O", "Song P"],
+          "correctAnswer": "Song N"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "kpop_song_9.wav",
+          "clipStart": 18,
+          "clipEnd": 33,
+          "options": ["Song Y", "Song Z", "Song AA", "Song BB"],
+          "correctAnswer": "Song AA"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Kpop Music",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "kpop_song_10.wav",
+          "clipStart": 22,
+          "clipEnd": 37,
+          "options": ["Song CC", "Song DD", "Song EE", "Song FF"],
+          "correctAnswer": "Song DD"
+        }
+      ]
+    },
+    "Anime Openings": {
+      "Easy": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "Zombie_Land_Saga.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Zombie Land Saga",
+            "Love Live! School Idol Project",
+            "Wake Up, Girls!",
+            "Idolmaster",
+            "School-Live!"
+          ],
+          "correctAnswer": "Zombie Land Saga"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "Rock_Is_A_Lady_Modesty.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Rock Is A Lady Modesty",
+            "K-On!",
+            "Beck: Mongolian Chop Squad",
+            "Nana",
+            "Given"
+          ],
+          "correctAnswer": "Rock Is A Lady Modesty"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "Mashle_Op1.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Mashle",
+            "Black Clover",
+            "Mob Psycho 100",
+            "One Punch Man",
+            "Blue Exorcist"
+          ],
+          "correctAnswer": "Mashle"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "Lycoris_Recoil.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Lycoris Recoil",
+            "Spy x Family",
+            "Princess Principal",
+            "Release the Spyce",
+            "Assassination Classroom"
+          ],
+          "correctAnswer": "Lycoris Recoil"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "Kusuriya_No_Hitorigoto_S2.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Kusuriya no Hitorigoto",
+            "The Apothecary Diaries",
+            "Spice and Wolf",
+            "Snow White with the Red Hair",
+            "Violet Evergarden"
+          ],
+          "correctAnswer": "Kusuriya no Hitorigoto"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "Jujutsu_Kaisen.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Jujutsu Kaisen",
+            "Demon Slayer",
+            "Bleach",
+            "Blue Exorcist",
+            "Mob Psycho 100"
+          ],
+          "correctAnswer": "Jujutsu Kaisen"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "Girls_Band_Cry_Void.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Girls Band Cry Void",
+            "BanG Dream!",
+            "K-On!",
+            "Show by Rock!!",
+            "Given"
+          ],
+          "correctAnswer": "Girls Band Cry Void"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "Girls_Band_Cry.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Girls Band Cry",
+            "Beck: Mongolian Chop Squad",
+            "Nana",
+            "Love Live! Superstar!!",
+            "Zombieland Saga"
+          ],
+          "correctAnswer": "Girls Band Cry"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "Frieren_Op2.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Frieren: Beyond Journey's End",
+            "Mushoku Tensei: Jobless Reincarnation",
+            "To Your Eternity",
+            "Made in Abyss",
+            "Somali and the Forest Spirit"
+          ],
+          "correctAnswer": "Frieren: Beyond Journey's End"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "Frieren_Op1.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Frieren: Beyond Journey's End",
+            "The Ancient Magus' Bride",
+            "Natsume's Book of Friends",
+            "Spice and Wolf",
+            "Violet Evergarden"
+          ],
+          "correctAnswer": "Frieren: Beyond Journey's End"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "Fate_Stay_Night.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Fate/Stay Night",
+            "Fate/Zero",
+            "Fate/Apocrypha",
+            "The Garden of Sinners",
+            "D.Gray-man"
+          ],
+          "correctAnswer": "Fate/Stay Night"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "Dandandan_Op1.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Dandadan",
+            "Mob Psycho 100",
+            "Chainsaw Man",
+            "Jujutsu Kaisen",
+            "Fire Force"
+          ],
+          "correctAnswer": "Dandadan"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "Cyberpunk_Op1.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Cyberpunk: Edgerunners",
+            "Akira",
+            "Ghost in the Shell",
+            "Psycho-Pass",
+            "Ergo Proxy"
+          ],
+          "correctAnswer": "Cyberpunk: Edgerunners"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "Chainsaw_Man_Op1.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Chainsaw Man",
+            "Jujutsu Kaisen",
+            "Dorohedoro",
+            "Fire Punch",
+            "Devilman Crybaby"
+          ],
+          "correctAnswer": "Chainsaw Man"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "Anime Openings",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "Bocchi_The_Rock.mp3",
+          "clipStart": 0,
+          "clipEnd": 45,
+          "options": [
+            "Bocchi the Rock!",
+            "K-On!",
+            "BanG Dream!",
+            "Given",
+            "Beck: Mongolian Chop Squad"
+          ],
+          "correctAnswer": "Bocchi the Rock!"
+        }
+      ]
+    },
+    "OPM Musics": {
+      "Easy": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "opm_song_1.wav",
+          "clipStart": 5,
+          "clipEnd": 20,
+          "options": ["OPM 1", "OPM 2", "OPM 3", "OPM 4"],
+          "correctAnswer": "OPM 2"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "opm_song_2.wav",
+          "clipStart": 8,
+          "clipEnd": 23,
+          "options": ["OPM 5", "OPM 6", "OPM 7", "OPM 8"],
+          "correctAnswer": "OPM 7"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Easy",
+          "type": "music",
+          "file": "opm_song_3.wav",
+          "clipStart": 12,
+          "clipEnd": 27,
+          "options": ["OPM 9", "OPM 10", "OPM 11", "OPM 12"],
+          "correctAnswer": "OPM 11"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "opm_song_4.wav",
+          "clipStart": 10,
+          "clipEnd": 25,
+          "options": ["OPM 13", "OPM 14", "OPM 15", "OPM 16"],
+          "correctAnswer": "OPM 14"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "opm_song_5.wav",
+          "clipStart": 15,
+          "clipEnd": 30,
+          "options": ["OPM 17", "OPM 18", "OPM 19", "OPM 20"],
+          "correctAnswer": "OPM 18"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Medium",
+          "type": "music",
+          "file": "opm_song_6.wav",
+          "clipStart": 18,
+          "clipEnd": 33,
+          "options": ["OPM 21", "OPM 22", "OPM 23", "OPM 24"],
+          "correctAnswer": "OPM 23"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "opm_song_7.wav",
+          "clipStart": 15,
+          "clipEnd": 30,
+          "options": ["OPM 25", "OPM 26", "OPM 27", "OPM 28"],
+          "correctAnswer": "OPM 26"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "opm_song_8.wav",
+          "clipStart": 22,
+          "clipEnd": 37,
+          "options": ["OPM 29", "OPM 30", "OPM 31", "OPM 32"],
+          "correctAnswer": "OPM 31"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "opm_song_9.wav",
+          "clipStart": 25,
+          "clipEnd": 40,
+          "options": ["OPM 33", "OPM 34", "OPM 35", "OPM 36"],
+          "correctAnswer": "OPM 34"
+        },
+        {
+          "mode": "GuessTheMusic",
+          "category": "OPM Musics",
+          "difficulty": "Hard",
+          "type": "music",
+          "file": "opm_song_10.wav",
+          "clipStart": 30,
+          "clipEnd": 45,
+          "options": ["OPM 37", "OPM 38", "OPM 39", "OPM 40"],
+          "correctAnswer": "OPM 38"
+        }
+      ]
+    }
+  },
+  "TrueOrFalse": {
+    "General Knowledge": {
+      "Easy": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The sun rises in the east.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "There are 12 days in a week.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The Earth is the third planet from the Sun.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Humans have five fingers on each hand.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Water freezes at 0 degrees Celsius.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The moon orbits above the Earth.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Penguins can fly.",
+          "answer": false
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "The capital of France is Paris.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "The Great Wall of China is visible from space.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "The human brain uses 10% of its capacity.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Mount Everest is the tallest mountain in the world.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "The Pacific Ocean is the largest ocean on Earth.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Bats are blind.",
+          "answer": false
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "Venus is the closest planet to the Sun.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "The human body has four lungs.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "The speed of light is faster than the speed of sound.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "The Great Pyramid of Giza has four sides.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "Honey never spoils.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "General Knowledge",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "The human body contains more bacteria cells than human cells.",
+          "answer": true
+        }
+      ]
+    },
+    "Science Facts": {
+      "Easy": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Humans need oxygen to survive.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The earth is flat.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Plants need sunlight to grow.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Ice is colder than liquid water.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The moon is made of cheese.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Fire needs oxygen to burn.",
+          "answer": true
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Water boils at 90 degrees Celsius.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Lightning never strikes the same place twice.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "The human body has 206 bones.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Diamonds are the hardest natural substance.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Bacteria are always harmful to humans.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "The sun is a star.",
+          "answer": true
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "The chemical symbol for gold is Au.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "Sound travels faster in air than in water.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "Quantum physics can explain all natural phenomena.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "The speed of light is constant in all mediums.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "DNA contains only four different nucleotides.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Science Facts",
+          "difficulty": "Hard",
+          "type": "truefalse",
+          "question": "Black holes emit no radiation.",
+          "answer": false
+        }
+      ]
+    }
+  },
+  "Vocabulary": {
+    "English Synonyms": {
+      "Easy": [
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'happy'?",
+          "options": ["Sad", "Joyful", "Angry", "Tired"],
+          "correctAnswer": "Joyful"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'fast'?",
+          "options": ["Quick", "Slow", "Late", "Weak"],
+          "correctAnswer": "Quick"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'big'?",
+          "options": ["Tiny", "Huge", "Short", "Thin"],
+          "correctAnswer": "Huge"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'smart'?",
+          "options": ["Clever", "Dull", "Lazy", "Weak"],
+          "correctAnswer": "Clever"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'good'?",
+          "options": ["Excellent", "Bad", "Poor", "Terrible"],
+          "correctAnswer": "Excellent"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'small'?",
+          "options": ["Little", "Large", "Big", "Huge"],
+          "correctAnswer": "Little"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'beautiful'?",
+          "options": ["Pretty", "Ugly", "Plain", "Dull"],
+          "correctAnswer": "Pretty"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'strong'?",
+          "options": ["Powerful", "Weak", "Frail", "Fragile"],
+          "correctAnswer": "Powerful"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'loud'?",
+          "options": ["Noisy", "Quiet", "Silent", "Soft"],
+          "correctAnswer": "Noisy"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'clean'?",
+          "options": ["Tidy", "Dirty", "Messy", "Untidy"],
+          "correctAnswer": "Tidy"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'funny'?",
+          "options": ["Humorous", "Serious", "Boring", "Dull"],
+          "correctAnswer": "Humorous"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'brave'?",
+          "options": ["Courageous", "Scared", "Afraid", "Timid"],
+          "correctAnswer": "Courageous"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'kind'?",
+          "options": ["Nice", "Mean", "Cruel", "Harsh"],
+          "correctAnswer": "Nice"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'bright'?",
+          "options": ["Shiny", "Dark", "Dull", "Dim"],
+          "correctAnswer": "Shiny"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'soft'?",
+          "options": ["Gentle", "Hard", "Rough", "Tough"],
+          "correctAnswer": "Gentle"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'obstinate'?",
+          "options": ["Stubborn", "Flexible", "Gentle", "Kind"],
+          "correctAnswer": "Stubborn"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'elated'?",
+          "options": ["Depressed", "Ecstatic", "Angry", "Tired"],
+          "correctAnswer": "Ecstatic"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'diminutive'?",
+          "options": ["Tiny", "Large", "Tall", "Wide"],
+          "correctAnswer": "Tiny"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'lucid'?",
+          "options": ["Clear", "Dark", "Confused", "Dull"],
+          "correctAnswer": "Clear"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'meticulous'?",
+          "options": ["Careful", "Sloppy", "Careless", "Messy"],
+          "correctAnswer": "Careful"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'eloquent'?",
+          "options": ["Articulate", "Mute", "Silent", "Quiet"],
+          "correctAnswer": "Articulate"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'resilient'?",
+          "options": ["Tough", "Weak", "Fragile", "Brittle"],
+          "correctAnswer": "Tough"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'authentic'?",
+          "options": ["Genuine", "Fake", "False", "Counterfeit"],
+          "correctAnswer": "Genuine"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'persistent'?",
+          "options": ["Determined", "Lazy", "Quitting", "Giving up"],
+          "correctAnswer": "Determined"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'innovative'?",
+          "options": ["Creative", "Boring", "Ordinary", "Common"],
+          "correctAnswer": "Creative"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Synonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is a synonym for 'profound'?",
+          "options": ["Deep", "Shallow", "Shallow", "Shallow"],
+          "correctAnswer": "Deep"
+        }
+      ]
+    },
+    "Filipino-English Translation": {
+      "Easy": [
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the English word for 'tubig'?",
+          "options": ["Water", "Fire", "Air", "Earth"],
+          "correctAnswer": "Water"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the English word for 'puno'?",
+          "options": ["Tree", "Flower", "Grass", "Leaf"],
+          "correctAnswer": "Tree"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the English word for 'araw'?",
+          "options": ["Sun", "Moon", "Star", "Cloud"],
+          "correctAnswer": "Sun"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the English word for 'buhay'?",
+          "options": ["Life", "Death", "Birth", "Age"],
+          "correctAnswer": "Life"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the English word for 'tao'?",
+          "options": ["Person", "Animal", "Plant", "Thing"],
+          "correctAnswer": "Person"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'bahay'?",
+          "options": ["House", "Car", "Tree", "Water"],
+          "correctAnswer": "House"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'aso'?",
+          "options": ["Cat", "Dog", "Bird", "Fish"],
+          "correctAnswer": "Dog"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'gatas'?",
+          "options": ["Milk", "Juice", "Water", "Bread"],
+          "correctAnswer": "Milk"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'lamesa'?",
+          "options": ["Chair", "Table", "Bed", "Door"],
+          "correctAnswer": "Table"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'pagkain'?",
+          "options": ["Food", "Drink", "Medicine", "Clothing"],
+          "correctAnswer": "Food"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'sapatos'?",
+          "options": ["Shoes", "Socks", "Hat", "Gloves"],
+          "correctAnswer": "Shoes"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'libro'?",
+          "options": ["Book", "Paper", "Pen", "Pencil"],
+          "correctAnswer": "Book"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'kotse'?",
+          "options": ["Car", "Bike", "Bus", "Train"],
+          "correctAnswer": "Car"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'trabaho'?",
+          "options": ["Work", "Play", "Sleep", "Eat"],
+          "correctAnswer": "Work"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'pera'?",
+          "options": ["Money", "Paper", "Coin", "Gold"],
+          "correctAnswer": "Money"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'kaibigan'?",
+          "options": ["Friend", "Family", "Teacher", "Student"],
+          "correctAnswer": "Friend"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'maganda'?",
+          "options": ["Beautiful", "Ugly", "Big", "Small"],
+          "correctAnswer": "Beautiful"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'mabait'?",
+          "options": ["Kind", "Mean", "Smart", "Strong"],
+          "correctAnswer": "Kind"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'masaya'?",
+          "options": ["Happy", "Sad", "Angry", "Tired"],
+          "correctAnswer": "Happy"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'gutom'?",
+          "options": ["Hungry", "Thirsty", "Tired", "Sick"],
+          "correctAnswer": "Hungry"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "Filipino-English Translation",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the English word for 'tulog'?",
+          "options": ["Sleep", "Wake", "Dream", "Rest"],
+          "correctAnswer": "Sleep"
+        }
+      ]
+    },
+    "English Antonyms": {
+      "Easy": [
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'hot'?",
+          "options": ["Warm", "Cold", "Lukewarm", "Tepid"],
+          "correctAnswer": "Cold"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'up'?",
+          "options": ["Side", "Down", "Across", "Through"],
+          "correctAnswer": "Down"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'light'?",
+          "options": ["Dark", "Bright", "Dim", "Shiny"],
+          "correctAnswer": "Dark"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Easy",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'open'?",
+          "options": ["Close", "Shut", "Closed", "Locked"],
+          "correctAnswer": "Closed"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'generous'?",
+          "options": ["Kind", "Selfish", "Friendly", "Polite"],
+          "correctAnswer": "Selfish"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'brave'?",
+          "options": ["Cowardly", "Timid", "Scared", "Fearful"],
+          "correctAnswer": "Cowardly"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'honest'?",
+          "options": ["Dishonest", "Truthful", "Sincere", "Genuine"],
+          "correctAnswer": "Dishonest"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Medium",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'patient'?",
+          "options": ["Impatient", "Calm", "Relaxed", "Peaceful"],
+          "correctAnswer": "Impatient"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'ubiquitous'?",
+          "options": ["Rare", "Common", "Frequent", "Regular"],
+          "correctAnswer": "Rare"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'ephemeral'?",
+          "options": ["Temporary", "Permanent", "Brief", "Short"],
+          "correctAnswer": "Permanent"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'verbose'?",
+          "options": ["Concise", "Talkative", "Wordy", "Detailed"],
+          "correctAnswer": "Concise"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'meticulous'?",
+          "options": ["Careless", "Careful", "Thorough", "Detailed"],
+          "correctAnswer": "Careless"
+        }
+      ]
+    },
+  "Filipino Words": {
+    "Easy": [
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'house'?",
+        "options": ["Bahay", "Kotse", "Puno", "Tubig"],
+        "correctAnswer": "Bahay"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'dog'?",
+        "options": ["Pusa", "Aso", "Ibon", "Isda"],
+        "correctAnswer": "Aso"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'cat'?",
+        "options": ["Aso", "Pusa", "Ibon", "Isda"],
+        "correctAnswer": "Pusa"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'bird'?",
+        "options": ["Ibon", "Aso", "Pusa", "Isda"],
+        "correctAnswer": "Ibon"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'fish'?",
+        "options": ["Isda", "Aso", "Pusa", "Ibon"],
+        "correctAnswer": "Isda"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'book'?",
+        "options": ["Aklat", "Lapis", "Papel", "Mesa"],
+        "correctAnswer": "Aklat"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'car'?",
+        "options": ["Kotse", "Bahay", "Puno", "Tubig"],
+        "correctAnswer": "Kotse"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'food'?",
+        "options": ["Pagkain", "Tubig", "Gatas", "Tinapay"],
+        "correctAnswer": "Pagkain"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'money'?",
+        "options": ["Pera", "Papel", "Lapis", "Aklat"],
+        "correctAnswer": "Pera"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Easy",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'school'?",
+        "options": ["Paaralan", "Bahay", "Kotse", "Puno"],
+        "correctAnswer": "Paaralan"
+      }
+    ],
+    "Medium": [
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'family'?",
+        "options": ["Pamilya", "Kaibigan", "Kapitbahay", "Kaklase"],
+        "correctAnswer": "Pamilya"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'friend'?",
+        "options": ["Kaibigan", "Pamilya", "Kapitbahay", "Kaklase"],
+        "correctAnswer": "Kaibigan"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'neighbor'?",
+        "options": ["Kapitbahay", "Kaibigan", "Pamilya", "Kaklase"],
+        "correctAnswer": "Kapitbahay"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'classmate'?",
+        "options": ["Kaklase", "Kaibigan", "Pamilya", "Kapitbahay"],
+        "correctAnswer": "Kaklase"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'teacher'?",
+        "options": ["Guro", "Doktor", "Pulis", "Abogado"],
+        "correctAnswer": "Guro"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'doctor'?",
+        "options": ["Doktor", "Guro", "Pulis", "Abogado"],
+        "correctAnswer": "Doktor"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'police'?",
+        "options": ["Pulis", "Doktor", "Guro", "Abogado"],
+        "correctAnswer": "Pulis"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'lawyer'?",
+        "options": ["Abogado", "Doktor", "Guro", "Pulis"],
+        "correctAnswer": "Abogado"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'hospital'?",
+        "options": ["Ospital", "Paaralan", "Bahay", "Kotse"],
+        "correctAnswer": "Ospital"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Medium",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'market'?",
+        "options": ["Palengke", "Ospital", "Paaralan", "Bahay"],
+        "correctAnswer": "Palengke"
+      }
+    ],
+    "Hard": [
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Hard",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'wisdom'?",
+        "options": ["Karunungan", "Kaalaman", "Katalinuhan", "Kaisipan"],
+        "correctAnswer": "Karunungan"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Hard",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'freedom'?",
+        "options": ["Kalayaan", "Kasarinlan", "Independensya", "Libertad"],
+        "correctAnswer": "Kalayaan"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Hard",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'justice'?",
+        "options": ["Katarungan", "Hustisya", "Patas", "Tama"],
+        "correctAnswer": "Katarungan"
+      },
+      {
+        "mode": "Vocabulary",
+        "category": "Filipino Words",
+        "difficulty": "Hard",
+        "type": "vocabulary",
+        "question": "What is the Filipino word for 'wisdom'?",
+        "options": ["Karunungan", "Kaalaman", "Katalinuhan", "Kaisipan"],
+        "correctAnswer": "Karunungan"
+      }
+    ]
+    }
+  },
+  "GuessTheImage": {
+    "Philippine National Heroes": {
+      "Easy": [
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Easy",
+          "type": "image",
+          "file": "heroes/jose_rizal.jpg",
+          "options": ["Jose Rizal", "Andres Bonifacio", "Lapu-Lapu", "Emilio Aguinaldo"],
+          "correctAnswer": "Jose Rizal"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Easy",
+          "type": "image",
+          "file": "heroes/andres_bonifacio.jpg",
+          "options": ["Andres Bonifacio", "Melchora Aquino", "Gabriela Silang", "Marcelo del Pilar"],
+          "correctAnswer": "Andres Bonifacio"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Easy",
+          "type": "image",
+          "file": "heroes/lapu_lapu.jpg",
+          "options": ["Lapu-Lapu", "Gregoria de Jesus", "Tandang Sora", "Graciano Lopez Jaena"],
+          "correctAnswer": "Lapu-Lapu"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Easy",
+          "type": "image",
+          "file": "heroes/emilio_aguinaldo.jpg",
+          "options": ["Emilio Aguinaldo", "Mariano Ponce", "Apolinario Mabini", "Juan Luna"],
+          "correctAnswer": "Emilio Aguinaldo"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Easy",
+          "type": "image",
+          "file": "heroes/melchora_aquino.jpg",
+          "options": ["Melchora Aquino", "Felix Hidalgo", "Antonio Luna", "Fernando Amorsolo"],
+          "correctAnswer": "Melchora Aquino"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Easy",
+          "type": "image",
+          "file": "heroes/gabriela_silang.jpg",
+          "options": ["Gabriela Silang", "Manuel Quezon", "Sergio Osmeña", "Rafael Palma"],
+          "correctAnswer": "Gabriela Silang"
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Medium",
+          "type": "image",
+          "file": "heroes/marcelo_del_pilar.jpg",
+          "options": ["Marcelo del Pilar", "Cecilio Apostol", "Fernando Maramag", "Manuel Roxas"],
+          "correctAnswer": "Marcelo del Pilar"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Medium",
+          "type": "image",
+          "file": "heroes/graciano_lopez_jaena.jpg",
+          "options": ["Graciano Lopez Jaena", "Elpidio Quirino", "Jose Rizal", "Andres Bonifacio"],
+          "correctAnswer": "Graciano Lopez Jaena"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Medium",
+          "type": "image",
+          "file": "heroes/mariano_ponce.jpg",
+          "options": ["Mariano Ponce", "Lapu-Lapu", "Emilio Aguinaldo", "Melchora Aquino"],
+          "correctAnswer": "Mariano Ponce"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Medium",
+          "type": "image",
+          "file": "heroes/gregoria_de_jesus.jpg",
+          "options": ["Gregoria de Jesus", "Gabriela Silang", "Marcelo del Pilar", "Graciano Lopez Jaena"],
+          "correctAnswer": "Gregoria de Jesus"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Medium",
+          "type": "image",
+          "file": "heroes/apolinario_mabini.jpg",
+          "options": ["Apolinario Mabini", "Mariano Ponce", "Gregoria de Jesus", "Tandang Sora"],
+          "correctAnswer": "Apolinario Mabini"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Medium",
+          "type": "image",
+          "file": "heroes/juan_luna.jpg",
+          "options": ["Juan Luna", "Felix Hidalgo", "Antonio Luna", "Fernando Amorsolo"],
+          "correctAnswer": "Juan Luna"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Medium",
+          "type": "image",
+          "file": "heroes/felix_hidalgo.jpg",
+          "options": ["Felix Hidalgo", "Manuel Quezon", "Sergio Osmeña", "Rafael Palma"],
+          "correctAnswer": "Felix Hidalgo"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Medium",
+          "type": "image",
+          "file": "heroes/antonio_luna.jpg",
+          "options": ["Antonio Luna", "Cecilio Apostol", "Fernando Maramag", "Manuel Roxas"],
+          "correctAnswer": "Antonio Luna"
+        }
+      ],
+      "Hard": [
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Hard",
+          "type": "image",
+          "file": "heroes/fernando_amorsolo.jpg",
+          "options": ["Fernando Amorsolo", "Elpidio Quirino", "Jose Rizal", "Andres Bonifacio"],
+          "correctAnswer": "Fernando Amorsolo"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Hard",
+          "type": "image",
+          "file": "heroes/manuel_quezon.jpg",
+          "options": ["Manuel Quezon", "Lapu-Lapu", "Emilio Aguinaldo", "Melchora Aquino"],
+          "correctAnswer": "Manuel Quezon"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Hard",
+          "type": "image",
+          "file": "heroes/sergio_osmena.jpg",
+          "options": ["Sergio Osmeña", "Gabriela Silang", "Marcelo del Pilar", "Graciano Lopez Jaena"],
+          "correctAnswer": "Sergio Osmeña"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Hard",
+          "type": "image",
+          "file": "heroes/rafael_palma.jpg",
+          "options": ["Rafael Palma", "Mariano Ponce", "Gregoria de Jesus", "Tandang Sora"],
+          "correctAnswer": "Rafael Palma"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Hard",
+          "type": "image",
+          "file": "heroes/cecilio_apostol.jpg",
+          "options": ["Cecilio Apostol", "Juan Luna", "Felix Hidalgo", "Antonio Luna"],
+          "correctAnswer": "Cecilio Apostol"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Hard",
+          "type": "image",
+          "file": "heroes/fernando_maramag.jpg",
+          "options": ["Fernando Maramag", "Fernando Amorsolo", "Manuel Quezon", "Sergio Osmeña"],
+          "correctAnswer": "Fernando Maramag"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Hard",
+          "type": "image",
+          "file": "heroes/manuel_roxas.jpg",
+          "options": ["Manuel Roxas", "Rafael Palma", "Cecilio Apostol", "Fernando Maramag"],
+          "correctAnswer": "Manuel Roxas"
+        },
+        {
+          "mode": "GuessTheImage",
+          "category": "Philippine National Heroes",
+          "difficulty": "Hard",
+          "type": "image",
+          "file": "heroes/elpidio_quirino.jpg",
+          "options": ["Elpidio Quirino", "Manuel Roxas", "Fernando Maramag", "Cecilio Apostol"],
+          "correctAnswer": "Elpidio Quirino"
+        }
+      ]
+    }
+  }
+}

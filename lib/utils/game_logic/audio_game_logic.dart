@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../models/sound_question.dart';
-import '../audio_manager.dart';
-import '../accessibility_manager.dart';
+import '../managers/audio_manager.dart';
+import '../managers/accessibility_manager.dart';
 import 'base_game_logic.dart';
 import '../../widgets/question_card.dart';
 import '../../widgets/answer_option_button.dart';
@@ -18,6 +18,9 @@ class AudioGameLogic extends BaseGameLogic {
   String? _selectedAnswer;
   String? _correctAnswer;
   final String type;
+
+  // Store shuffled options per question hashCode
+  final Map<int, List<String>> _shuffledOptions = {};
 
   AudioGameLogic({this.type = 'sound'});
 
@@ -62,7 +65,14 @@ class AudioGameLogic extends BaseGameLogic {
     _selectedAnswer = null;
     _correctAnswer = question.correctAnswer;
 
+    // Shuffle options only once per question
+    final options = List<String>.from(question.options ?? []);
+    options.shuffle();
+    _shuffledOptions[question.hashCode] = options;
+
     try {
+      // Stop any currently playing audio before starting new question
+      await AudioManager().stopAll();
       _isPlaying = true;
       
       // Play the audio using AudioManager
@@ -71,6 +81,7 @@ class AudioGameLogic extends BaseGameLogic {
         type: question.type ?? 'sound',
         clipStart: question.clipStart,
         clipEnd: question.clipEnd,
+        category: question.category,
       );
 
       if (!success) {
@@ -117,31 +128,44 @@ class AudioGameLogic extends BaseGameLogic {
 
   @override
   Widget buildQuestionWidget(Question question, Function(String?) onAnswer) {
-    final options = question.options ?? [];
+    final options = _shuffledOptions[question.hashCode] ?? [];
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // Audio player section at the top
         _buildAudioPlayerSection(question),
-        const SizedBox(height: 24),
-        QuestionCard(
-          questionText: question.question ?? (type == 'music' ? 'Which music is this?' : 'Which sound is this?'),
+        const SizedBox(height: 16),
+        // Question (if any)
+        if ((question.question ?? '').isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: QuestionCard(
+              questionText: question.question!,
+              padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
+            ),
+          ),
+        // Answer options (no Expanded here)
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ...options.asMap().entries.map((entry) {
+              final index = entry.key;
+              final option = entry.value;
+              final isSelected = _selectedAnswer == option;
+              final isCorrect = _showAnswerFeedback && option == _correctAnswer;
+              final isIncorrect = _showAnswerFeedback && isSelected && option != _correctAnswer;
+              return AnswerOptionButton(
+                optionLetter: String.fromCharCode(65 + index),
+                optionText: option,
+                isSelected: isSelected,
+                isCorrect: isCorrect,
+                isIncorrect: isIncorrect,
+                showFeedback: _showAnswerFeedback,
+                onTap: _showAnswerFeedback ? null : () => onAnswer(option),
+              );
+            }).toList(),
+          ],
         ),
-        const SizedBox(height: 24),
-        ...options.asMap().entries.map((entry) {
-          final index = entry.key;
-          final option = entry.value;
-          final isSelected = _selectedAnswer == option;
-          final isCorrect = _showAnswerFeedback && option == _correctAnswer;
-          final isIncorrect = _showAnswerFeedback && isSelected && option != _correctAnswer;
-          return AnswerOptionButton(
-            optionLetter: String.fromCharCode(65 + index),
-            optionText: option,
-            isSelected: isSelected,
-            isCorrect: isCorrect,
-            isIncorrect: isIncorrect,
-            showFeedback: _showAnswerFeedback,
-            onTap: _showAnswerFeedback ? null : () => onAnswer(option),
-          );
-        }).toList(),
       ],
     );
   }
