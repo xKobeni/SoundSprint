@@ -607,7 +607,10 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const GuessTheImagePage(),
+                    builder: (context) => CategorySelectionPage(
+                      gameMode: 'GuessTheImage',
+                      gameModeName: 'Guess the Image',
+                    ),
                   ),
                 );
               },

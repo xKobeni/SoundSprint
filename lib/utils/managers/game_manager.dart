@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import '../../models/sound_question.dart';
 import '../game_logic/base_game_logic.dart';
 import '../game_logic/game_logic_factory.dart';
@@ -7,7 +8,8 @@ import 'stats_manager.dart';
 import 'achievement_manager.dart';
 import 'daily_points_manager.dart';
 import 'difficulty_progression_manager.dart';
-import '../../widgets/top_notification.dart';
+import 'notification_manager.dart';
+
 import '../../utils/managers/user_preferences.dart';
 
 /// Central game manager that handles different game modes using modular game logic
@@ -321,14 +323,13 @@ class GameManager extends ChangeNotifier {
       playtimeSeconds: playTime.inSeconds,
     );
 
-    if (progressionResult['leveledUp'] == true && progressionResult['newLevel'] != null && context != null) {
-      TopNotification.show(
-        context,
+    // Show toast notification for level up
+    if (progressionResult['leveledUp'] == true && progressionResult['newLevel'] != null) {
+      NotificationManager.showGlobalToast(
         message: 'Level Up! You reached Level ${progressionResult['newLevel']}',
         icon: Icons.emoji_events,
+        backgroundColor: Colors.deepPurple[400]!,
         iconColor: Colors.amber,
-        duration: const Duration(seconds: 3),
-        alignment: Alignment.topRight,
       );
     }
 
@@ -344,20 +345,17 @@ class GameManager extends ChangeNotifier {
       gameStartTime: _gameStartTime,
       );
 
-    // Show notifications for newly unlocked achievements
-    if (newlyUnlocked.isNotEmpty && context != null) {
-      final rootContext = Navigator.of(context, rootNavigator: true).context;
+    // Show toast notification for newly unlocked achievements
+    if (newlyUnlocked.isNotEmpty) {
       for (final achievement in newlyUnlocked) {
-          TopNotification.show(
-          rootContext,
+        NotificationManager.showGlobalToast(
           message: 'Achievement Unlocked: ${achievement.title}',
-            icon: Icons.emoji_events,
-            iconColor: Colors.orange,
-            duration: const Duration(seconds: 4),
-            alignment: Alignment.topLeft,
-          );
-        }
+          icon: Icons.star,
+          backgroundColor: Colors.green[600]!,
+          iconColor: Colors.orange,
+        );
       }
+    }
 
     if (!_disposed) {
       notifyListeners();

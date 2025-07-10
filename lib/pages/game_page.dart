@@ -4,11 +4,11 @@ import '../utils/managers/game_manager.dart';
 import '../../utils/game_logic/game_logic_factory.dart';
 import '../../utils/game_logic/base_game_logic.dart';
 import '../widgets/tutorial_overlay.dart';
-import '../widgets/top_notification.dart';
 import 'result_page.dart';
 import '../widgets/question_card.dart';
 import '../widgets/answer_option_button.dart';
 import '../utils/managers/audio_manager.dart';
+import '../utils/managers/notification_manager.dart';
 
 class GamePage extends StatefulWidget {
   final String? difficulty;
@@ -83,8 +83,8 @@ class _GamePageState extends State<GamePage> {
     if (mounted) {
       final result = _gameManager.getGameResult();
       if (result != null) {
-        // Add a delay before navigating to the result page to allow notifications to show
-        await Future.delayed(const Duration(seconds: 1));
+        // Add a longer delay before navigating to the result page to allow notifications to show
+        await Future.delayed(const Duration(seconds: 3));
         _goToResultPage(result);
       }
     }
@@ -137,16 +137,56 @@ class _GamePageState extends State<GamePage> {
                 );
               },
             ),
-            // Debug button for notification
+            // Notification debug button removed
+            // Add test notification button for debugging
             Positioned(
-              bottom: 40,
+              top: 100,
               right: 20,
               child: FloatingActionButton(
-                heroTag: 'debugNotification',
+                heroTag: 'notif',
+                mini: true,
                 onPressed: () {
-                  TopNotification.show(context, message: 'Test Notification', icon: Icons.emoji_events);
+                  NotificationManager.showToast(
+                    context,
+                    message: 'Test Notification!',
+                    icon: Icons.check_circle,
+                    backgroundColor: Colors.green[600]!,
+                    iconColor: Colors.white,
+                  );
                 },
                 child: const Icon(Icons.notifications),
+              ),
+            ),
+            // Add test level-up and achievement button
+            Positioned(
+              top: 160,
+              right: 20,
+              child: FloatingActionButton(
+                heroTag: 'test',
+                mini: true,
+                onPressed: () async {
+                  debugPrint('🧪 Testing level-up and achievement notifications...');
+                  
+                  // Test level-up notification
+                  NotificationManager.showGlobalToast(
+                    message: 'Test Level Up! You reached Level 5',
+                    icon: Icons.emoji_events,
+                    backgroundColor: Colors.deepPurple[400]!,
+                    iconColor: Colors.amber,
+                  );
+                  
+                  // Wait a bit
+                  await Future.delayed(const Duration(seconds: 2));
+                  
+                  // Test achievement notification
+                  NotificationManager.showGlobalToast(
+                    message: 'Test Achievement Unlocked: Perfect Score',
+                    icon: Icons.star,
+                    backgroundColor: Colors.green[600]!,
+                    iconColor: Colors.orange,
+                  );
+                },
+                child: const Icon(Icons.science),
               ),
             ),
           ],

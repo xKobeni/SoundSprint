@@ -8,6 +8,7 @@ import '../utils/managers/user_preferences.dart';
 import '../utils/managers/settings_provider.dart';
 import '../utils/managers/difficulty_progression_manager.dart';
 import 'package:flutter/services.dart';
+import '../widgets/permission_utils.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -33,6 +34,21 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
     _nameController.addListener(_onFieldChanged);
     _loadProfile();
+    _checkPermissionsOnLoad();
+  }
+
+  Future<void> _checkPermissionsOnLoad() async {
+    // Check if permissions are available without requesting them
+    final hasPermissions = await checkPermissionsAvailable();
+    if (!hasPermissions && mounted) {
+      // Show a subtle notification that permissions might be needed
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Permissions may be needed to update your avatar'),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
   }
 
   void _onFieldChanged() {
@@ -112,6 +128,8 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> _pickAvatar() async {
+    final granted = await checkAndRequestAvatarPermissions(context);
+    if (!granted) return;
     try {
       final picker = ImagePicker();
       final picked = await picker.pickImage(source: ImageSource.gallery);
@@ -537,12 +555,18 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Text(category['emoji'], style: const TextStyle(fontSize: 28)),
           const SizedBox(width: 10),
-          Text('${category['label']}  |  Age $ageInt',
+          Expanded(
+            child: Text(
+              '${category['label']}  |  Age $ageInt',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: category['color'],
-              )),
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          ),
         ],
       ),
     );

@@ -17,6 +17,7 @@ import 'utils/managers/achievement_manager.dart';
 import 'utils/managers/daily_points_manager.dart';
 import 'utils/managers/difficulty_progression_manager.dart';
 import 'utils/managers/user_preferences.dart';
+import 'utils/managers/notification_manager.dart';
 import 'utils/tests/audio_test.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,7 +67,27 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           title: 'SoundSprint',
-          theme: SettingsProvider().currentTheme,
+          scaffoldMessengerKey: NotificationManager.messengerKey,
+          theme: ThemeData(
+            fontFamily: 'Poppins', // Default for body
+            textTheme: TextTheme(
+              displayLarge: TextStyle(fontFamily: 'Fredoka'),
+              displayMedium: TextStyle(fontFamily: 'Fredoka'),
+              displaySmall: TextStyle(fontFamily: 'Fredoka'),
+              headlineLarge: TextStyle(fontFamily: 'Fredoka'),
+              headlineMedium: TextStyle(fontFamily: 'Fredoka'),
+              headlineSmall: TextStyle(fontFamily: 'Fredoka'),
+              titleLarge: TextStyle(fontFamily: 'Fredoka'),
+              titleMedium: TextStyle(fontFamily: 'Fredoka'),
+              titleSmall: TextStyle(fontFamily: 'Fredoka'),
+              bodyLarge: TextStyle(fontFamily: 'Poppins'),
+              bodyMedium: TextStyle(fontFamily: 'Poppins'),
+              bodySmall: TextStyle(fontFamily: 'Poppins'),
+              labelLarge: TextStyle(fontFamily: 'Poppins'),
+              labelMedium: TextStyle(fontFamily: 'Poppins'),
+              labelSmall: TextStyle(fontFamily: 'Poppins'),
+            ),
+          ),
           initialRoute: '/splash',
           debugShowCheckedModeBanner: false,
           routes: {

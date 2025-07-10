@@ -56,20 +56,37 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Quiz Results'),
-        backgroundColor: const Color(0xFF7C5CFC),
+        backgroundColor: const Color(0xFFE9E0FF),
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFE9E0FF), Color(0xFF7C5CFC)],
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
             // Result Header
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: resultColor.withOpacity(0.1),
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: resultColor.withOpacity(0.3)),
+                border: Border.all(color: resultColor.withOpacity(0.2)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ],
               ),
               child: Column(
                 children: [
@@ -112,6 +129,7 @@ class ResultPage extends StatelessWidget {
                     value: score,
                     color: Colors.green,
                     icon: Icons.check_circle,
+                    background: Colors.white,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -121,6 +139,7 @@ class ResultPage extends StatelessWidget {
                     value: total - score,
                     color: Colors.red,
                     icon: Icons.cancel,
+                    background: Colors.white,
                   ),
                 ),
               ],
@@ -142,7 +161,15 @@ class ResultPage extends StatelessWidget {
                   final isCorrect = a['userAnswer'] == a['correctAnswer'];
                   return Card(
                     margin: const EdgeInsets.only(bottom: 8),
-                    color: isCorrect ? Colors.green[50] : Colors.red[50],
+                    color: Colors.white,
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(
+                        color: isCorrect ? Colors.green.withOpacity(0.2) : Colors.red.withOpacity(0.2),
+                        width: 1.5,
+                      ),
+                    ),
                     child: ListTile(
                       leading: Icon(
                         isCorrect ? Icons.check_circle : Icons.cancel,
@@ -185,12 +212,14 @@ class ResultPage extends StatelessWidget {
                     icon: const Icon(Icons.replay),
                     label: const Text('Play Again'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF7C5CFC),
-                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.white,
+                      foregroundColor: const Color(0xFF7C5CFC),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
+                        side: const BorderSide(color: Color(0xFF7C5CFC)),
                       ),
+                      elevation: 2,
                     ),
                   ),
                 ),
@@ -203,6 +232,7 @@ class ResultPage extends StatelessWidget {
                     icon: const Icon(Icons.home),
                     label: const Text('Home'),
                     style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF7C5CFC),
                       side: const BorderSide(color: Color(0xFF7C5CFC)),
                       padding: const EdgeInsets.symmetric(vertical: 16),
@@ -215,6 +245,7 @@ class ResultPage extends StatelessWidget {
               ],
             ),
           ],
+          ),
         ),
       ),
     );
@@ -226,12 +257,14 @@ class _ScoreCard extends StatelessWidget {
   final int value;
   final Color color;
   final IconData icon;
+  final Color background;
 
   const _ScoreCard({
     required this.title,
     required this.value,
     required this.color,
     required this.icon,
+    this.background = Colors.white,
   });
 
   @override
@@ -239,9 +272,16 @@ class _ScoreCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: background,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: color.withOpacity(0.3)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 4,
+            offset: Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         children: [
