@@ -129,8 +129,8 @@
           "difficulty": "Hard",
           "type": "sound",
           "file": "Manny_Pacquiao.wav",
-          "options": ["Manny Pacquiao", "Pambansang Kamao", "Knockout King", "Laban Pilipinas"],
-          "correctAnswer": "Manny Pacquiao"
+          "options": ["happe new yer", "Pambansang Kamao", "Knockout King", "Laban Pilipinas"],
+          "correctAnswer": "happe new yer"
         },
         {
           "mode": "GuessTheSound",
@@ -1455,6 +1455,204 @@
           "answer": true
         }
       ]
+    },
+    "Animals": {
+      "Easy": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The blue whale is the largest animal to have ever lived.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Platypuses lay eggs.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Some species of jellyfish are considered immortal.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "A snail can sleep for up to three years.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Sharks are mammals.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "The heart of a shrimp is located in its head.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Octopuses have three hearts.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Giraffes have the same number of neck vertebrae as humans.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Male seahorses give birth to their young.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Bats are blind.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "A group of crows is called a murder.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Easy",
+          "type": "truefalse",
+          "question": "Tigers have striped skin as well as striped fur.",
+          "answer": true
+        }
+      ],
+      "Medium": [
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Bats are the only mammals capable of true flight.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "All snakes are venomous.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "A group of lions is called a pride.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Penguins live at the North Pole.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Elephants are the largest land animals.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Dolphins are fish.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Kangaroos are native to Africa.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Owls can rotate their heads up to 270 degrees.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Cheetahs are the fastest land animals.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Frogs drink water through their skin.",
+          "answer": true
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "All birds can fly.",
+          "answer": false
+        },
+        {
+          "mode": "TrueOrFalse",
+          "category": "Animals",
+          "difficulty": "Medium",
+          "type": "truefalse",
+          "question": "Camels store water in their humps.",
+          "answer": false
+        }
+      ]
     }
   },
   "Vocabulary": {
@@ -1928,8 +2126,8 @@
           "difficulty": "Easy",
           "type": "vocabulary",
           "question": "What is the opposite of 'open'?",
-          "options": ["Close", "Shut", "Closed", "Locked"],
-          "correctAnswer": "Closed"
+          "options": ["Close", "Shut", "Locked", "Near"],
+          "correctAnswer": "Close"
         }
       ],
       "Medium": [
@@ -2006,6 +2204,60 @@
           "question": "What is the opposite of 'meticulous'?",
           "options": ["Careless", "Careful", "Thorough", "Detailed"],
           "correctAnswer": "Careless"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'benevolent'?",
+          "options": ["Malevolent", "Kind", "Generous", "Helpful"],
+          "correctAnswer": "Malevolent"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'lucid'?",
+          "options": ["Confused", "Clear", "Bright", "Obvious"],
+          "correctAnswer": "Confused"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'augment'?",
+          "options": ["Diminish", "Increase", "Expand", "Enhance"],
+          "correctAnswer": "Diminish"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'obscure'?",
+          "options": ["Clear", "Hidden", "Vague", "Ambiguous"],
+          "correctAnswer": "Clear"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'prolific'?",
+          "options": ["Unproductive", "Creative", "Fruitful", "Abundant"],
+          "correctAnswer": "Unproductive"
+        },
+        {
+          "mode": "Vocabulary",
+          "category": "English Antonyms",
+          "difficulty": "Hard",
+          "type": "vocabulary",
+          "question": "What is the opposite of 'placate'?",
+          "options": ["Agitate", "Calm", "Soothe", "Appease"],
+          "correctAnswer": "Agitate"
         }
       ]
     },
