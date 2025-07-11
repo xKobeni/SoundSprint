@@ -11,6 +11,10 @@ import 'stats_page.dart';
 import 'achievements_page.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../utils/managers/user_preferences.dart';
+import '../utils/managers/achievement_manager.dart';
+import '../utils/managers/daily_points_manager.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:flutter/services.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -21,6 +25,40 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   bool _loading = true;
+
+  void _shareApp() {
+    const appLink = 'https://drive.google.com/drive/folders/1_90IGyHbsk_StIHReOoMr6wIahztlBVe';
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Share SoundSprint'),
+        content: const Text('Invite your friends to try SoundSprint!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Clipboard.setData(const ClipboardData(text: appLink));
+              Navigator.of(context).pop();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Link copied to clipboard!')),
+              );
+            },
+            child: const Text('Copy Link'),
+          ),
+          ElevatedButton.icon(
+            onPressed: () {
+              Share.share(
+                'Check out SoundSprint! Download it now: $appLink',
+                subject: 'Try SoundSprint!',
+              );
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.share),
+            label: const Text('Share'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -83,6 +121,10 @@ class _SettingsPageState extends State<SettingsPage> {
       try {
         await StatsManager.resetAllStats();
         await SettingsProvider().clearAllSettings();
+        await UserPreferences().clearUserData();
+        await AchievementManager.resetAchievements();
+        await DailyPointsManager.resetDailyPoints();
+        await AudioManager().forceStopAll();
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

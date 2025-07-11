@@ -9,6 +9,7 @@ import '../utils/managers/settings_provider.dart';
 import '../utils/managers/difficulty_progression_manager.dart';
 import 'package:flutter/services.dart';
 import '../widgets/permission_utils.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -367,7 +368,39 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: SizedBox(
                           width: double.infinity,
                           child: OutlinedButton.icon(
-                            onPressed: () {}, // TODO: Implement share app
+                            onPressed: () {
+                              const appLink = 'https://drive.google.com/drive/folders/1_90IGyHbsk_StIHReOoMr6wIahztlBVe';
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: const Text('Share SoundSprint'),
+                                  content: const Text('Invite your friends to try SoundSprint!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Clipboard.setData(const ClipboardData(text: appLink));
+                                        Navigator.of(context).pop();
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          const SnackBar(content: Text('Link copied to clipboard!')),
+                                        );
+                                      },
+                                      child: const Text('Copy Link'),
+                                    ),
+                                    ElevatedButton.icon(
+                                      onPressed: () {
+                                        Share.share(
+                                          'Check out SoundSprint! Download it now: $appLink',
+                                          subject: 'Try SoundSprint!',
+                                        );
+                                        Navigator.of(context).pop();
+                                      },
+                                      icon: const Icon(Icons.share),
+                                      label: const Text('Share'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
                             icon: const Icon(Icons.share, color: Color(0xFF7C5CFC)),
                             label: const Text('Share App', style: TextStyle(color: Color(0xFF7C5CFC), fontWeight: FontWeight.bold)),
                             style: OutlinedButton.styleFrom(

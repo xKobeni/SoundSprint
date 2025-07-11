@@ -43,6 +43,7 @@ dependencies:
   provider: ^6.1.5
   permission_handler: ^11.3.0
   overlay_support: ^2.1.0
+  share_plus: ^7.2.1
 
 dev_dependencies:
   flutter_test:
