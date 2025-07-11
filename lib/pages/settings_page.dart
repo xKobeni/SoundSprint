@@ -177,41 +177,6 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Future<void> _resetTutorials() async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Reset Tutorials?'),
-        content: const Text('This will show tutorials again for all game modes. This action cannot be undone.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Reset Tutorials'),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-          ),
-        ],
-      ),
-    );
-    if (confirmed ?? false) {
-      try {
-        await TutorialManager.resetTutorials();
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              behavior: SnackBarBehavior.fixed,
-              content: Text('Tutorials reset successfully')),
-          );
-        }
-      } catch (e) {
-        _showErrorDialog('Failed to reset tutorials: $e');
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     if (_loading) {
@@ -285,14 +250,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: 'Help & Support',
                   subtitle: 'Get help and find answers',
                   onTap: _showHelp,
-                ),
-                const SizedBox(height: 16),
-                // Reset Tutorials
-                _buildSettingsCard(
-                  icon: Icons.refresh,
-                  title: 'Reset Tutorials',
-                  subtitle: 'Show tutorials again for all game modes',
-                  onTap: _resetTutorials,
                 ),
                 const SizedBox(height: 32),
               ],

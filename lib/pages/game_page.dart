@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'dart:async';
 import '../utils/managers/game_manager.dart';
 import '../../utils/game_logic/game_logic_factory.dart';
 import '../../utils/game_logic/base_game_logic.dart';
@@ -35,13 +36,26 @@ class _GamePageState extends State<GamePage> {
   // Add timer controller for circular countdown
   late int _timerMax;
   late int _timerRemaining;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    _timerMax = widget.timeLimit ?? 20;
+    // Set timer based on difficulty
+    String difficulty = widget.difficulty?.toLowerCase() ?? 'easy';
+    if (difficulty == 'easy') {
+      _timerMax = 200;
+    } else if (difficulty == 'medium') {
+      _timerMax = 120;
+    } else if (difficulty == 'hard') {
+      _timerMax = 90;
+    } else {
+      _timerMax = 120; // default
+    }
     _timerRemaining = _timerMax;
+    _timer = null;
     _initializeGame();
+    _startQuizTimer();
   }
 
   Future<void> _initializeGame() async {
@@ -94,7 +108,7 @@ class _GamePageState extends State<GamePage> {
   }
 
   void _goToResultPage(GameResult result) {
-    AudioManager().stopAll(); // Stop any playing audio before navigating
+    _stopAllGameActivities(); // Stop all game activities before navigating
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -113,86 +127,133 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
+  void _startQuizTimer() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) return;
+      setState(() {
+        _timerRemaining--;
+      });
+      if (_timerRemaining <= 0) {
+        _timer?.cancel();
+        _timer = null;
+        // End the game and show result
+        if (mounted && _gameManager.currentIndex < _gameManager.questions.length) {
+          final result = _gameManager.getGameResult();
+          if (result != null) {
+            _goToResultPage(result);
+          }
+        }
+      }
+    });
+  }
+
+  void _stopAllGameActivities() {
+    debugPrint('🛑 GamePage: Stopping all game activities...');
+    
+    // Stop the timer
+    _timer?.cancel();
+    _timer = null;
+    
+    // Stop all audio
+    AudioManager().forceStopAll();
+    
+    // Stop any ongoing game logic
+    _gameManager.stopGame();
+    
+    debugPrint('🛑 GamePage: All game activities stopped');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFFE9E0FF), Color(0xFF7C5CFC)],
+    return WillPopScope(
+      onWillPop: () async {
+        final shouldExit = await _showExitQuizDialog(context);
+        if (shouldExit == true) {
+          _stopAllGameActivities(); // Use force stop for more reliable audio stopping
+          return true;
+        }
+        return false;
+      },
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFFE9E0FF), Color(0xFF7C5CFC)],
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            ListenableBuilder(
-              listenable: _gameManager,
-              builder: (context, child) {
-                return SafeArea(
-                  child: Column(
-                    children: [
-                      _buildCustomHeader(context),
-                      _buildGameTopBar(),
-                      Expanded(child: _buildGameContent()),
-                    ],
-                  ),
-                );
-              },
-            ),
-            // Notification debug button removed
-            // Add test notification button for debugging
-            Positioned(
-              top: 100,
-              right: 20,
-              child: FloatingActionButton(
-                heroTag: 'notif',
-                mini: true,
-                onPressed: () {
-                  NotificationManager.showToast(
-                    context,
-                    message: 'Test Notification!',
-                    icon: Icons.check_circle,
-                    backgroundColor: Colors.green[600]!,
-                    iconColor: Colors.white,
+          child: Stack(
+            children: [
+              ListenableBuilder(
+                listenable: _gameManager,
+                builder: (context, child) {
+                  return SafeArea(
+                    child: Column(
+                      children: [
+                        _buildCustomHeader(context),
+                        _buildGameTopBar(),
+                        Expanded(child: _buildGameContent()),
+                      ],
+                    ),
                   );
                 },
-                child: const Icon(Icons.notifications),
               ),
-            ),
-            // Add test level-up and achievement button
-            Positioned(
-              top: 160,
-              right: 20,
-              child: FloatingActionButton(
-                heroTag: 'test',
-                mini: true,
-                onPressed: () async {
-                  debugPrint('🧪 Testing level-up and achievement notifications...');
-                  
-                  // Test level-up notification
-                  NotificationManager.showGlobalToast(
-                    message: 'Test Level Up! You reached Level 5',
-                    icon: Icons.emoji_events,
-                    backgroundColor: Colors.deepPurple[400]!,
-                    iconColor: Colors.amber,
-                  );
-                  
-                  // Wait a bit
-                  await Future.delayed(const Duration(seconds: 2));
-                  
-                  // Test achievement notification
-                  NotificationManager.showGlobalToast(
-                    message: 'Test Achievement Unlocked: Perfect Score',
-                    icon: Icons.star,
-                    backgroundColor: Colors.green[600]!,
-                    iconColor: Colors.orange,
-                  );
-                },
-                child: const Icon(Icons.science),
-              ),
-            ),
-          ],
+              // Notification debug button removed
+              // Add test notification button for debugging
+              // Positioned(
+              //   top: 100,
+              //   right: 20,
+              //   child: FloatingActionButton(
+              //     heroTag: 'notif',
+              //     mini: true,
+              //     onPressed: () {
+              //       NotificationManager.showToast(
+              //         context,
+              //         message: 'Test Notification!',
+              //         icon: Icons.check_circle,
+              //         backgroundColor: Colors.green[600]!,
+              //         iconColor: Colors.white,
+              //       );
+              //     },
+              //     child: const Icon(Icons.notifications),
+              //   ),
+              // ),
+              // Add test level-up and achievement button
+              // Positioned(
+              //   top: 160,
+              //   right: 20,
+              //   child: FloatingActionButton(
+              //     heroTag: 'test',
+              //     mini: true,
+              //     onPressed: () async {
+              //       debugPrint('🧪 Testing level-up and achievement notifications...');
+              //       
+              //       // Test level-up notification
+              //       NotificationManager.showGlobalToast(
+              //         message: 'Test Level Up! You reached Level 5',
+              //         icon: Icons.emoji_events,
+              //         backgroundColor: Colors.deepPurple[400]!,
+              //         iconColor: Colors.amber,
+              //       );
+              //       
+              //       // Wait a bit
+              //       await Future.delayed(const Duration(seconds: 2));
+              //       
+              //       // Test achievement notification
+              //       NotificationManager.showGlobalToast(
+              //         message: 'Test Achievement Unlocked: Perfect Score',
+              //         icon: Icons.star,
+              //         backgroundColor: Colors.green[600]!,
+              //         iconColor: Colors.orange,
+              //       );
+              //     },
+              //     child: const Icon(Icons.science),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
@@ -223,7 +284,7 @@ class _GamePageState extends State<GamePage> {
               onPressed: () async {
                 final shouldExit = await _showExitQuizDialog(context);
                 if (shouldExit == true) {
-                  await AudioManager().stopAll(); // Stop any playing audio when exiting
+                  _stopAllGameActivities(); // Use force stop for more reliable audio stopping
                   Navigator.pop(context);
                 }
               },
@@ -305,7 +366,7 @@ class _GamePageState extends State<GamePage> {
     final incorrect = _gameManager.incorrectCount;
     final total = _gameManager.questions.length;
     final current = _gameManager.currentIndex + 1;
-    final time = _gameManager.timeRemaining;
+    final time = _timerRemaining;
     final maxTime = _timerMax;
     
     // Calculate current points based on score using the same logic as game_manager.dart
@@ -459,13 +520,35 @@ class _GamePageState extends State<GamePage> {
             valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
           ),
           const SizedBox(height: 4),
-          Text(
-            'Time: ${time}s',
-            style: const TextStyle(
-              fontSize: 12,
-              color: Colors.black54,
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: _gameManager.timeRunOut ? Colors.red.withOpacity(0.1) : Colors.transparent,
+              borderRadius: BorderRadius.circular(8),
+              border: _gameManager.timeRunOut ? Border.all(color: Colors.red.withOpacity(0.3)) : null,
             ),
-            textAlign: TextAlign.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (_gameManager.timeRunOut) ...[
+                  const Icon(
+                    Icons.timer_off,
+                    size: 16,
+                    color: Colors.red,
+                  ),
+                  const SizedBox(width: 4),
+                ],
+                Text(
+                  _gameManager.timeRunOut ? 'Time\'s up!' : 'Time: ${time}s',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: _gameManager.timeRunOut ? Colors.red : Colors.black54,
+                    fontWeight: _gameManager.timeRunOut ? FontWeight.bold : FontWeight.normal,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -621,7 +704,7 @@ class _GamePageState extends State<GamePage> {
     final incorrect = _gameManager.incorrectCount;
     final total = _gameManager.questions.length;
     final current = _gameManager.currentIndex + 1;
-    final time = _gameManager.timeRemaining;
+    final time = _timerRemaining;
     final maxTime = _timerMax;
     final gameMode = _gameManager.currentGameMode ?? '';
     
@@ -927,7 +1010,7 @@ class _GamePageState extends State<GamePage> {
 
   @override
   void dispose() {
-    _gameManager.dispose();
+    _stopAllGameActivities(); // Stop all game activities when disposing
     super.dispose();
   }
 } 

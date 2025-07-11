@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../utils/question_loader.dart';
-import '../../utils/game_logic/game_logic_factory.dart';
 import 'game_page.dart';
 
 class CategorySelectionPage extends StatefulWidget {

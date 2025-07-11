@@ -185,16 +185,16 @@ class _AchievementsPageState extends State<AchievementsPage> {
           ),
         ),
         // Debug button for testing achievements
-        IconButton(
-          icon: const Icon(Icons.refresh, color: Color(0xFF7C5CFC)),
-          onPressed: _loadAchievements,
-          tooltip: 'Refresh achievements',
-        ),
-        IconButton(
-          icon: const Icon(Icons.info, color: Color(0xFF7C5CFC)),
-          onPressed: _showDebugInfo,
-          tooltip: 'Show debug info',
-        ),
+        // IconButton(
+        //   icon: const Icon(Icons.refresh, color: Color(0xFF7C5CFC)),
+        //   onPressed: _loadAchievements,
+        //   tooltip: 'Refresh achievements',
+        // ),
+        // IconButton(
+        //   icon: const Icon(Icons.info, color: Color(0xFF7C5CFC)),
+        //   onPressed: _showDebugInfo,
+        //   tooltip: 'Show debug info',
+        // ),
       ],
     );
   }

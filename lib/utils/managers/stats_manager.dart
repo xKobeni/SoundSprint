@@ -11,6 +11,7 @@ class StatsManager {
   static const String _totalPlaytimeKey = 'totalPlaytime';
   static const String _categoryStatsKey = 'categoryStats';
   static const String _difficultyStatsKey = 'difficultyStats';
+  static const String _gameModeStatsKey = 'gameModeStats';
   static const String _mostMissedQuestionsKey = 'mostMissedQuestions';
 
   /// Updates stats after completing a game
@@ -20,6 +21,7 @@ class StatsManager {
     required int playtimeSeconds,
     required String category,
     required String difficulty,
+    required String gameMode,
     required List<Map<String, dynamic>> answers,
   }) async {
     final prefs = await SharedPreferences.getInstance();
@@ -64,8 +66,50 @@ class StatsManager {
     // Update difficulty stats
     await _updateDifficultyStats(difficulty, score, totalQuestions, prefs);
     
+    // Update game mode stats
+    await _updateGameModeStats(gameMode, score, totalQuestions, prefs);
+    
     // Update most missed questions
     await _updateMostMissedQuestions(answers, prefs);
+  }
+
+  /// Updates game mode-specific statistics
+  static Future<void> _updateGameModeStats(
+    String gameMode,
+    int score,
+    int totalQuestions,
+    SharedPreferences prefs,
+  ) async {
+    final gameModeStatsJson = prefs.getString(_gameModeStatsKey) ?? '{}';
+    Map<String, dynamic> gameModeStats = {};
+    
+    try {
+      gameModeStats = Map<String, dynamic>.from(json.decode(gameModeStatsJson));
+    } catch (e) {
+      gameModeStats = {};
+    }
+    
+    if (!gameModeStats.containsKey(gameMode)) {
+      gameModeStats[gameMode] = {
+        'gamesPlayed': 0,
+        'totalScore': 0,
+        'totalQuestions': 0,
+        'highScore': 0,
+        'totalCorrectAnswers': 0,
+      };
+    }
+    
+    final modeStats = gameModeStats[gameMode] as Map<String, dynamic>;
+    modeStats['gamesPlayed'] = (modeStats['gamesPlayed'] ?? 0) + 1;
+    modeStats['totalScore'] = (modeStats['totalScore'] ?? 0) + score;
+    modeStats['totalQuestions'] = (modeStats['totalQuestions'] ?? 0) + totalQuestions;
+    modeStats['totalCorrectAnswers'] = (modeStats['totalCorrectAnswers'] ?? 0) + score;
+    
+    if (score > (modeStats['highScore'] ?? 0)) {
+      modeStats['highScore'] = score;
+    }
+    
+    await prefs.setString(_gameModeStatsKey, json.encode(gameModeStats));
   }
 
   /// Updates category-specific statistics
@@ -219,6 +263,36 @@ class StatsManager {
     }
   }
 
+  /// Gets all game mode stats
+  static Future<Map<String, dynamic>> getGameModeStats() async {
+    final prefs = await SharedPreferences.getInstance();
+    final gameModeStatsJson = prefs.getString(_gameModeStatsKey) ?? '{}';
+    try {
+      final rawStats = Map<String, dynamic>.from(json.decode(gameModeStatsJson));
+      
+      // Calculate average accuracy for each game mode
+      final processedStats = <String, Map<String, dynamic>>{};
+      rawStats.forEach((mode, stats) {
+        final modeStats = stats as Map<String, dynamic>;
+        final totalQuestions = modeStats['totalQuestions'] ?? 0;
+        final totalCorrectAnswers = modeStats['totalCorrectAnswers'] ?? 0;
+        final avgAccuracy = totalQuestions > 0 ? totalCorrectAnswers / totalQuestions : 0.0;
+        
+        processedStats[mode] = {
+          'gamesPlayed': modeStats['gamesPlayed'] ?? 0,
+          'bestScore': modeStats['highScore'] ?? 0,
+          'avgAccuracy': avgAccuracy,
+          'totalScore': modeStats['totalScore'] ?? 0,
+          'totalQuestions': totalQuestions,
+        };
+      });
+      
+      return processedStats;
+    } catch (e) {
+      return {};
+    }
+  }
+
   /// Resets all stats
   static Future<void> resetAllStats() async {
     final prefs = await SharedPreferences.getInstance();
@@ -232,6 +306,7 @@ class StatsManager {
     await prefs.remove('accuracy');
     await prefs.remove(_categoryStatsKey);
     await prefs.remove(_difficultyStatsKey);
+    await prefs.remove(_gameModeStatsKey);
     await prefs.remove(_mostMissedQuestionsKey);
   }
 

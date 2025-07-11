@@ -196,11 +196,20 @@ class AudioManager {
   Future<bool> _playAsset(String assetPath, int? clipStart, int? clipEnd, AudioPlayer? player) async {
     try {
       final audioPlayer = player ?? AudioPlayer();
+      
+      // Track the new player if it's not already tracked
+      if (player == null) {
+        _players[assetPath] = audioPlayer;
+      }
+      
       _currentPlayer = audioPlayer; // Track the current player
+      
       // Set volume
       await audioPlayer.setVolume(_isMuted ? 0.0 : _volume);
+      
       // Play the asset
       await audioPlayer.play(AssetSource(assetPath));
+      
       // Handle clip timing for music
       if (clipStart != null) {
         await audioPlayer.seek(Duration(seconds: clipStart));
@@ -211,32 +220,79 @@ class AudioManager {
           audioPlayer.stop();
         });
       }
+      
+      debugPrint('🎵 AudioManager: Playing $assetPath');
       return true;
     } catch (e) {
-      debugPrint('Error playing asset $assetPath: $e');
+      debugPrint('❌ Error playing asset $assetPath: $e');
       return false;
     }
   }
 
   /// Stop all audio playback
   Future<void> stopAll() async {
+    debugPrint('🛑 AudioManager: Stopping all audio...');
+    
     // Stop all tracked players
     for (final player in _players.values) {
       try {
         await player.stop();
+        debugPrint('✅ Stopped tracked player');
       } catch (e) {
-        debugPrint('Error stopping player: $e');
+        debugPrint('❌ Error stopping tracked player: $e');
       }
     }
+    
     // Stop the current player if not already stopped
     if (_currentPlayer != null) {
       try {
         await _currentPlayer!.stop();
         await _currentPlayer!.dispose();
+        debugPrint('✅ Stopped and disposed current player');
       } catch (e) {
-        debugPrint('Error stopping current player: $e');
+        debugPrint('❌ Error stopping current player: $e');
       }
       _currentPlayer = null;
+    }
+    
+    // Clear all players from the map to ensure clean state
+    _players.clear();
+    
+    debugPrint('🛑 AudioManager: All audio stopped');
+  }
+
+  /// Force stop all audio with additional safety measures
+  Future<void> forceStopAll() async {
+    debugPrint('🛑 AudioManager: Force stopping all audio...');
+    
+    try {
+      // Stop all tracked players
+      for (final player in _players.values) {
+        try {
+          await player.stop();
+          await player.dispose();
+        } catch (e) {
+          debugPrint('❌ Error force stopping tracked player: $e');
+        }
+      }
+      
+      // Stop the current player if not already stopped
+      if (_currentPlayer != null) {
+        try {
+          await _currentPlayer!.stop();
+          await _currentPlayer!.dispose();
+        } catch (e) {
+          debugPrint('❌ Error force stopping current player: $e');
+        }
+        _currentPlayer = null;
+      }
+      
+      // Clear all players from the map to ensure clean state
+      _players.clear();
+      
+      debugPrint('🛑 AudioManager: Force stop complete');
+    } catch (e) {
+      debugPrint('❌ Error in forceStopAll: $e');
     }
   }
 

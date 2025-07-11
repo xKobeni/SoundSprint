@@ -72,7 +72,7 @@ class AudioGameLogic extends BaseGameLogic {
 
     try {
       // Stop any currently playing audio before starting new question
-      await AudioManager().stopAll();
+      await AudioManager().forceStopAll(); // Use force stop for more reliable audio stopping
       _isPlaying.value = true;
       
       // Play the audio using AudioManager

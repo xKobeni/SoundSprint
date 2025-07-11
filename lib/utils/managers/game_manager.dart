@@ -29,6 +29,7 @@ class GameManager extends ChangeNotifier {
   String? _errorMessage;
   bool _disposed = false;
   bool _gameFinished = false;
+  bool _timeRunOut = false; // Track if time has run out
   
   BaseGameLogic? _currentGameLogic;
   String? _currentGameMode;
@@ -51,6 +52,7 @@ class GameManager extends ChangeNotifier {
   String? get currentGameMode => _currentGameMode;
   int get correctCount => _answerDetails.where((a) => a['isCorrect'] == true).length;
   int get incorrectCount => _answerDetails.where((a) => a['isCorrect'] == false).length;
+  bool get timeRunOut => _timeRunOut; // Getter for time run out status
 
   /// Initialize the game manager
   Future<void> initialize() async {
@@ -160,6 +162,7 @@ class GameManager extends ChangeNotifier {
         _maxTime = _timer;
         _timeRemaining = _timer;
         _isPlaying = true;
+        _timeRunOut = false; // Reset time run out flag for new question
       });
     }
 
@@ -187,9 +190,13 @@ class GameManager extends ChangeNotifier {
         });
       }
       
+      // When timer reaches 0, just stop the timer but don't auto-advance
       if (_timeRemaining <= 0 && !_disposed) {
-        await handleAnswer(null);
-        return false;
+        setState(() {
+          _timer = 0; // Show 0 on timer
+          _timeRunOut = true; // Set the flag
+        });
+        return false; // Stop the timer loop
       }
       return !_disposed;
     });
@@ -298,6 +305,7 @@ class GameManager extends ChangeNotifier {
       playtimeSeconds: playTime.inSeconds,
       category: _questions.isNotEmpty ? _questions.first.category : 'unknown',
       difficulty: _questions.isNotEmpty ? _questions.first.difficulty : 'easy',
+      gameMode: _currentGameMode ?? 'unknown',
       answers: _answerDetails,
     );
 
@@ -398,7 +406,29 @@ class GameManager extends ChangeNotifier {
       _isPlaying = false;
       _errorMessage = null;
       _gameFinished = false; // Reset the flag here!
+      _timeRunOut = false; // Reset the flag here!
     });
+  }
+
+  /// Stop all game activities
+  void stopGame() {
+    if (_disposed) return;
+    
+    debugPrint('🛑 GameManager: Stopping all game activities...');
+    
+    // Stop any ongoing game logic
+    _currentGameLogic?.dispose();
+    
+    // Reset game state
+    setState(() {
+      _answered = true; // This will stop the timer loop
+      _isPlaying = false;
+      _timeRemaining = 0;
+      _timer = 0;
+      _timeRunOut = false; // Ensure it's false when stopping
+    });
+    
+    debugPrint('🛑 GameManager: All game activities stopped');
   }
 
   /// Set state and notify listeners
