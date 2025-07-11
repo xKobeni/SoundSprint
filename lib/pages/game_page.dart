@@ -60,7 +60,10 @@ class _GamePageState extends State<GamePage> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error initializing game: $e')),
+          SnackBar(
+            behavior: SnackBarBehavior.fixed,
+            content: Text('Error initializing game: $e'),
+          ),
         );
       }
     }
@@ -305,31 +308,32 @@ class _GamePageState extends State<GamePage> {
     final time = _gameManager.timeRemaining;
     final maxTime = _timerMax;
     
-    // Calculate current points based on score
+    // Calculate current points based on score using the same logic as game_manager.dart
     final currentScore = correct;
-    final basePoints = currentScore * 1;
+    final basePoints = currentScore * 1; // 1 point per correct answer
     final gameMode = _gameManager.currentGameMode ?? 'unknown';
     int modeBonus = 0;
     
-    // Calculate mode-specific bonus
+    // Calculate mode-specific bonus (matching _calculateModeSpecificPoints logic)
     switch (gameMode) {
       case 'GuessTheSound':
-        modeBonus = currentScore * 1;
+        if (currentScore >= 2) modeBonus = 1;
         break;
       case 'GuessTheMusic':
-        modeBonus = currentScore * 2;
+        modeBonus = currentScore ~/ 3; // +1 for every 3 correct
         break;
       case 'TrueOrFalse':
-        modeBonus = currentScore * 1;
-        break;
       case 'Vocabulary':
-        modeBonus = currentScore * 1;
-        break;
       case 'GuessTheImage':
-        modeBonus = currentScore * 1;
+        modeBonus = 0;
         break;
       default:
-        modeBonus = currentScore * 1;
+        modeBonus = 0;
+    }
+    
+    // Add perfect score bonus
+    if (currentScore == total && currentScore > 0) {
+      modeBonus += 2;
     }
     
     final totalPoints = basePoints + modeBonus;
@@ -470,41 +474,43 @@ class _GamePageState extends State<GamePage> {
 
   Widget _buildPointsBreakdown() {
     final correct = _gameManager.correctCount;
+    final total = _gameManager.questions.length;
     final gameMode = _gameManager.currentGameMode ?? 'unknown';
-    final basePoints = correct * 1;
+    final basePoints = correct * 1; // 1 point per correct answer
     int modeBonus = 0;
     String modeName = _gameManager.currentGameModeName;
     
-    // Calculate mode-specific bonus
+    // Calculate mode-specific bonus (matching _calculateModeSpecificPoints logic)
     switch (gameMode) {
       case 'GuessTheSound':
-        modeBonus = correct * 1;
+        if (correct >= 2) modeBonus = 1;
         break;
       case 'GuessTheMusic':
-        modeBonus = correct * 2;
+        modeBonus = correct ~/ 3; // +1 for every 3 correct
         break;
       case 'TrueOrFalse':
-        modeBonus = correct * 1;
-        break;
       case 'Vocabulary':
-        modeBonus = correct * 1;
-        break;
       case 'GuessTheImage':
-        modeBonus = correct * 1;
+        modeBonus = 0;
         break;
       default:
-        modeBonus = correct * 1;
+        modeBonus = 0;
+    }
+    
+    // Add perfect score bonus
+    if (correct == total && correct > 0) {
+      modeBonus += 2;
     }
     
     final totalPoints = basePoints + modeBonus;
     
     return Container(
       padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
+      decoration: BoxDecoration(
         color: const Color(0xFFFFD700).withOpacity(0.05),
-              borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: const Color(0xFFFFD700).withOpacity(0.2)),
-            ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -518,12 +524,12 @@ class _GamePageState extends State<GamePage> {
               const SizedBox(width: 8),
               Text(
                 'Points Breakdown',
-              style: const TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF7C5CFC),
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF7C5CFC),
+                ),
               ),
-            ),
             ],
           ),
           const SizedBox(height: 12),
@@ -545,7 +551,7 @@ class _GamePageState extends State<GamePage> {
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green,
+                        color: Color(0xFF7C5CFC),
                       ),
                     ),
                   ],
@@ -556,14 +562,14 @@ class _GamePageState extends State<GamePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '$modeName Bonus',
+                      'Mode Bonus',
                       style: const TextStyle(
                         fontSize: 12,
                         color: Colors.black54,
                       ),
                     ),
                     Text(
-                      '+${modeBonus.toString()}',
+                      modeBonus.toString(),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -575,7 +581,7 @@ class _GamePageState extends State<GamePage> {
               ),
               Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Total',
@@ -587,7 +593,7 @@ class _GamePageState extends State<GamePage> {
                     Text(
                       totalPoints.toString(),
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF7C5CFC),
                       ),
@@ -596,6 +602,14 @@ class _GamePageState extends State<GamePage> {
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Mode: $modeName',
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.black54,
+            ),
           ),
         ],
       ),
@@ -610,29 +624,34 @@ class _GamePageState extends State<GamePage> {
     final time = _gameManager.timeRemaining;
     final maxTime = _timerMax;
     final gameMode = _gameManager.currentGameMode ?? '';
-    // Calculate points (same as in _buildProgressRow)
+    
+    // Calculate points (same as in _buildProgressRow and _calculateModeSpecificPoints)
     final currentScore = correct;
-    final basePoints = currentScore * 1;
+    final basePoints = currentScore * 1; // 1 point per correct answer
     int modeBonus = 0;
+    
+    // Calculate mode-specific bonus (matching _calculateModeSpecificPoints logic)
     switch (gameMode) {
       case 'GuessTheSound':
-        modeBonus = currentScore * 1;
+        if (currentScore >= 2) modeBonus = 1;
         break;
       case 'GuessTheMusic':
-        modeBonus = currentScore * 2;
+        modeBonus = currentScore ~/ 3; // +1 for every 3 correct
         break;
       case 'TrueOrFalse':
-        modeBonus = currentScore * 1;
-        break;
       case 'Vocabulary':
-        modeBonus = currentScore * 1;
-        break;
       case 'GuessTheImage':
-        modeBonus = currentScore * 1;
+        modeBonus = 0;
         break;
       default:
-        modeBonus = currentScore * 1;
+        modeBonus = 0;
     }
+    
+    // Add perfect score bonus
+    if (currentScore == total && currentScore > 0) {
+      modeBonus += 2;
+    }
+    
     final totalPoints = basePoints + modeBonus;
 
     // Only use this top bar for Vocabulary, True/False, GuessTheSound, GuessTheMusic, GuessTheImage

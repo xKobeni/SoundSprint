@@ -132,7 +132,10 @@ class _CategorySelectionPageState extends State<CategorySelectionPage>
           _loading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading categories: $e')),
+          SnackBar(
+            behavior: SnackBarBehavior.fixed,
+            content: Text('Error loading categories: $e'),
+          ),
         );
       }
     }

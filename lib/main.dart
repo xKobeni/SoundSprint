@@ -18,7 +18,8 @@ import 'utils/managers/daily_points_manager.dart';
 import 'utils/managers/difficulty_progression_manager.dart';
 import 'utils/managers/user_preferences.dart';
 import 'utils/managers/notification_manager.dart';
-import 'utils/tests/audio_test.dart';
+import 'package:overlay_support/overlay_support.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
@@ -38,23 +39,12 @@ void main() async {
   if (kDebugMode) {
     DifficultyProgressionManager.testLevelingLogic();
   }
-  
-  // Test audio functionality for debugging (remove in production)
-  if (kDebugMode) {
-    await AudioTest.testDogBark();
-  }
-  
-  // Test daily points system for debugging (remove in production)
-  // Removed: if (kDebugMode) {
-  //   await DailyPointsTest.testDailyPoints();
-  //   await DailyPointsTest.testDailyReset();
-  // }
-  
-  // Test daily challenges system for debugging (remove in production)
-  
 
-  
-  runApp(const MyApp());
+  runApp(
+    OverlaySupport.global(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

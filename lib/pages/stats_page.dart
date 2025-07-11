@@ -311,7 +311,10 @@ class _StatsPageState extends State<StatsPage> {
             await _loadStats();
             if (mounted) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('All stats have been reset.')),
+                const SnackBar(
+                  content: Text('All stats have been reset.'),
+                  behavior: SnackBarBehavior.fixed,
+                ),
               );
             }
           }

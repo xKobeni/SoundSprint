@@ -46,6 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
         const SnackBar(
           content: Text('Permissions may be needed to update your avatar'),
           duration: Duration(seconds: 3),
+          behavior: SnackBarBehavior.fixed,
         ),
       );
     }

@@ -42,6 +42,7 @@ dependencies:
   animated_text_kit: ^4.2.3
   provider: ^6.1.5
   permission_handler: ^11.3.0
+  overlay_support: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,7 @@ flutter:
     - assets/music/anime/
     - assets/music/opm/
     - assets/images/
+    - assets/images/heroes/
     - assets/data/questions.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

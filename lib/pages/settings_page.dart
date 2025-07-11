@@ -85,7 +85,9 @@ class _SettingsPageState extends State<SettingsPage> {
         await SettingsProvider().clearAllSettings();
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('All data cleared successfully')),
+            const SnackBar(
+              behavior: SnackBarBehavior.fixed,
+              content: Text('All data cleared successfully')),
           );
         }
       } catch (e) {
@@ -199,7 +201,9 @@ class _SettingsPageState extends State<SettingsPage> {
         await TutorialManager.resetTutorials();
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Tutorials reset successfully')),
+            const SnackBar(
+              behavior: SnackBarBehavior.fixed,
+              content: Text('Tutorials reset successfully')),
           );
         }
       } catch (e) {
@@ -216,10 +220,7 @@ class _SettingsPageState extends State<SettingsPage> {
       );
     }
     
-    return TutorialOverlay(
-      tutorialKey: 'settings',
-      steps: TutorialHelper.getSettingsTutorialSteps(),
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: _buildHeader(),
           backgroundColor: const Color(0xFFE9E0FF),
@@ -298,8 +299,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildHeader() {

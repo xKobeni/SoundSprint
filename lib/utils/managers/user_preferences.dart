@@ -42,8 +42,17 @@ class UserPreferences extends ChangeNotifier {
 
   Future<void> addPoints(int value) async {
     final prefs = await SharedPreferences.getInstance();
-    _points = (prefs.getInt('points') ?? 0) + value;
+    final currentPoints = prefs.getInt('points') ?? 0;
+    _points = currentPoints + value;
     await prefs.setInt('points', _points);
+    
+    // Debug logging
+    debugPrint('=== GLOBAL POINTS UPDATE ===');
+    debugPrint('Previous Points: $currentPoints');
+    debugPrint('Points Added: $value');
+    debugPrint('New Total Points: $_points');
+    debugPrint('=== END GLOBAL POINTS UPDATE ===');
+    
     notifyListeners();
   }
 

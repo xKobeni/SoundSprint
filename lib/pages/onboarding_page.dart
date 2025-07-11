@@ -69,6 +69,7 @@ class _OnboardingPageState extends State<OnboardingPage>
         const SnackBar(
           content: Text('Please enter your name'),
           backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.fixed,
         ),
       );
       return;
@@ -94,19 +95,26 @@ class _OnboardingPageState extends State<OnboardingPage>
     final Color primaryColor = const Color(0xFF7C5CFC);
 
     return Scaffold(
-      backgroundColor: primaryColor,
       resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: FadeTransition(
-          opacity: _fadeAnimation,
-          child: SlideTransition(
-            position: _slideAnimation,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: [
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFE9E0FF), Color(0xFF7C5CFC)],
+          ),
+        ),
+        child: SafeArea(
+          child: FadeTransition(
+            opacity: _fadeAnimation,
+            child: SlideTransition(
+              position: _slideAnimation,
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
                   const SizedBox(height: 40),
                   // Welcome Header
                   Column(
@@ -304,6 +312,7 @@ class _OnboardingPageState extends State<OnboardingPage>
           ),
         ),
       ),
+    )
     );
   }
 } 

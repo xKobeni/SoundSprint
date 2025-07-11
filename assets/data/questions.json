@@ -7,45 +7,45 @@
           "category": "Filipino Memes Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "filipino_meme_1.wav",
-          "options": ["Meme 1", "Meme 2", "Meme 3", "Meme 4"],
-          "correctAnswer": "Meme 1"
+          "file": "mali_ka_nyan_kapatid.mp3",
+          "options": ["Mali Ka Nyan Kapatid", "Sarap Mong Kausap", "Bawal Judgmental", "Kapatid Mo Ako"],
+          "correctAnswer": "Mali Ka Nyan Kapatid"
         },
         {
           "mode": "GuessTheSound",
           "category": "Filipino Memes Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "filipino_meme_3.wav",
-          "options": ["Meme 9", "Meme 10", "Meme 11", "Meme 12"],
-          "correctAnswer": "Meme 10"
+          "file": "filipino_curses.mp3",
+          "options": ["Filipino Curses", "Walang Forever", "Sana All", "Edi Wow"],
+          "correctAnswer": "Filipino Curses"
         },
         {
           "mode": "GuessTheSound",
           "category": "Filipino Memes Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "filipino_meme_4.wav",
-          "options": ["Meme 13", "Meme 14", "Meme 15", "Meme 16"],
-          "correctAnswer": "Meme 15"
+          "file": "pinoy_oh_no_krinds.mp3",
+          "options": ["Oh No Krinds", "Lodi", "Petmalu", "Werpa"],
+          "correctAnswer": "Oh No Krinds"
         },
         {
           "mode": "GuessTheSound",
           "category": "Filipino Memes Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "filipino_meme_5.wav",
-          "options": ["Meme 17", "Meme 18", "Meme 19", "Meme 20"],
-          "correctAnswer": "Meme 18"
+          "file": "ice_cream_yummy.mp3",
+          "options": ["Ice Cream Yummy", "Sarap Dito", "Bawal Lumabas", "Kain Tayo"],
+          "correctAnswer": "Ice Cream Yummy"
         },
         {
           "mode": "GuessTheSound",
           "category": "Filipino Memes Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "filipino_meme_6.wav",
-          "options": ["Meme 21", "Meme 22", "Meme 23", "Meme 24"],
-          "correctAnswer": "Meme 21"
+          "file": "milyon_pans.mp3",
+          "options": ["Milyon Pans", "Sarap Mong Kaibigan", "Beshie", "Keri Lang"],
+          "correctAnswer": "Milyon Pans"
         }
       ],
       "Medium": [
@@ -54,27 +54,54 @@
           "category": "Filipino Memes Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "filipino_meme_2.wav",
-          "options": ["Meme 5", "Meme 6", "Meme 7", "Meme 8"],
-          "correctAnswer": "Meme 5"
+          "file": "uy_boss.mp3",
+          "options": ["Uy Boss", "Astig Ka", "Sana All", "Walang Ganyanan"],
+          "correctAnswer": "Uy Boss"
         },
         {
           "mode": "GuessTheSound",
           "category": "Filipino Memes Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "filipino_meme_7.wav",
-          "options": ["Meme 25", "Meme 26", "Meme 27", "Meme 28"],
-          "correctAnswer": "Meme 27"
+          "file": "walang_aawat.mp3",
+          "options": ["Walang Aawat", "Bawal Tumawid", "Sana Tayo Na", "Bawal Judgmental"],
+          "correctAnswer": "Walang Aawat"
         },
         {
           "mode": "GuessTheSound",
           "category": "Filipino Memes Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "filipino_meme_8.wav",
-          "options": ["Meme 29", "Meme 30", "Meme 31", "Meme 32"],
-          "correctAnswer": "Meme 30"
+          "file": "silly_laugh.mp3",
+          "options": ["Silly Laugh", "Tawang Tawa", "Hahaha", "Ngiting Tagumpay"],
+          "correctAnswer": "Silly Laugh"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "dalawang_beses_nayan.mp3",
+          "options": ["Dalawang Beses Nayan", "Walang Forever", "Sana All", "Basta Driver Sweet Lover"],
+          "correctAnswer": "Dalawang Beses Nayan"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "ganda_mo_intro.mp3",
+          "options": ["Ganda Mo Intro", "Ang Ganda Mo", "Pogi Problems", "Gwapo Alert"],
+          "correctAnswer": "Ganda Mo Intro"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "bus_vendor.wav",
+          "options": ["Bus Vendor", "Manong Driver", "Barker", "Pasahero Problems"],
+          "correctAnswer": "Bus Vendor"
         }
       ],
       "Hard": [
@@ -83,18 +110,54 @@
           "category": "Filipino Memes Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "filipino_meme_4.wav",
-          "options": ["Meme 13", "Meme 14", "Meme 15", "Meme 16"],
-          "correctAnswer": "Meme 15"
+          "file": "so_weird.wav",
+          "options": ["So Weird", "Ang Weird Mo", "Cringe Moment", "Awkward Turtle"],
+          "correctAnswer": "So Weird"
         },
         {
           "mode": "GuessTheSound",
           "category": "Filipino Memes Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "filipino_meme_9.wav",
-          "options": ["Meme 33", "Meme 34", "Meme 35", "Meme 36"],
-          "correctAnswer": "Meme 34"
+          "file": "Ge_Talon.wav",
+          "options": ["Ge Talon", "Sugod Mga Kapatid", "Laban Lang", "Tara G"],
+          "correctAnswer": "Ge Talon"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "Manny_Pacquiao.wav",
+          "options": ["Manny Pacquiao", "Pambansang Kamao", "Knockout King", "Laban Pilipinas"],
+          "correctAnswer": "Manny Pacquiao"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "Lets_Get_Ready.wav",
+          "options": ["Let's Get Ready", "Handa Na Ba Kayo", "Game Na", "Simula Na"],
+          "correctAnswer": "Let's Get Ready"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "Taph_Taph.wav",
+          "options": ["Taph Taph", "Tapsilog", "Tara Kain", "Kain Tayo"],
+          "correctAnswer": "Taph Taph"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Filipino Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "tobol.mp3",
+          "options": ["2ball", "Sana Tayo Na", "Hugot King", "Basta Driver Sweet Lover"],
+          "correctAnswer": "2ball"
         }
       ]
     },
@@ -105,27 +168,54 @@
           "category": "Popular Memes Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "popular_meme_1.wav",
-          "options": ["Vine Boom", "Trololo", "Sad Violin", "John Cena"],
-          "correctAnswer": "Vine Boom"
+          "file": "999_social_credit.mp3",
+          "options": ["999 Social Credit", "Nyan Cat", "Trollface", "Epic Sax Guy"],
+          "correctAnswer": "999 Social Credit"
         },
         {
           "mode": "GuessTheSound",
           "category": "Popular Memes Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "popular_meme_4.wav",
-          "options": ["Bruh", "Deez Nuts", "Kazoo Kid", "Yee"],
-          "correctAnswer": "Bruh"
+          "file": "auughhh.mp3",
+          "options": ["Auughhh", "Doge", "Yee", "Peanut Butter Jelly Time"],
+          "correctAnswer": "Auughhh"
         },
         {
           "mode": "GuessTheSound",
           "category": "Popular Memes Sound",
           "difficulty": "Easy",
           "type": "sound",
-          "file": "popular_meme_5.wav",
-          "options": ["Wow", "Megalovania", "Nyan Cat", "Shooting Stars"],
-          "correctAnswer": "Wow"
+          "file": "bing_chilling.mp3",
+          "options": ["Bing Chilling", "Shoop Da Whoop", "Badger Song", "Keyboard Cat"],
+          "correctAnswer": "Bing Chilling"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "cat_laugh.mp3",
+          "options": ["Cat Laugh", "Shoes", "Hamster Dance", "Leeroy Jenkins"],
+          "correctAnswer": "Cat Laugh"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "frog_laughing_meme.mp3",
+          "options": ["Frog Laughing Meme", "Charlie Bit Me", "Chocolate Rain", "Double Rainbow"],
+          "correctAnswer": "Frog Laughing Meme"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Easy",
+          "type": "sound",
+          "file": "goofy_carhorn.mp3",
+          "options": ["Goofy Carhorn", "Rickroll", "Hide the Pain Harold", "Dramatic Chipmunk"],
+          "correctAnswer": "Goofy Carhorn"
         }
       ],
       "Medium": [
@@ -134,18 +224,54 @@
           "category": "Popular Memes Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "popular_meme_2.wav",
-          "options": ["Airhorn", "Illuminati Confirmed", "MLG Horn", "Thug Life"],
-          "correctAnswer": "Airhorn"
+          "file": "hold_up_tiktok.mp3",
+          "options": ["Hold Up TikTok", "Tunak Tunak Tun", "Shoop Da Whoop", "Geddan"],
+          "correctAnswer": "Hold Up TikTok"
         },
         {
           "mode": "GuessTheSound",
           "category": "Popular Memes Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "popular_meme_6.wav",
-          "options": ["Bruh Moment", "Gnome", "He-Man", "Sax Guy"],
-          "correctAnswer": "Bruh Moment"
+          "file": "imunderwater.mp3",
+          "options": ["I'm Underwater", "Hide Yo Kids", "Numa Numa", "Trololo"],
+          "correctAnswer": "I'm Underwater"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "john_cena.mp3",
+          "options": ["John Cena", "Gangnam Style", "All Star", "He-Man Sings"],
+          "correctAnswer": "John Cena"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "Oh_my_god!.wav",
+          "options": ["Oh My God!", "Harlem Shake", "Shooting Stars", "Yodeling Kid"],
+          "correctAnswer": "Oh My God!"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "sad_violin.mp3",
+          "options": ["Sad Violin", "Salt Bae", "Dame Da Ne", "PPAP"],
+          "correctAnswer": "Sad Violin"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "Sad_Violin.wav",
+          "options": ["Sad Violin (WAV)", "Nyan Nyan Cat", "Baby Shark", "Big Chungus"],
+          "correctAnswer": "Sad Violin (WAV)"
         }
       ],
       "Hard": [
@@ -154,27 +280,63 @@
           "category": "Popular Memes Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "popular_meme_3.wav",
-          "options": ["Sad Violin", "Soviet Anthem", "Tunak Tunak Tun", "Darude Sandstorm"],
-          "correctAnswer": "Sad Violin"
+          "file": "super_idol.mp3",
+          "options": ["Super Idol", "Yatta!", "Sax Guy", "Deal With It"],
+          "correctAnswer": "Super Idol"
         },
         {
           "mode": "GuessTheSound",
           "category": "Popular Memes Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "popular_meme_7.wav",
-          "options": ["Airhorn Remix", "Epic Sax Guy", "PPAP", "Coffin Dance"],
-          "correctAnswer": "Airhorn Remix"
+          "file": "sus.mp3",
+          "options": ["Sus", "Among Us", "Impostor", "Crewmate"],
+          "correctAnswer": "Sus"
         },
         {
           "mode": "GuessTheSound",
           "category": "Popular Memes Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "popular_meme_8.wav",
-          "options": ["Vine Boom 2", "Astronomia", "Big Chungus", "Shooting Stars Remix"],
-          "correctAnswer": "Vine Boom 2"
+          "file": "Vine_boom.wav",
+          "options": ["Vine Boom", "Bazinga", "Pepe the Frog", "Dat Boi"],
+          "correctAnswer": "Vine Boom"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "weeeee.mp3",
+          "options": ["Weeeee", "Nyan Nyan Guy", "Tide Pods", "Swole Doge"],
+          "correctAnswer": "Weeeee"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "wow.mp3",
+          "options": ["Wow", "Hide the Pain", "Mocking SpongeBob", "Distracted Boyfriend"],
+          "correctAnswer": "Wow"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "Bruh_sound.wav",
+          "options": ["Bruh Sound", "Loss", "Is This a Pigeon?", "Expanding Brain"],
+          "correctAnswer": "Bruh Sound"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Popular Memes Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "DJ_Airhorn.wav",
+          "options": ["DJ Airhorn", "Surprised Pikachu", "Arthur Fist", "Evil Kermit"],
+          "correctAnswer": "DJ Airhorn"
         }
       ]
     },
@@ -301,7 +463,7 @@
           "category": "Nature Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "nature_waterfall.wav",
+          "file": "waterfall.mp3",
           "options": ["Waterfall", "Rain", "Wind", "Thunder"],
           "correctAnswer": "Waterfall"
         },
@@ -310,7 +472,7 @@
           "category": "Nature Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "nature_birds.wav",
+          "file": "birds.mp3",
           "options": ["Birds Chirping", "Crickets", "Frogs", "Wolves"],
           "correctAnswer": "Birds Chirping"
         },
@@ -319,9 +481,27 @@
           "category": "Nature Sound",
           "difficulty": "Medium",
           "type": "sound",
-          "file": "nature_river.wav",
+          "file": "river.mp3",
           "options": ["River Flowing", "Ocean Waves", "Rain", "Wind"],
           "correctAnswer": "River Flowing"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "Thunder.wav",
+          "options": ["Thunder", "Avalanche", "Leaves Rustling", "Ocean Waves"],
+          "correctAnswer": "Thunder"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "Fire.wav",
+          "options": ["Fire", "Rain", "Glacier Cracking", "Birds Chirping"],
+          "correctAnswer": "Fire"
         }
       ],
       "Hard": [
@@ -330,25 +510,43 @@
           "category": "Nature Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "nature_crickets.wav",
+          "file": "cricket.mp3",
           "options": ["Crickets", "Birds Chirping", "Frogs", "Cicadas"],
           "correctAnswer": "Crickets"
         },
         {
           "mode": "GuessTheSound",
           "category": "Nature Sound",
-          "difficulty": "Hard",
+          "difficulty": "Medium",
           "type": "sound",
-          "file": "nature_volcano.wav",
-          "options": ["Volcano Eruption", "Thunder", "Earthquake", "Fire"],
-          "correctAnswer": "Volcano Eruption"
+          "file": "Rain.wav",
+          "options": ["Rain", "Waterfall", "Leaves Rustling", "Ocean Waves"],
+          "correctAnswer": "Rain"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Medium",
+          "type": "sound",
+          "file": "Wind.wav",
+          "options": ["Wind", "Thunder", "Birds Chirping", "Fire"],
+          "correctAnswer": "Wind"
         },
         {
           "mode": "GuessTheSound",
           "category": "Nature Sound",
           "difficulty": "Hard",
           "type": "sound",
-          "file": "nature_glacier.wav",
+          "file": "lava.mp3",
+          "options": ["Lava Flow", "Thunder", "Earthquake", "Fire"],
+          "correctAnswer": "Lava Flow"
+        },
+        {
+          "mode": "GuessTheSound",
+          "category": "Nature Sound",
+          "difficulty": "Hard",
+          "type": "sound",
+          "file": "icebreak.mp3",
           "options": ["Glacier Cracking", "Avalanche", "Wind", "Rain"],
           "correctAnswer": "Glacier Cracking"
         }
@@ -442,7 +640,7 @@
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "redvelvet_psychp.mp3",
+          "file": "Red_Velvet_Psycho.mp3",
           "clipStart": 14,
           "clipEnd": 29,
           "options": ["Psycho – Red Velvet", "Bad Boy – Red Velvet", "Peek-A-Boo – Red Velvet", "Russian Roulette – Red Velvet"],
@@ -453,7 +651,7 @@
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "ive_love_dive.mp3",
+          "file": "IVE_LOVE_DIVE.mp3",
           "clipStart": 9,
           "clipEnd": 24,
           "options": ["Love Dive – IVE", "After LIKE – IVE", "Kitsch – IVE", "I AM – IVE"],
@@ -464,7 +662,7 @@
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "itzy_wannabe.mp3",
+          "file": "ITZY_WANNABE.mp3",
           "clipStart": 10,
           "clipEnd": 25,
           "options": ["WANNABE – ITZY", "DALLA DALLA – ITZY", "ICY – ITZY", "LOCO – ITZY"],
@@ -475,7 +673,7 @@
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "exo_love_shot.mp3",
+          "file": "EXO_Love Shot.mp3",
           "clipStart": 13,
           "clipEnd": 28,
           "options": ["Love Shot – EXO", "Ko Ko Bop – EXO", "Tempo – EXO", "Call Me Baby – EXO"],
@@ -486,7 +684,7 @@
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "bibi_vengeance.mp3",
+          "file": "BIBI_Vengeance.mp3",
           "clipStart": 10,
           "clipEnd": 25,
           "options": ["BIBI Vengeance – BIBI", "Nxde – BIBI", "Bam Yang Gang – BIBI", "Sugar Rush – BIBI"],
@@ -497,7 +695,7 @@
           "category": "Kpop Music",
           "difficulty": "Medium",
           "type": "music",
-          "file": "itzy_loco.mp3",
+          "file": "ITZY_LOCO.mp3",
           "clipStart": 11,
           "clipEnd": 26,
           "options": ["LOCO – ITZY", "SNEAKERS – ITZY", "WANNABE – ITZY", "Voltage – ITZY"],
@@ -510,7 +708,7 @@
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "seventeen_super.wav",
+          "file": "SEVENTEEN_Super.mp3",
           "clipStart": 18,
           "clipEnd": 33,
           "options": ["Super – SEVENTEEN", "HOT – SEVENTEEN", "Clap – SEVENTEEN", "Left & Right – SEVENTEEN"],
@@ -521,7 +719,7 @@
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "aespa_savage.wav",
+          "file": "aespa_Savage.mp3",
           "clipStart": 17,
           "clipEnd": 32,
           "options": ["Savage – aespa", "Girls – aespa", "Next Level – aespa", "Black Mamba – aespa"],
@@ -532,18 +730,18 @@
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "straykids_gods_menu.wav",
+          "file": "Stray_Kids _Gods_ Menu.mp3",
           "clipStart": 20,
           "clipEnd": 35,
-          "options": ["God’s Menu – Stray Kids", "Back Door – Stray Kids", "S-Class – Stray Kids", "Case 143 – Stray Kids"],
-          "correctAnswer": "God’s Menu – Stray Kids"
+          "options": ["God's Menu – Stray Kids", "Back Door – Stray Kids", "S-Class – Stray Kids", "Case 143 – Stray Kids"],
+          "correctAnswer": "God's Menu – Stray Kids"
         },
         {
           "mode": "GuessTheMusic",
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "nct127_cherry_bomb.wav",
+          "file": "NCT_127 _Cherry_Bomb_Lyrics.mp3",
           "clipStart": 20,
           "clipEnd": 35,
           "options": ["Cherry Bomb – NCT 127", "Kick It – NCT 127", "Sticker – NCT 127", "2 Baddies – NCT 127"],
@@ -554,7 +752,7 @@
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "taemin_move.wav",
+          "file": "Taemin_Move.mp3",
           "clipStart": 19,
           "clipEnd": 34,
           "options": ["MOVE – Taemin", "Criminal – Taemin", "Advice – Taemin", "Want – Taemin"],
@@ -565,7 +763,7 @@
           "category": "Kpop Music",
           "difficulty": "Hard",
           "type": "music",
-          "file": "boa_onlyone.wav",
+          "file": "BoA_Only_One.mp3",
           "clipStart": 21,
           "clipEnd": 36,
           "options": ["Only One – BoA", "Woman – BoA", "No.1 – BoA", "Hurricane Venus – BoA"],
@@ -1877,7 +2075,7 @@
         }
       ]
     },
-  "Filipino Words": {
+    "Filipino Words": {
     "Easy": [
       {
         "mode": "Vocabulary",
@@ -2110,8 +2308,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Easy",
           "type": "image",
-          "file": "heroes/jose_rizal.jpg",
-          "options": ["Jose Rizal", "Andres Bonifacio", "Lapu-Lapu", "Emilio Aguinaldo"],
+          "file": "jose_rizal.png",
+          "options": ["Jose Rizal", "Diego Silang", "Francisco Dagohoy", "Macario Sakay"],
           "correctAnswer": "Jose Rizal"
         },
         {
@@ -2119,8 +2317,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Easy",
           "type": "image",
-          "file": "heroes/andres_bonifacio.jpg",
-          "options": ["Andres Bonifacio", "Melchora Aquino", "Gabriela Silang", "Marcelo del Pilar"],
+          "file": "andres_bonifacio.jpg",
+          "options": ["Andres Bonifacio", "Emilio Jacinto", "Aurelio Tolentino", "Julio Nakpil"],
           "correctAnswer": "Andres Bonifacio"
         },
         {
@@ -2128,8 +2326,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Easy",
           "type": "image",
-          "file": "heroes/lapu_lapu.jpg",
-          "options": ["Lapu-Lapu", "Gregoria de Jesus", "Tandang Sora", "Graciano Lopez Jaena"],
+          "file": "lapu_lapu.jpg",
+          "options": ["Lapu-Lapu", "Rajah Sulayman", "Datu Sikatuna", "Rajah Humabon"],
           "correctAnswer": "Lapu-Lapu"
         },
         {
@@ -2137,8 +2335,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Easy",
           "type": "image",
-          "file": "heroes/emilio_aguinaldo.jpg",
-          "options": ["Emilio Aguinaldo", "Mariano Ponce", "Apolinario Mabini", "Juan Luna"],
+          "file": "emilio_aguinaldo.jpg",
+          "options": ["Emilio Aguinaldo", "Apolinario Mabini", "Pio del Pilar", "Miguel Malvar"],
           "correctAnswer": "Emilio Aguinaldo"
         },
         {
@@ -2146,8 +2344,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Easy",
           "type": "image",
-          "file": "heroes/melchora_aquino.jpg",
-          "options": ["Melchora Aquino", "Felix Hidalgo", "Antonio Luna", "Fernando Amorsolo"],
+          "file": "melchora_aquino.jpg",
+          "options": ["Melchora Aquino", "Trinidad Tecson", "Gregoria Montoya", "Maria Clara"],
           "correctAnswer": "Melchora Aquino"
         },
         {
@@ -2155,8 +2353,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Easy",
           "type": "image",
-          "file": "heroes/gabriela_silang.jpg",
-          "options": ["Gabriela Silang", "Manuel Quezon", "Sergio Osmeña", "Rafael Palma"],
+          "file": "gabriela_silang.jpg",
+          "options": ["Gabriela Silang", "Teresa Magbanua", "Henerala Agueda Kahabagan", "Maria Orosa"],
           "correctAnswer": "Gabriela Silang"
         }
       ],
@@ -2166,8 +2364,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Medium",
           "type": "image",
-          "file": "heroes/marcelo_del_pilar.jpg",
-          "options": ["Marcelo del Pilar", "Cecilio Apostol", "Fernando Maramag", "Manuel Roxas"],
+          "file": "marcelo_del_pilar.jpg",
+          "options": ["Marcelo del Pilar", "Jose Maria Panganiban", "Pascual Poblete", "Isabelo de los Reyes"],
           "correctAnswer": "Marcelo del Pilar"
         },
         {
@@ -2175,8 +2373,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Medium",
           "type": "image",
-          "file": "heroes/graciano_lopez_jaena.jpg",
-          "options": ["Graciano Lopez Jaena", "Elpidio Quirino", "Jose Rizal", "Andres Bonifacio"],
+          "file": "graciano_lopez_jaena.jpg",
+          "options": ["Graciano Lopez Jaena", "Antonio Luna", "Leona Florentino", "Jose Abad Santos"],
           "correctAnswer": "Graciano Lopez Jaena"
         },
         {
@@ -2184,8 +2382,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Medium",
           "type": "image",
-          "file": "heroes/mariano_ponce.jpg",
-          "options": ["Mariano Ponce", "Lapu-Lapu", "Emilio Aguinaldo", "Melchora Aquino"],
+          "file": "mariano_ponce.jpg",
+          "options": ["Mariano Ponce", "Emilio Dizon", "Josefa Llanes Escoda", "Simeon Ola"],
           "correctAnswer": "Mariano Ponce"
         },
         {
@@ -2193,8 +2391,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Medium",
           "type": "image",
-          "file": "heroes/gregoria_de_jesus.jpg",
-          "options": ["Gregoria de Jesus", "Gabriela Silang", "Marcelo del Pilar", "Graciano Lopez Jaena"],
+          "file": "gregoria_de_jesus.jpg",
+          "options": ["Gregoria de Jesus", "Melencio Santos", "Gliceria Marella de Villavicencio", "Nieves Fernandez"],
           "correctAnswer": "Gregoria de Jesus"
         },
         {
@@ -2202,8 +2400,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Medium",
           "type": "image",
-          "file": "heroes/apolinario_mabini.jpg",
-          "options": ["Apolinario Mabini", "Mariano Ponce", "Gregoria de Jesus", "Tandang Sora"],
+          "file": "apolinario_mabini.jpg",
+          "options": ["Apolinario Mabini", "Jose Palma", "Vicente Lukban", "Pio Valenzuela"],
           "correctAnswer": "Apolinario Mabini"
         },
         {
@@ -2211,8 +2409,8 @@
           "category": "Philippine National Heroes",
           "difficulty": "Medium",
           "type": "image",
-          "file": "heroes/juan_luna.jpg",
-          "options": ["Juan Luna", "Felix Hidalgo", "Antonio Luna", "Fernando Amorsolo"],
+          "file": "juan_luna.png",
+          "options": ["Juan Luna", "Jose Alejandrino", "Manuel Tinio", "Faustino Ablen"],
           "correctAnswer": "Juan Luna"
         },
         {
@@ -2220,92 +2418,9 @@
           "category": "Philippine National Heroes",
           "difficulty": "Medium",
           "type": "image",
-          "file": "heroes/felix_hidalgo.jpg",
-          "options": ["Felix Hidalgo", "Manuel Quezon", "Sergio Osmeña", "Rafael Palma"],
-          "correctAnswer": "Felix Hidalgo"
-        },
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Medium",
-          "type": "image",
-          "file": "heroes/antonio_luna.jpg",
-          "options": ["Antonio Luna", "Cecilio Apostol", "Fernando Maramag", "Manuel Roxas"],
+          "file": "antonio_luna.jpg",
+          "options": ["Antonio Luna", "Julio Nakpil", "Aurelio Tolentino", "Emilio Jacinto"],
           "correctAnswer": "Antonio Luna"
-        }
-      ],
-      "Hard": [
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Hard",
-          "type": "image",
-          "file": "heroes/fernando_amorsolo.jpg",
-          "options": ["Fernando Amorsolo", "Elpidio Quirino", "Jose Rizal", "Andres Bonifacio"],
-          "correctAnswer": "Fernando Amorsolo"
-        },
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Hard",
-          "type": "image",
-          "file": "heroes/manuel_quezon.jpg",
-          "options": ["Manuel Quezon", "Lapu-Lapu", "Emilio Aguinaldo", "Melchora Aquino"],
-          "correctAnswer": "Manuel Quezon"
-        },
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Hard",
-          "type": "image",
-          "file": "heroes/sergio_osmena.jpg",
-          "options": ["Sergio Osmeña", "Gabriela Silang", "Marcelo del Pilar", "Graciano Lopez Jaena"],
-          "correctAnswer": "Sergio Osmeña"
-        },
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Hard",
-          "type": "image",
-          "file": "heroes/rafael_palma.jpg",
-          "options": ["Rafael Palma", "Mariano Ponce", "Gregoria de Jesus", "Tandang Sora"],
-          "correctAnswer": "Rafael Palma"
-        },
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Hard",
-          "type": "image",
-          "file": "heroes/cecilio_apostol.jpg",
-          "options": ["Cecilio Apostol", "Juan Luna", "Felix Hidalgo", "Antonio Luna"],
-          "correctAnswer": "Cecilio Apostol"
-        },
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Hard",
-          "type": "image",
-          "file": "heroes/fernando_maramag.jpg",
-          "options": ["Fernando Maramag", "Fernando Amorsolo", "Manuel Quezon", "Sergio Osmeña"],
-          "correctAnswer": "Fernando Maramag"
-        },
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Hard",
-          "type": "image",
-          "file": "heroes/manuel_roxas.jpg",
-          "options": ["Manuel Roxas", "Rafael Palma", "Cecilio Apostol", "Fernando Maramag"],
-          "correctAnswer": "Manuel Roxas"
-        },
-        {
-          "mode": "GuessTheImage",
-          "category": "Philippine National Heroes",
-          "difficulty": "Hard",
-          "type": "image",
-          "file": "heroes/elpidio_quirino.jpg",
-          "options": ["Elpidio Quirino", "Manuel Roxas", "Fernando Maramag", "Cecilio Apostol"],
-          "correctAnswer": "Elpidio Quirino"
         }
       ]
     }

@@ -36,7 +36,10 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
       });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading game modes: $e')),
+          SnackBar(
+            behavior: SnackBarBehavior.fixed,
+            content: Text('Error loading game modes: $e'),
+          ),
         );
       }
     }

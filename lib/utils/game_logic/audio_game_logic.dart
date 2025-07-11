@@ -12,7 +12,7 @@ import '../../widgets/answer_option_button.dart';
 class AudioGameLogic extends BaseGameLogic {
   late AudioPlayer _audioPlayer;
   bool _isInitialized = false;
-  bool _isPlaying = false;
+  final ValueNotifier<bool> _isPlaying = ValueNotifier(false);
   bool _audioError = false;
   bool _showAnswerFeedback = false;
   String? _selectedAnswer;
@@ -60,7 +60,7 @@ class AudioGameLogic extends BaseGameLogic {
     }
 
     _audioError = false;
-    _isPlaying = false;
+    _isPlaying.value = false;
     _showAnswerFeedback = false;
     _selectedAnswer = null;
     _correctAnswer = question.correctAnswer;
@@ -73,7 +73,7 @@ class AudioGameLogic extends BaseGameLogic {
     try {
       // Stop any currently playing audio before starting new question
       await AudioManager().stopAll();
-      _isPlaying = true;
+      _isPlaying.value = true;
       
       // Play the audio using AudioManager
       final success = await AudioManager().playAudio(
@@ -96,11 +96,11 @@ class AudioGameLogic extends BaseGameLogic {
         await Future.delayed(const Duration(seconds: 3));
       }
 
-      _isPlaying = false;
+      _isPlaying.value = false;
     } catch (e) {
       debugPrint('Error playing audio: $e');
       _audioError = true;
-      _isPlaying = false;
+      _isPlaying.value = false;
     }
   }
 
@@ -171,62 +171,69 @@ class AudioGameLogic extends BaseGameLogic {
   }
 
   Widget _buildAudioPlayerSection(Question question) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(
-            type == 'music' ? Icons.music_note : Icons.volume_up,
-            size: 48,
-            color: const Color(0xFF7C5CFC),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            type == 'music' ? 'Listen to the Music' : 'Listen to the Sound',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF7C5CFC),
-            ),
-          ),
-          const SizedBox(height: 8),
-          if (_audioError)
-            const Text(
-              'Audio not available',
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 14,
+    return ValueListenableBuilder<bool>(
+      valueListenable: _isPlaying,
+      builder: (context, isPlaying, child) {
+        return Container(
+          width: double.infinity,
+          height: 180,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 8,
+                offset: Offset(0, 4),
               ),
-            )
-          else if (_isPlaying)
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
-                  ),
+            ],
+          ),
+          child: Column(
+            children: [
+              Icon(
+                type == 'music' ? Icons.music_note : Icons.volume_up,
+                size: 48,
+                color: const Color(0xFF7C5CFC),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                type == 'music' ? 'Listen to the Music' : 'Listen to the Sound',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF7C5CFC),
                 ),
-                SizedBox(width: 8),
-                Text('Playing...'),
-              ],
-            ),
-        ],
-      ),
+              ),
+              const SizedBox(height: 8),
+              if (_audioError)
+                const Text(
+                  'Audio not available',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 14,
+                  ),
+                )
+              else if (isPlaying)
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF7C5CFC)),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Text('Playing...'),
+                  ],
+                ),
+            ],
+          ),
+        );
+      },
     );
   }
 

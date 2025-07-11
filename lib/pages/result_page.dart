@@ -68,14 +68,15 @@ class ResultPage extends StatelessWidget {
             colors: [Color(0xFFE9E0FF), Color(0xFF7C5CFC)],
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
             // Result Header
             Container(
-              padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -90,12 +91,12 @@ class ResultPage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Icon(resultIcon, size: 64, color: resultColor),
-                  const SizedBox(height: 16),
+                      Icon(resultIcon, size: 48, color: resultColor),
+                      const SizedBox(height: 12),
                   Text(
                     resultMessage,
                     style: TextStyle(
-                      fontSize: 28,
+                          fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: resultColor,
                     ),
@@ -103,14 +104,14 @@ class ResultPage extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     'You scored $score out of $total!',
-                    style: const TextStyle(fontSize: 18, color: Colors.black87),
+                        style: const TextStyle(fontSize: 16, color: Colors.black87),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     '$percentage%',
                     style: TextStyle(
-                      fontSize: 24,
+                          fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: resultColor,
                     ),
@@ -118,7 +119,7 @@ class ResultPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+                const SizedBox(height: 16),
                    
             // Score Breakdown
             Row(
@@ -132,7 +133,7 @@ class ResultPage extends StatelessWidget {
                     background: Colors.white,
                   ),
                 ),
-                const SizedBox(width: 12),
+                    const SizedBox(width: 8),
                 Expanded(
                   child: _ScoreCard(
                     title: 'Incorrect',
@@ -144,62 +145,236 @@ class ResultPage extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
-            
-            // Answer Details
-            const Text(
-              'Answer Details',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-            // Wrap only the answer details in Expanded with a Flexible ListView
-            Flexible(
-              child: ListView.builder(
-                itemCount: answers.length,
-                itemBuilder: (context, index) {
-                  final a = answers[index];
-                  final isCorrect = a['userAnswer'] == a['correctAnswer'];
-                  return Card(
-                    margin: const EdgeInsets.only(bottom: 8),
+                const SizedBox(height: 16),
+                
+                // Points Earned Section
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
                     color: Colors.white,
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: BorderSide(
-                        color: isCorrect ? Colors.green.withOpacity(0.2) : Colors.red.withOpacity(0.2),
-                        width: 1.5,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 8,
+                        offset: Offset(0, 4),
                       ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.stars,
+                            color: Color(0xFFFFD700),
+                            size: 20,
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            'Points Earned',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF7C5CFC),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Base Points',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                Text(
+                                  '$score',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF7C5CFC),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Bonuses',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                Text(
+                                  '${modeSpecificPoints - score}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFFFD700),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Total',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                Text(
+                                  '$modeSpecificPoints',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF7C5CFC),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                
+                // Answer Details - Compact Version
+                if (answers.isNotEmpty) ...[
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 8,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
                     ),
-                    child: ListTile(
-                      leading: Icon(
-                        isCorrect ? Icons.check_circle : Icons.cancel,
-                        color: isCorrect ? Colors.green : Colors.red,
-                      ),
-                      title: Text(
-                        a['question'] ?? 'Unknown Question',
-                        style: const TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      subtitle: Column(
+                    child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Your answer: ${a['userAnswer'] ?? 'No answer'}'),
-                          if (!isCorrect)
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.list_alt,
+                              color: Color(0xFF7C5CFC),
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            const Text(
+                              'Answer Details',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF7C5CFC),
+                              ),
+                            ),
+                            const Spacer(),
                             Text(
-                              'Correct: ${a['correctAnswer']}',
+                              '${answers.where((a) => a['userAnswer'] == a['correctAnswer']).length}/${answers.length}',
                               style: const TextStyle(
-                                color: Colors.deepPurple,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w600,
+                                color: Color(0xFF7C5CFC),
                               ),
                             ),
                         ],
                       ),
-                      isThreeLine: !isCorrect,
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          height: 200, // Fixed height to prevent overflow
+                          child: ListView.builder(
+                            itemCount: answers.length,
+                            itemBuilder: (context, index) {
+                              final a = answers[index];
+                              final isCorrect = a['userAnswer'] == a['correctAnswer'];
+                              return Container(
+                                margin: const EdgeInsets.only(bottom: 8),
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: isCorrect ? Colors.green.withOpacity(0.1) : Colors.red.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: isCorrect ? Colors.green.withOpacity(0.3) : Colors.red.withOpacity(0.3),
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      isCorrect ? Icons.check_circle : Icons.cancel,
+                                      color: isCorrect ? Colors.green : Colors.red,
+                                      size: 16,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Q${index + 1}',
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black54,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Text(
+                                            'Your answer: ${a['userAnswer'] ?? 'No answer'}',
+                                            style: const TextStyle(fontSize: 12),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          if (!isCorrect) ...[
+                                            const SizedBox(height: 2),
+                                            Text(
+                                              'Correct: ${a['correctAnswer']}',
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.deepPurple,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ],
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                     ),
                   );
                 },
               ),
             ),
-            const SizedBox(height: 24),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
             
             // Action Buttons
             Row(
@@ -209,12 +384,12 @@ class ResultPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context, true); // Replay
                     },
-                    icon: const Icon(Icons.replay),
-                    label: const Text('Play Again'),
+                        icon: const Icon(Icons.replay, size: 18),
+                        label: const Text('Play Again', style: TextStyle(fontSize: 14)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF7C5CFC),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                         side: const BorderSide(color: Color(0xFF7C5CFC)),
@@ -229,13 +404,13 @@ class ResultPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pushNamedAndRemoveUntil('/main', (route) => false);
                     },
-                    icon: const Icon(Icons.home),
-                    label: const Text('Home'),
+                        icon: const Icon(Icons.home, size: 18),
+                        label: const Text('Home', style: TextStyle(fontSize: 14)),
                     style: OutlinedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF7C5CFC),
                       side: const BorderSide(color: Color(0xFF7C5CFC)),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -244,7 +419,9 @@ class ResultPage extends StatelessWidget {
                 ),
               ],
             ),
+                const SizedBox(height: 16), // Bottom padding for safe area
           ],
+            ),
           ),
         ),
       ),
@@ -270,7 +447,7 @@ class _ScoreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: background,
         borderRadius: BorderRadius.circular(12),
@@ -285,12 +462,12 @@ class _ScoreCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(icon, size: 32, color: color),
-          const SizedBox(height: 8),
+          Icon(icon, size: 24, color: color),
+          const SizedBox(height: 6),
           Text(
             '$value',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: color,
             ),
@@ -300,6 +477,7 @@ class _ScoreCard extends StatelessWidget {
             style: TextStyle(
               color: color,
               fontWeight: FontWeight.w600,
+              fontSize: 12,
             ),
           ),
         ],

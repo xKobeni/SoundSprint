@@ -571,36 +571,6 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             _buildGameCard(
-              icon: Icons.music_note,
-              label: 'Music Quiz',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CategorySelectionPage(
-                      gameMode: 'GuessTheMusic',
-                      gameModeName: 'Music Quiz',
-                    ),
-                  ),
-                );
-              },
-            ),
-            _buildGameCard(
-              icon: Icons.volume_up,
-              label: 'Sound Quiz',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CategorySelectionPage(
-                      gameMode: 'GuessTheSound',
-                      gameModeName: 'Sound Quiz',
-                    ),
-                  ),
-                );
-              },
-            ),
-            _buildGameCard(
               icon: Icons.image,
               label: 'Guess the Image',
               onTap: () {

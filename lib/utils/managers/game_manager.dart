@@ -424,26 +424,45 @@ class GameManager extends ChangeNotifier {
     if (_currentGameMode == null) return 0;
     final basePoints = _score * 1; // 1 point per correct answer
     int modeBonus = 0;
+    
+    // Debug logging
+    debugPrint('=== POINT CALCULATION DEBUG ===');
+    debugPrint('Game Mode: $_currentGameMode');
+    debugPrint('Score: $_score, Total Questions: ${_questions.length}');
+    debugPrint('Base Points: $basePoints');
+    
     switch (_currentGameMode) {
       case 'GuessTheSound':
         if (_score >= 2) modeBonus = 1;
+        debugPrint('GuessTheSound Mode Bonus: $modeBonus');
         break;
       case 'GuessTheMusic':
         modeBonus = _score ~/ 3; // +1 for every 3 correct
+        debugPrint('GuessTheMusic Mode Bonus: $modeBonus');
         break;
       case 'TrueOrFalse':
       case 'Vocabulary':
       case 'GuessTheImage':
         modeBonus = 0;
+        debugPrint('${_currentGameMode} Mode Bonus: $modeBonus');
         break;
       default:
         modeBonus = 0;
+        debugPrint('Default Mode Bonus: $modeBonus');
     }
+    
     // Add perfect score bonus
+    int perfectScoreBonus = 0;
     if (_score == _questions.length && _score > 0) {
-      modeBonus += 2;
+      perfectScoreBonus = 2;
+      debugPrint('Perfect Score Bonus: $perfectScoreBonus');
     }
-    return basePoints + modeBonus;
+    
+    final totalPoints = basePoints + modeBonus + perfectScoreBonus;
+    debugPrint('Total Points: $totalPoints (Base: $basePoints + Mode: $modeBonus + Perfect: $perfectScoreBonus)');
+    debugPrint('=== END POINT CALCULATION DEBUG ===');
+    
+    return totalPoints;
   }
 
   /// Get current game mode name

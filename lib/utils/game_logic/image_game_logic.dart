@@ -210,29 +210,42 @@ class ImageGameLogic extends BaseGameLogic {
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
-      child: Image.asset(
-        'assets/images/${question.file}',
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          _imageError = true;
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.error_outline, size: 48, color: Colors.grey),
-                  SizedBox(height: 8),
-                  Text(
-                    'Image not found',
-                    style: TextStyle(color: Colors.grey),
+      child: Builder(
+        builder: (context) {
+          String assetPath;
+          if (question.category == 'Philippine National Heroes') {
+            assetPath = 'assets/images/heroes/${question.file}';
+          } else if (question.category == 'Animal Sound') {
+            assetPath = 'assets/images/animals/${question.file}';
+          } else {
+            assetPath = 'assets/images/${question.file}';
+          }
+          debugPrint('Loading image asset: ' + assetPath);
+          return Image.asset(
+            assetPath,
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) {
+              _imageError = true;
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.error_outline, size: 48, color: Colors.grey),
+                      SizedBox(height: 8),
+                      Text(
+                        'Image not found',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           );
         },
       ),
