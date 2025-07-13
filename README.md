@@ -59,7 +59,36 @@ A comprehensive Flutter-based educational game application that focuses on audio
 
 ## 📱 Screenshots
 
-*Screenshots coming soon*
+### Main Interface
+![Home Page](assets/images/samples/Home_page.jpg)
+*Main dashboard with game mode selection and user statistics*
+
+### Gameplay
+![Gameplay Sample](assets/images/samples/Gameplay_sample.jpg)
+*Active gameplay with question display and answer options*
+
+![Game Category Selection](assets/images/samples/Game_Category_page.jpg)
+*Category selection page for different game modes*
+
+### Results & Analytics
+![Quiz Result Page](assets/images/samples/Quiz_Result_page.jpg)
+*Game completion summary with score breakdown*
+
+![Stats Page 1](assets/images/samples/Stats_page_1.jpg)
+*Detailed statistics and performance analytics*
+
+![Stats Page 2](assets/images/samples/Stats_page_2.jpg)
+*Additional statistics and progress tracking*
+
+### User Features
+![User Profile Page](assets/images/samples/User_profile_page.jpg)
+*User profile management and personal statistics*
+
+![Achievement Page](assets/images/samples/Achievement_page.jpg)
+*Achievement system with unlock progress*
+
+![Settings Page](assets/images/samples/Settings_page.jpg)
+*App settings and preferences configuration*
 
 ## 📥 Download
 
