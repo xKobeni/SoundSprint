@@ -60,34 +60,34 @@ A comprehensive Flutter-based educational game application that focuses on audio
 ## 📱 Screenshots
 
 ### Main Interface
-![Home Page](assets/images/samples/Home_page.jpg)
+<img src="assets/images/samples/Home_page.jpg" width="300" alt="Home Page">
 *Main dashboard with game mode selection and user statistics*
 
 ### Gameplay
-![Gameplay Sample](assets/images/samples/Gameplay_sample.jpg)
+<img src="assets/images/samples/Gameplay_sample.jpg" width="300" alt="Gameplay Sample">
 *Active gameplay with question display and answer options*
 
-![Game Category Selection](assets/images/samples/Game_Category_page.jpg)
+<img src="assets/images/samples/Game_Category_page.jpg" width="300" alt="Game Category Selection">
 *Category selection page for different game modes*
 
 ### Results & Analytics
-![Quiz Result Page](assets/images/samples/Quiz_Result_page.jpg)
+<img src="assets/images/samples/Quiz_Result_page.jpg" width="300" alt="Quiz Result Page">
 *Game completion summary with score breakdown*
 
-![Stats Page 1](assets/images/samples/Stats_page_1.jpg)
+<img src="assets/images/samples/Stats_page_1.jpg" width="300" alt="Stats Page 1">
 *Detailed statistics and performance analytics*
 
-![Stats Page 2](assets/images/samples/Stats_page_2.jpg)
+<img src="assets/images/samples/Stats_page_2.jpg" width="300" alt="Stats Page 2">
 *Additional statistics and progress tracking*
 
 ### User Features
-![User Profile Page](assets/images/samples/User_profile_page.jpg)
+<img src="assets/images/samples/User_profile_page.jpg" width="300" alt="User Profile Page">
 *User profile management and personal statistics*
 
-![Achievement Page](assets/images/samples/Achievement_page.jpg)
+<img src="assets/images/samples/Achievement_page.jpg" width="300" alt="Achievement Page">
 *Achievement system with unlock progress*
 
-![Settings Page](assets/images/samples/Settings_page.jpg)
+<img src="assets/images/samples/Settings_page.jpg" width="300" alt="Settings Page">
 *App settings and preferences configuration*
 
 ## 📥 Download
